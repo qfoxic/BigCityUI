@@ -2,7 +2,7 @@
 <html>
   <head>
      {% if settings.DEBUG %}
-        <script src="{% static "js/app.js" %}"></script>
+        <script data-main="static/js/app" src="{% static "js/require.js" %}"></script>
      {% else %}
         <script src="{% static "build/app.js" %}"></script>
      {% endif %}

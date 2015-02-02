@@ -1,7 +1,12 @@
+from django.conf import settings
 from django.views.generic import TemplateView
 
 
 class HomeView(TemplateView):
+
+    def get_context_data(self, **kwargs):
+        kwargs['settings'] = settings
+        return kwargs
 
     def get_template_names(self):
         template_name = 'index.html'
