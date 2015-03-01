@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en" ng-app="bigcity">
+<head>
+  <meta charset="utf-8">
+  <title>Bigcity</title>
+  <link rel="stylesheet" href="/static/assets/css/angular-material.css">
+</head>
+<body layout="column">
+  <header layout="row">
+    <div flex>LANGUAGE</div>
+    <div flex>SIGN IN</div>
+    <div flex><a ui-sref="register">REGISTER</a></div>
+  </header>
+  <nav layout="row">
+    <div>BIGSITY</div>
+  </nav>
+  <div layout="row">
+    <main ui-view></main>
+  </div>
+  <footer layout="row"></footer>
+  <script src="/static/assets/libs/angular.js"></script>
+  <script src="/static/assets/libs/angular-animate.js"></script>
+  <script src="/static/assets/libs/angular-aria.js"></script>
+  <script src="/static/assets/libs/angular-material.js"></script>
+  <script src="/static/assets/libs/angular-ui-router.js"></script>
+  <script src="/static/app/users/controller.js"></script>
+  <script src="/static/app/app.routes.js"></script>
+</body>
+</html>
