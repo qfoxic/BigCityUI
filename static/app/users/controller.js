@@ -2,6 +2,12 @@ angular.module('bigcity.users', [
   'ui.router'
 ])
 
+.service('UsersModel', ['$resource', function ($resource) {
+  var path = 'http://127.0.0.1:8001/api/user/';
+  var User = $resource(path + ':userId', {userId:'@id'});
+  return User;
+}])
+
 .config(
   [          '$stateProvider', '$urlRouterProvider',
     function ($stateProvider,   $urlRouterProvider) {
@@ -24,8 +30,8 @@ angular.module('bigcity.users', [
           //},
 
           // You can pair a controller to your template. There *must* be a template to pair with.
-          controller: ['$scope', '$state', /*'contacts', 'utils',*/
-            function (  $scope,   $state/*,   contacts,   utils*/) {
+          controller: ['$scope', '$state',
+            function ($scope, $state) {
 
               // Add a 'contacts' field in this abstract parent's scope, so that all
               // child state views can access it in their scopes. Please note: scope
@@ -75,7 +81,16 @@ angular.module('bigcity.users', [
           // template will be inserted into the ui-view within this state's
           // parent's template; so the ui-view within contacts.html. This is the
           // most important thing to remember about templates.
-          templateUrl: '/static/app/users/edit.html'
+          templateUrl: '/static/app/users/edit.html',
+          controller: ['$scope', '$state', 'UsersModel',
+            function ($scope, $state, UsersModel) {
+              $scope.user = {};
+
+              $scope.update = function(user) {
+                debugger;
+                UsersModel.$save(user);
+              };
+            }]
         })
 
         ///////////////////////

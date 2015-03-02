@@ -1,7 +1,8 @@
 angular.module('bigcity', [
   'bigcity.users',
   'ui.router', 
-  'ngAnimate'
+  'ngAnimate',
+  'ngResource'
 ])
 .run(
   ['$rootScope', '$state', '$stateParams',
