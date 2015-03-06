@@ -15,7 +15,6 @@ angular.module('bigcity.users', [
       h.then(function(resp) {
           var token = 'Token ' + resp.data.result.token;
           $http.defaults.headers.common.Authorization = token;
-          $http.get('http://127.0.0.1:8001/user/5/')
       });
       return h;
   };
