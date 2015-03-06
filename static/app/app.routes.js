@@ -1,14 +1,14 @@
 angular.module('bigcity', [
   'bigcity.users',
+  'bigcity.login',
   'ui.router', 
   'ngAnimate',
-  'ngResource'
 ])
 .run(
   ['$rootScope', '$state', '$stateParams',
   function ($rootScope, $state, $stateParams) {
-    $rootScope.$state = $state;
-    $rootScope.$stateParams = $stateParams;
+      $rootScope.$state = $state;
+      $rootScope.$stateParams = $stateParams;
     }
   ]
 )
@@ -16,6 +16,7 @@ angular.module('bigcity', [
 
   $urlRouterProvider
     .when('/users/', '/users/')
+    .when('/login/', '/login/')
     .otherwise('/');
 
   $stateProvider

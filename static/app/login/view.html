@@ -1,0 +1,16 @@
+<div ui-view>
+  <form name="form" novalidate class="simple-form">
+    Email: <input type="email" ng-model="user.username" name="username" required/><br />
+    <div ng-show="form.username.$touched">
+      <span ng-show="form.username.$error.required">Tell us your email.</span>
+      <span ng-show="form.username.$error.username">This is not a valid email.</span>
+    </div>
+
+    Password: <input type="password" ng-model="user.password" required/><br />
+    <div ng-show="form.$submitted || form.password.$touched">
+      <div ng-show="form.password.$error.required">Please provide a password.</div>
+    </div>
+    <input type="button" ng-click="reset(form)" value="Cancel" />
+    <input type="submit" ng-click="update(user)" value="Save" />
+  </form>
+</div>

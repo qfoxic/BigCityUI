@@ -1,59 +1,43 @@
 angular.module('bigcity.users', [
-  'ui.router'
+  'ui.router',
+  'ngResource'
 ])
 
-.service('UsersModel', ['$resource', function ($resource) {
-  var path = 'http://127.0.0.1:8001/api/user/';
-  var User = $resource(path + ':userId', {userId:'@id'});
+
+.service('UsersService', ['$resource', '$http', function ($resource, $http) {
+  var userUrl = 'http://127.0.0.1:8001/user/',
+      loginUrl = 'http://127.0.0.1:8001/login/',
+      User = $resource(userUrl + ':userId', {userId:'@id'});
+
+  User.login = function(userData) {
+      var h =  $http.post(loginUrl, userData);
+
+      h.then(function(resp) {
+          var token = 'Token ' + resp.data.result.token;
+          $http.defaults.headers.common.Authorization = token;
+          $http.get('http://127.0.0.1:8001/user/5/')
+      });
+      return h;
+  };
+  User.save = function(userData) {
+      return res.save(userData).$promise;
+  };
   return User;
 }])
 
 .config(
-  [          '$stateProvider', '$urlRouterProvider',
-    function ($stateProvider,   $urlRouterProvider) {
+  ['$stateProvider', '$urlRouterProvider', '$resourceProvider',
+    function ($stateProvider,   $urlRouterProvider, $resourceProvider) {
+      $resourceProvider.defaults.stripTrailingSlashes = false;
       $stateProvider
         .state('users', {
           abstract: true,
           url: '/users',
           templateUrl: '/static/app/users/main.html',
-
-          // Use `resolve` to resolve any asynchronous controller dependencies
-          // *before* the controller is instantiated. In this case, since contacts
-          // returns a promise, the controller will wait until contacts.all() is
-          // resolved before instantiation. Non-promise return values are considered
-          // to be resolved immediately.
-          //resolve: {
-          //  contacts: ['contacts',
-          //    function( contacts){
-          //      return contacts.all();
-          //    }]
-          //},
-
-          // You can pair a controller to your template. There *must* be a template to pair with.
           controller: ['$scope', '$state',
             function ($scope, $state) {
-
-              // Add a 'contacts' field in this abstract parent's scope, so that all
-              // child state views can access it in their scopes. Please note: scope
-              // inheritance is not due to nesting of states, but rather choosing to
-              // nest the templates of those states. It's normal scope inheritance.
-              //$scope.contacts = contacts;
-              
-              //$scope.goToRandom = function () {
-              //  var randId = utils.newRandomKey($scope.contacts, "id", $state.params.contactId);
-
-              //  // $state.go() can be used as a high level convenience method
-              //  // for activating a state programmatically.
-              //  $state.go('contacts.detail', { contactId: randId });
             }]
         })
-
-        /////////////////////
-        // Contacts > List //
-        /////////////////////
-
-        // Using a '.' within a state name declares a child within a parent.
-        // So you have a new state 'list' within the parent 'contacts' state.
         .state('users.list', {
 
           // Using an empty url means that this child state will become active
@@ -68,27 +52,20 @@ angular.module('bigcity.users', [
           // most important thing to remember about templates.
           templateUrl: '/static/app/users/list.html'
         })
-
         .state('users.register', {
-
-          // Using an empty url means that this child state will become active
-          // when its parent's url is navigated to. Urls of child states are
-          // automatically appended to the urls of their parent. So this state's
-          // url is '/contacts' (because '/contacts' + '').
           url: '/register',
-
-          // IMPORTANT: Now we have a state that is not a top level state. Its
-          // template will be inserted into the ui-view within this state's
-          // parent's template; so the ui-view within contacts.html. This is the
-          // most important thing to remember about templates.
           templateUrl: '/static/app/users/edit.html',
-          controller: ['$scope', '$state', 'UsersModel',
-            function ($scope, $state, UsersModel) {
+          controller: ['$scope', '$state', 'UsersService',
+            function ($scope, $state, UsersService) {
               $scope.user = {};
-
               $scope.update = function(user) {
-                debugger;
-                UsersModel.$save(user);
+                  UsersService.save(user).then(
+                    function(data) {
+                        $scope.user = data.result;
+                    },
+                    function(err) {
+                        alert(err.data.error);
+                    });
               };
             }]
         })
