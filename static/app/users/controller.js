@@ -10,7 +10,9 @@ angular.module('bigcity.users', [
           loginUrl = 'http://127.0.0.1:8001/login/',
           cache = $rootScope.cache,
           User = {},
-          res = $resource(userUrl + ':userId/', {userId:'@id'});
+          res = $resource(userUrl + ':userId/',
+              {userId:'@id'},
+              {update: {method: 'PUT'}});
 
       User.login = function(userData) {
           var h =  $http.post(loginUrl, userData);
@@ -23,11 +25,17 @@ angular.module('bigcity.users', [
           });
           return h;
       };
-      User.save = function(userData) {
+      User.create = function(userData) {
           return res.save(userData).$promise;
+      };
+      User.update = function(userData) {
+        return res.update(userData).$promise;
       };
       User.current = function() {
           return cache.get('usr') || {};
+      };
+      User.get = function(uid) {
+        return res.get({userId: uid}).$promise;
       };
       return User;
 }])
@@ -41,8 +49,23 @@ angular.module('bigcity.users', [
           abstract: true,
           url: '/users',
           templateUrl: '/static/app/users/main.html',
-          controller: ['$scope', '$state',
-            function ($scope, $state) {
+          controller: ['$scope', '$state', 'UsersService',
+            function ($scope, $state, UsersService) {
+              $scope.update = function(user, form) {
+                var edited = {id: user.id};
+                angular.forEach(form, function(prop, key) {
+                  if (!key.startsWith('$') && prop.$dirty) {
+                    edited[key] = prop.$viewValue;
+                  }
+                });
+                UsersService.update(edited).then(
+                  function(data) {
+                      $scope.user = data.result;
+                  },
+                  function(err) {
+                      alert(err.data.error);
+                  });
+              };
             }]
         })
         .state('users.list', {
@@ -55,15 +78,6 @@ angular.module('bigcity.users', [
           controller: ['$scope', '$state', 'UsersService',
             function ($scope, $state, UsersService) {
               $scope.user = {};
-              $scope.update = function(user) {
-                  UsersService.save(user).then(
-                    function(data) {
-                        $scope.user = data.result;
-                    },
-                    function(err) {
-                        alert(err.data.error);
-                    });
-              };
             }]
         })
         .state('users.profile', {
@@ -72,29 +86,50 @@ angular.module('bigcity.users', [
             '': {
               templateUrl: '/static/app/users/data.html',
               controller: ['$scope', '$stateParams', 'UsersService',
-                function (  $scope, $stateParams, UsersService) {
+                function ($scope, $stateParams, UsersService) {
                   $scope.user = UsersService.current();
                 }]
-            },
-
-            // This one is targeting the ui-view="hint" within the unnamed root, aka index.html.
-            // This shows off how you could populate *any* view within *any* ancestor state.
-            //'hint@': {
-            //  template: 'This is contacts.detail populating the "hint" ui-view'
-            //},
-
-            // This one is targeting the ui-view="menuTip" within the parent state's template.
-            //'menuTip': {
-              // templateProvider is the final method for supplying a template.
-              // There is: template, templateUrl, and templateProvider.
-            //  templateProvider: ['$stateParams',
-            //    function (        $stateParams) {
-                  // This is just to demonstrate that $stateParams injection works for templateProvider.
-                  // $stateParams are the parameters for the new state we're transitioning to, even
-                  // though the global '$stateParams' has not been updated yet.
-            //      return '<hr><small class="muted">Contact ID: ' + $stateParams.contactId + '</small>';
-            //    }]
-            //}
+            }
+          }
+        })
+        .state('users.update', {
+          url: '/profile/:userId/update',
+          views: {
+            '': {
+              templateUrl: '/static/app/users/edit.html',
+              controller: ['$scope', '$stateParams', 'UsersService',
+                function ($scope, $stateParams, UsersService) {
+                  $scope.user = {};
+                  UsersService.get($stateParams.userId).then(
+                    function(data) {
+                      $scope.user = data.result;
+                    },
+                    function(err) {
+                      alert(err.data.error);
+                    }
+                  )
+                }]
+            }
+          }
+        })
+        .state('users.detail', {
+          url: '/profile/:userId',
+          views: {
+            '': {
+              templateUrl: '/static/app/users/data.html',
+              controller: ['$scope', '$stateParams', 'UsersService',
+                function ($scope, $stateParams, UsersService) {
+                  $scope.user = {};
+                  UsersService.get($stateParams.userId).then(
+                    function(data) {
+                      $scope.user = data.result;
+                    },
+                    function(err) {
+                      alert(err.data.error);
+                    }
+                  )
+                }]
+            }
           }
         })
         //////////////////////////////
