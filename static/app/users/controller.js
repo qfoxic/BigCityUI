@@ -3,11 +3,12 @@ angular.module('bigcity.users', [
   'ngResource'
 ])
 
-
 .service('UsersService', ['$resource', '$http', '$rootScope',
   function ($resource, $http, $rootScope) {
       var userUrl = 'http://127.0.0.1:8001/user/',
           loginUrl = 'http://127.0.0.1:8001/login/',
+          logoutUrl = 'http://127.0.0.1:8001/logout/',
+          usersUrl = 'http://127.0.0.1:8001/users/',
           cache = $rootScope.cache,
           User = {},
           res = $resource(userUrl + ':userId/',
@@ -20,10 +21,21 @@ angular.module('bigcity.users', [
           h.then(function(resp) {
               var token = 'Token ' + resp.data.result.token;
               cache.clearAll();
+              $rootScope.curUser = resp.data.result;
               cache.set('usr', resp.data.result);
               $http.defaults.headers.common.Authorization = token;
           });
           return h;
+      };
+      User.logout = function(userData) {
+        var h =  $http.get(logoutUrl);
+
+        h.then(function(resp) {
+            cache.clearAll();
+            $http.defaults.headers.common.Authorization = null;
+            delete $rootScope.curUser;
+        });
+        return h;
       };
       User.create = function(userData) {
           return res.save(userData).$promise;
@@ -37,13 +49,16 @@ angular.module('bigcity.users', [
       User.get = function(uid) {
         return res.get({userId: uid}).$promise;
       };
+      User.list = function(params) {
+        return $http.get(usersUrl, params);
+      };
+
       return User;
 }])
 
 .config(
-  ['$stateProvider', '$urlRouterProvider', '$resourceProvider',
-    function ($stateProvider,   $urlRouterProvider, $resourceProvider) {
-      $resourceProvider.defaults.stripTrailingSlashes = false;
+  ['$stateProvider', '$urlRouterProvider',
+    function ($stateProvider, $urlRouterProvider) {
       $stateProvider
         .state('users', {
           abstract: true,
@@ -70,7 +85,18 @@ angular.module('bigcity.users', [
         })
         .state('users.list', {
           url: '/list',
-          templateUrl: '/static/app/users/list.html'
+          templateUrl: '/static/app/users/list.html',
+          controller: ['$scope', '$state', 'UsersService',
+            function ($scope, $state, UsersService) {
+              $scope.users = {};
+              UsersService.list({}).then(
+                  function(data) {
+                    $scope.users = data.data.result;
+                  },
+                  function(err) {
+                    alert(err.data.error);
+                  });
+           }]
         })
         .state('users.register', {
           url: '/register',

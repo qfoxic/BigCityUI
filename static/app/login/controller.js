@@ -3,9 +3,8 @@ angular.module('bigcity.login', [
 ])
 
 .config(
-  ['$stateProvider', '$resourceProvider',
-    function ($stateProvider, $resourceProvider) {
-      $resourceProvider.defaults.stripTrailingSlashes = false;
+  ['$stateProvider',
+    function ($stateProvider) {
       $stateProvider
         .state('login', {
           url: '/login',
@@ -13,14 +12,31 @@ angular.module('bigcity.login', [
           controller: ['$scope', 'UsersService',
             function ($scope, UsersService) {
               $scope.user = {};
-              $scope.update = function(user) {
+              $scope.login = function(user) {
                   UsersService.login(user).then(
                     function(data) {
+                      $state.go('home');
                     },
                     function(err) {
                         alert(err.data.error);
                     });
-            };
+              };
+          }]
+        })
+        .state('logout', {
+          url: '/logout',
+          controller: ['$scope', 'UsersService', '$rootScope', '$state',
+            function ($scope, UsersService, $rootScope, $state) {
+              $scope.user = {};
+              $rootScope.logout = function() {
+                UsersService.logout().then(
+                  function(data) {
+                    $state.go('login');
+                  },
+                  function(err) {
+                      alert(err.data.error);
+                  });
+              };
           }]
         })
     }

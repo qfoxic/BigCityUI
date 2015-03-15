@@ -1,3 +1,5 @@
 <div ui-view>
-HELLOO LIST
+  <div ng-repeat="user in users">
+    <div>{{user.id}}--{{user.email}}</div>
+  </div>
 </div>

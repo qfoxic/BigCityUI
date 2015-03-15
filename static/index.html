@@ -6,17 +6,16 @@
   <link rel="stylesheet" href="/static/assets/css/angular-material.css">
 </head>
 <body layout="column">
-  <header layout="row">
-    <div flex>LANGUAGE</div>
-    <div flex><a ui-sref="login">SIGN IN</a></div>
-    <div flex><a ui-sref="users.register">REGISTER</a></div>
+  <header layout="row" layout-align="end start">
+     <md-button flex class="md-accent" ng-if="!curUser" ui-sref="login">sign in</md-button>
+     <md-button flex class="md-accent" ng-if="curUser" ui-sref="logout" ng-click="logout()">logout</md-button>
+     <md-button flex class="md-accent" ui-sref="users.register">register</md-button>
   </header>
-  <nav layout="row">
-    <div>BIGSITY</div>
-  </nav>
-  <div layout="row">
+  <md-toolbar layout="row">
+  </md-toolbar>
+  <md-content layout="row">
     <main ui-view></main>
-  </div>
+  </md-content>
   <footer layout="row"></footer>
   <script src="/static/assets/libs/angular.js"></script>
   <script src="/static/assets/libs/angular-animate.js"></script>

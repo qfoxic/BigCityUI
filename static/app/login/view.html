@@ -1,16 +1,24 @@
-<div ui-view>
-  <form name="form" novalidate class="simple-form">
-    Email: <input type="email" ng-model="user.username" name="username" required/><br />
-    <div ng-show="form.username.$touched">
-      <span ng-show="form.username.$error.required">Tell us your email.</span>
-      <span ng-show="form.username.$error.username">This is not a valid email.</span>
+<div class="container" ui-view>
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <div class="login-panel panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Please Sign In</h3>
+        </div>
+        <div class="panel-body">
+          <form role="form" name="form" novalidate >
+            <fieldset>
+              <div class="form-group">
+                <input type="email" placeholder="E-mail" class="form-control" ng-model="user.username" name="username" required autofocus>
+              </div>
+              <div class="form-group">
+                <input class="form-control" ng-model="user.password" placeholder="Password" name="password" type="password" required>
+              </div>
+              <button type="submit" ng-click="login(user)" class="btn btn-lg btn-success btn-block">Login</button>
+            </fieldset>
+          </form>
+        </div>
+      </div>
     </div>
-
-    Password: <input type="password" ng-model="user.password" required/><br />
-    <div ng-show="form.$submitted || form.password.$touched">
-      <div ng-show="form.password.$error.required">Please provide a password.</div>
-    </div>
-    <input type="button" ng-click="reset(form)" value="Cancel" />
-    <input type="submit" ng-click="update(user)" value="Save" />
-  </form>
+  </div>
 </div>
