@@ -1,6 +1,7 @@
 angular.module('bigcity', [
   'bigcity.users',
   'bigcity.login',
+  'bigcity.home',
   'ui.router',
   'ui.bootstrap',
   'LocalStorageModule'
@@ -17,14 +18,17 @@ angular.module('bigcity', [
           $rootScope.curUser = curUser;
       }
 
-      $rootScope.$on( '$stateChangeStart', function(e, toState, toParams,
+      $rootScope.$on('$stateChangeStart', function(e, toState, toParams,
           fromState, fromParams) {
-        if(toState.name === 'login') {
+        if (fromState.name === toState.name) {
           return;
         }
         if(!curUser) {
           e.preventDefault();
           $state.go('login');
+        } else if (curUser) {
+          e.preventDefault();
+          $state.go('home');
         }
       });
     }
@@ -45,10 +49,5 @@ angular.module('bigcity', [
       .when('/login/', '/login/')
       .when('/logout/', '/logout/')
       .otherwise('/');
-
-    $stateProvider
-      .state('home', {
-        url: '/'
-      })
   }
 ]);

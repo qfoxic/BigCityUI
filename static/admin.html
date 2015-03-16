@@ -14,10 +14,17 @@
   <script src="/static/assets/libs/angular-local-storage.js"></script>
   <script src="/static/app/users/controller.js"></script>
   <script src="/static/app/login/controller.js"></script>
+  <script src="/static/app/home/controller.js"></script>
   <script src="/static/app/app.routes.js"></script>
 </head>
 <body class="container-fluid">
-  <header class="row"></header>
+  <nav class="row navbar navbar-default navbar-static-top" role="navigation">
+     <div class="navbar-header">
+       <span class="navbar-brand">Bigcity Admin</span>
+     </div>
+     <ul class="nav navbar-top-links navbar-right" ui-view="primary-links"></ul>
+     <div class="navbar-default sidebar" role="navigation" ui-view="navigation-links"></div>
+  </nav>
   <main class="row" ui-view></main>
   <footer class="row"></footer>
 </body>
