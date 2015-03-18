@@ -14,7 +14,7 @@ angular.module('bigcity', [
       $rootScope.$state = $state;
       $rootScope.$stateParams = $stateParams;
       if ($rootScope.curUser) {
-          $http.defaults.headers.common.Authorization = 'Token ' + curUser.token;
+          $http.defaults.headers.common.Authorization = 'Token ' + $rootScope.curUser.token;
       }
 
       $rootScope.$on('$stateChangeStart', function(e, toState, toParams,
