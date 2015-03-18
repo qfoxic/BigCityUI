@@ -1,5 +1,6 @@
 angular.module('bigcity.login', [
   'ui.router',
+  'ui.bootstrap',
 ])
 
 .config(
@@ -15,7 +16,12 @@ angular.module('bigcity.login', [
               $scope.login = function(user) {
                   UsersService.login(user).then(
                     function(data) {
-                      $state.go('home');
+                      $state.go('home').then(function(data){
+                        debugger
+                        },
+                        function(err) {
+                          debugger
+                        });
                     },
                     function(err) {
                         alert(err.data.error);

@@ -20,15 +20,15 @@ angular.module('bigcity', [
 
       $rootScope.$on('$stateChangeStart', function(e, toState, toParams,
           fromState, fromParams) {
-        if (fromState.name === toState.name) {
+        if (toState.name === 'login') {
           return;
         }
         if(!curUser) {
-          e.preventDefault();
           $state.go('login');
-        } else if (curUser) {
           e.preventDefault();
+        } else if (curUser) {
           $state.go('home');
+          e.preventDefault();
         }
       });
     }

@@ -1,6 +1,5 @@
 angular.module('bigcity.home', [
   'ui.router',
-  'bigcity.users',
   'ui.bootstrap',
 ])
 
@@ -13,8 +12,8 @@ angular.module('bigcity.home', [
           views: {
             '': {
               templateUrl: '/static/app/home/main.html',
-              controller: ['$scope', '$stateParams', 'UsersService',
-                function ($scope, $stateParams, UsersService) {
+              controller: ['$scope','$state', '$stateParams', 'UsersService',
+                function ($scope, $state, $stateParams, UsersService) {
                 }]
             }
           }
