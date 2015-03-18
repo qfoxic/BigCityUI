@@ -16,12 +16,7 @@ angular.module('bigcity.login', [
               $scope.login = function(user) {
                   UsersService.login(user).then(
                     function(data) {
-                      $state.go('home').then(function(data){
-                        debugger
-                        },
-                        function(err) {
-                          debugger
-                        });
+                      $state.go('home');
                     },
                     function(err) {
                         alert(err.data.error);

@@ -9,13 +9,12 @@ angular.module('bigcity', [
 .run(
   ['$rootScope', '$state', '$stateParams', 'localStorageService', '$http',
   function ($rootScope, $state, $stateParams, localStorageService, $http) {
-      var curUser = localStorageService.get('usr');
+      $rootScope.curUser = localStorageService.get('usr');
       $rootScope.cache = localStorageService;
       $rootScope.$state = $state;
       $rootScope.$stateParams = $stateParams;
-      if (curUser) {
+      if ($rootScope.curUser) {
           $http.defaults.headers.common.Authorization = 'Token ' + curUser.token;
-          $rootScope.curUser = curUser;
       }
 
       $rootScope.$on('$stateChangeStart', function(e, toState, toParams,
@@ -23,11 +22,8 @@ angular.module('bigcity', [
         if (toState.name === 'login') {
           return;
         }
-        if(!curUser) {
+        if(!$rootScope.curUser) {
           $state.go('login');
-          e.preventDefault();
-        } else if (curUser) {
-          $state.go('home');
           e.preventDefault();
         }
       });
