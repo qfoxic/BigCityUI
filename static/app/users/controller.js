@@ -1,6 +1,5 @@
 angular.module('bigcity.users', [
   'ui.router',
-  'ui.bootstrap',
   'ngResource'
 ])
 

@@ -1,6 +1,5 @@
 angular.module('bigcity.home', [
   'ui.router',
-  'ui.bootstrap',
 ])
 
 .config(

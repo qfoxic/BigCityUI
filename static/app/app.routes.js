@@ -3,7 +3,6 @@ angular.module('bigcity', [
   'bigcity.login',
   'bigcity.home',
   'ui.router',
-  'ui.bootstrap',
   'LocalStorageModule'
 ])
 .run(
