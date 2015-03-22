@@ -89,12 +89,16 @@ angular.module('bigcity.users', [
           controller: ['$scope', '$state', 'UsersService',
             function ($scope, $state, UsersService) {
               $scope.users = {};
+              $scope.loading = true;
+              $scope.failed = false;
               UsersService.list({}).then(
                   function(data) {
-                    $scope.users = data.data.result;
+                    $scope.users = data.data.results;
+                    //$scope.loading = false;
                   },
                   function(err) {
-                    alert(err.data.error);
+                    $scope.loading = false;
+                    $scope.failed = true;
                   });
            }]
         })
