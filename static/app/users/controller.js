@@ -90,15 +90,10 @@ angular.module('bigcity.users', [
             function ($scope, $state, UsersService) {
               $scope.users = {};
               $scope.loading = true;
-              $scope.failed = false;
               UsersService.list({}).then(
                   function(data) {
                     $scope.users = data.data.results;
-                    //$scope.loading = false;
-                  },
-                  function(err) {
                     $scope.loading = false;
-                    $scope.failed = true;
                   });
            }]
         })
