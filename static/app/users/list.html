@@ -31,7 +31,11 @@
               <td>{{user.email}}</td>
               <td>{{user.first_name}}</td>
               <td>{{user.last_name}}</td>
-              <td align="right"><i class="fa fa-edit mfs-icon-margin-2"></i><i class="fa fa-bars mfs-icon-margin-2"></i><i class="fa fa-remove mfs-icon-red mfs-icon-margin-2"></i></td>
+              <td align="right">
+                <a ui-sref="users.update({userId:user.id})"><i class="fa fa-edit mfs-icon-margin-2"></i></a>
+                <i class="fa fa-bars mfs-icon-margin-2"></i>
+                <i class="fa fa-remove mfs-icon-red mfs-icon-margin-2"></i>
+              </td>
             </tr>
         </tbody>
       </table>

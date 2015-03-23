@@ -1,24 +1,31 @@
-<div ui-view>
-  <form name="form" novalidate class="simple-form">
-    Email: <input type="email" ng-model="user.email" name="email" required/><br />
-    <div ng-show="form.email.$touched">
-      <span ng-show="form.email.$error.required">Tell us your email.</span>
-      <span ng-show="form.email.$error.email">This is not a valid email.</span>
+<div id="page-wrapper" ui-view>
+    <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">Edit user {{user.email}}</h1>
+        </div>
     </div>
-
-    First Name: <input type="text" ng-model="user.first_name" name="first_name" required/><br />
-    <div ng-show="form.$submitted || form.username.$touched">
-      <div ng-show="form.username.$error.required">Tell us your name.</div>
+    <div class="row">
+      <form name="form" novalidate class="simple-form" role="form">
+        <div class="form-group input-group"
+             ng-class="{'has-error': form.email.$touched && form.email.$error};">
+          <span class="input-group-addon">@</span>
+          <input class="form-control" placeholder="Email" type="email" ng-model="user.email" name="email" required/><br />
+        </div>
+        <div class="form-group input-group"
+             ng-class="{'has-error': form.first_name.$touched && form.first_name.$error};">
+          <span class="input-group-addon">First Name</span>
+          <input class="form-control" type="text" placeholder="First Name" ng-model="user.first_name" name="first_name" required/><br />
+        </div>
+        Last Name: <input type="text" ng-model="user.last_name" name="last_name" required/><br />
+        <div ng-show="form.$submitted || form.username.$touched">
+          <div ng-show="form.username.$error.required">Tell us your name.</div>
+        </div>
+        Password: <input type="password" ng-model="user.password" required/><br />
+        <div ng-show="form.$submitted || form.username.$touched">
+          <div ng-show="form.username.$error.required">Please provide a password.</div>
+        </div>
+        <input type="button" ng-click="reset(form)" value="Reset" />
+        <input type="submit" ng-click="update(user, form)" value="Save" />
+      </form>
     </div>
-    Last Name: <input type="text" ng-model="user.last_name" name="last_name" required/><br />
-    <div ng-show="form.$submitted || form.username.$touched">
-      <div ng-show="form.username.$error.required">Tell us your name.</div>
-    </div>
-    Password: <input type="password" ng-model="user.password" required/><br />
-    <div ng-show="form.$submitted || form.username.$touched">
-      <div ng-show="form.username.$error.required">Please provide a password.</div>
-    </div>
-    <input type="button" ng-click="reset(form)" value="Reset" />
-    <input type="submit" ng-click="update(user, form)" value="Save" />
-  </form>
 </div>
