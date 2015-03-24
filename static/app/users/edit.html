@@ -7,25 +7,26 @@
     <div class="row">
       <form name="form" novalidate class="simple-form" role="form">
         <div class="form-group input-group"
-             ng-class="{'has-error': form.email.$touched && form.email.$error};">
-          <span class="input-group-addon">@</span>
-          <input class="form-control" placeholder="Email" type="email" ng-model="user.email" name="email" required/><br />
+             ng-class="{'has-error': form.email.$touched && form.email.$error.email};">
+          <span class="input-group-addon">Email<i class="mfs-icon-red">*</i></span>
+          <input class="form-control" type="email" ng-model="user.email" name="email" required/><br />
         </div>
         <div class="form-group input-group"
-             ng-class="{'has-error': form.first_name.$touched && form.first_name.$error};">
-          <span class="input-group-addon">First Name</span>
-          <input class="form-control" type="text" placeholder="First Name" ng-model="user.first_name" name="first_name" required/><br />
+             ng-class="{'has-error': form.first_name.$touched && form.first_name.$error.first_name};">
+          <span class="input-group-addon">First Name<i class="mfs-icon-red">*</i></span>
+          <input class="form-control" type="text" ng-model="user.first_name" name="first_name" required/><br />
         </div>
-        Last Name: <input type="text" ng-model="user.last_name" name="last_name" required/><br />
-        <div ng-show="form.$submitted || form.username.$touched">
-          <div ng-show="form.username.$error.required">Tell us your name.</div>
+        <div class="form-group input-group"
+             ng-class="{'has-error': form.last_name.$touched && form.last_name.$error.last_name};">
+          <span class="input-group-addon">Last Name<i class="mfs-icon-red">*</i></span>
+          <input class="form-control" type="text" ng-model="user.last_name" name="last_name" required/><br />
         </div>
-        Password: <input type="password" ng-model="user.password" required/><br />
-        <div ng-show="form.$submitted || form.username.$touched">
-          <div ng-show="form.username.$error.required">Please provide a password.</div>
-        </div>
-        <input type="button" ng-click="reset(form)" value="Reset" />
-        <input type="submit" ng-click="update(user, form)" value="Save" />
+        <button type="button" ng-disabled="form.$invalid" ng-click="update(user, form)" class="btn btn-primary">Save</button>
+        <button type="button" ng-click="" class="btn btn-primary">Change Password</button>
       </form>
     </div>
 </div>
+<!--TODO Fixed size for inputs -->
+<!--TODO Popups with error or success -->
+<!--TODO Change password. -->
+
