@@ -5,3 +5,9 @@
 .mfs-icon-margin-2 {
     margin: 0 2px;
 }
+
+.mfs-message {
+    position: fixed;
+    right: 30px;
+    top: 75px;
+}
