@@ -1,3 +1,21 @@
+@-webkit-keyframes flash {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-moz-keyframes flash {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@-o-keyframes flash {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes flash {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+
 .mfs-icon-red {
     color: red;
 }
@@ -10,4 +28,11 @@
     position: fixed;
     right: 30px;
     top: 75px;
+}
+
+div.flash {
+  -webkit-animation: flash 5s infinite; /* Safari 4+ */
+  -moz-animation:    flash 5s infinite; /* Fx 5+ */
+  -o-animation:      flash 5s infinite; /* Opera 12+ */
+  animation:         flash 5s infinite; /* IE 10+, Fx 29+ */
 }
