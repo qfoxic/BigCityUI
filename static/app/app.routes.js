@@ -2,16 +2,18 @@ angular.module('bigcity', [
   'bigcity.users',
   'bigcity.login',
   'bigcity.home',
+  'bigcity.common.notification',
   'ui.router',
-  'LocalStorageModule'
+  'LocalStorageModule',
 ])
 .run(
-  ['$rootScope', '$state', '$stateParams', 'localStorageService', '$http',
-  function ($rootScope, $state, $stateParams, localStorageService, $http) {
+  ['$rootScope', '$state', '$stateParams', 'localStorageService', '$http', 'notify',
+  function ($rootScope, $state, $stateParams, localStorageService, $http, notify) {
       $rootScope.curUser = localStorageService.get('usr');
       $rootScope.cache = localStorageService;
       $rootScope.$state = $state;
       $rootScope.$stateParams = $stateParams;
+
       if ($rootScope.curUser) {
           $http.defaults.headers.common.Authorization = 'Token ' + $rootScope.curUser.token;
       }

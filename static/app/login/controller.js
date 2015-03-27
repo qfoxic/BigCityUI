@@ -9,8 +9,8 @@ angular.module('bigcity.login', [
         .state('login', {
           url: '/login',
           templateUrl: '/static/app/login/main.html',
-          controller: ['$scope', 'UsersService', '$state',
-            function ($scope, UsersService, $state) {
+          controller: ['$scope', 'UsersService', '$state', 'notify',
+            function ($scope, UsersService, $state, notify) {
               $scope.user = {};
               $scope.login = function(user) {
                   UsersService.login(user).then(
@@ -18,15 +18,15 @@ angular.module('bigcity.login', [
                       $state.go('home');
                     },
                     function(err) {
-                        alert(err.data.error);
+                        notify.error(err.data.error);
                     });
               };
           }]
         })
         .state('logout', {
           url: '/logout',
-          controller: ['$scope', 'UsersService', '$rootScope', '$state',
-            function ($scope, UsersService, $rootScope, $state) {
+          controller: ['$scope', 'UsersService', '$rootScope', '$state', 'notify',
+            function ($scope, UsersService, $rootScope, $state, notify) {
               $scope.user = {};
               $rootScope.logout = function() {
                 UsersService.logout().then(
@@ -34,7 +34,7 @@ angular.module('bigcity.login', [
                     $state.go('login');
                   },
                   function(err) {
-                      alert(err.data.error);
+                      notify.error(err.data.error);
                   });
               };
           }]

@@ -23,6 +23,7 @@
     <script src="/static/app/users/controller.js"></script>
     <script src="/static/app/login/controller.js"></script>
     <script src="/static/app/home/controller.js"></script>
+    <script src="/static/app/common/notification.js"></script>
     <script src="/static/app/app.routes.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -262,18 +263,10 @@
                     </ul>
                 </div>
             </div>
-            <div class="mfs-message alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
+            <div ng-show="notify_msg" class="mfs-message alert alert-{% verbatim %}{{notify_type}}{% endverbatim %} alert-dismissable">
+                <button type="button" class="close" aria-hidden="true" ng-click="notify_msg=null">&times;</button>
+                {% verbatim %}{{notify_msg}}{% endverbatim %}
             </div>
-            <!--div class="mfs-message alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-            </div>
-            <div class="mfs-message alert alert-success alert-dismissable">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="#" class="alert-link">Alert Link</a>.
-            </div-->
         </nav>
         <div ui-view></div>
     </div>
