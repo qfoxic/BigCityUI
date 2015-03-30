@@ -3,6 +3,8 @@ angular.module('bigcity', [
   'bigcity.login',
   'bigcity.home',
   'bigcity.common.notification',
+  'bigcity.common.users',
+  'bigcity.common.groups',
   'ui.router',
   'LocalStorageModule',
 ])
@@ -45,6 +47,7 @@ angular.module('bigcity', [
       .when('/users/', '/users/')
       .when('/login/', '/login/')
       .when('/logout/', '/logout/')
+      .when('/groups/', '/groups/')
       .otherwise('/');
   }
 ]);
