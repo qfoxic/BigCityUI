@@ -15,6 +15,12 @@
   100% { opacity: 1; }
 }
 
+div.flash {
+  -webkit-animation: flash 5s infinite; /* Safari 4+ */
+  -moz-animation:    flash 5s infinite; /* Fx 5+ */
+  -o-animation:      flash 5s infinite; /* Opera 12+ */
+  animation:         flash 5s infinite; /* IE 10+, Fx 29+ */
+}
 
 .mfs-icon-red {
     color: red;
@@ -30,9 +36,25 @@
     top: 75px;
 }
 
-div.flash {
-  -webkit-animation: flash 5s infinite; /* Safari 4+ */
-  -moz-animation:    flash 5s infinite; /* Fx 5+ */
-  -o-animation:      flash 5s infinite; /* Opera 12+ */
-  animation:         flash 5s infinite; /* IE 10+, Fx 29+ */
+.mfs-modal-dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.2);
+    z-index: 10;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    -o-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+}
+
+.mfs-modal-dialog > div {
+    position: relative;
+    margin: 10% 30%;
+}
+
+.mfs-modal-dialog div.panel-footer {
+    text-align: right;
 }

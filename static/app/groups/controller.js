@@ -22,7 +22,33 @@ angular.module('bigcity.groups', [
                 GroupsService.update(edited).then(
                   function(data) {
                       $scope.group = data.result;
-                      notify.success('User was saved!');
+                      notify.success('Group was saved!');
+                  },
+                  function(err) {
+                      notify.error(err.data.error);
+                  });
+              };
+              $scope.create = function(form) {
+                var edited = {};
+                angular.forEach(form, function(prop, key) {
+                  if (!key.startsWith('$') && prop.$dirty) {
+                    edited[key] = prop.$viewValue;
+                  }
+                });
+                GroupsService.create(edited).then(
+                  function(data) {
+                      $scope.group = data.result;
+                      notify.success('Group was created!');
+                  },
+                  function(err) {
+                      notify.error(err.data.error);
+                  });
+              };
+              $scope.delete = function(group, form) {
+                GroupsService.delete(group.id).then(
+                  function(data) {
+                      $state.go('groups.list');
+                      notify.success('Group was deleted!');
                   },
                   function(err) {
                       notify.error(err.data.error);
@@ -39,7 +65,7 @@ angular.module('bigcity.groups', [
               $scope.loading = true;
               GroupsService.list({}).then(
                   function(data) {
-                    $scope.groups = data.data.results;
+                    $scope.groups = data.data.result;
                     $scope.loading = false;
                   });
            }]
@@ -59,7 +85,31 @@ angular.module('bigcity.groups', [
                     function(err) {
                       notify.error(err.data.error, 'error');
                     }
-                  )
+                  );
+                }]
+            }
+          }
+        })
+        .state('groups.create', {
+          url: '/group/create',
+          views: {
+            '': {
+              templateUrl: '/static/app/groups/create.html',
+              controller: ['$scope', '$stateParams', 'GroupsService', 'notify',
+                function ($scope, $stateParams, GroupsService, notify) {
+                  $scope.group = {};
+                }]
+            }
+          }
+        })
+        .state('groups.delete', {
+          url: '/group/:groupId/delete',
+          views: {
+            '': {
+              templateUrl: '/static/app/groups/list.html',
+              controller: ['$scope', '$stateParams', 'GroupsService', 'notify',
+                function ($scope, $stateParams, GroupsService, notify) {
+                  $scope.showDeleteModal = true;
                 }]
             }
           }
@@ -79,11 +129,11 @@ angular.module('bigcity.groups', [
                     function(err) {
                       notify.error(err.data.error);
                     }
-                  )
+                  );
                 }]
             }
           }
-        })
+        });
     }
   ]
 );

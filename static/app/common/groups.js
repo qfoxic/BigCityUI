@@ -20,8 +20,11 @@ angular.module('bigcity.common.groups', [
       Group.get = function(gid) {
         return res.get({groupId: gid}).$promise;
       };
+      Group.delete = function(gid) {
+        return res.remove({groupId: gid}).$promise;
+      };
       Group.list = function(params) {
-        return $http.get(groupsUrl, params);
+        return $http.get(groupUrl, params);
       };
 
       return Group;

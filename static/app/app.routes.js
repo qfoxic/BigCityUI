@@ -1,6 +1,7 @@
 angular.module('bigcity', [
   'bigcity.users',
   'bigcity.login',
+  'bigcity.groups',
   'bigcity.home',
   'bigcity.common.notification',
   'bigcity.common.users',

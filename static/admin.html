@@ -258,7 +258,7 @@
                             <a ui-sref="users.list"><i class="fa fa-user fa-fw"></i> Users</a>
                         </li>
                         <li>
-                            <a href="/#"><i class="fa fa-users fa-fw"></i> Groups</a>
+                            <a ui-sref="groups.list"><i class="fa fa-users fa-fw"></i> Groups</a>
                         </li>
                         <li>
                             <a href="/#"><i class="fa fa-folder fa-fw"></i> Nodes</a>
@@ -269,6 +269,20 @@
             <div ng-show="notify_msg" class="mfs-message alert alert-{% verbatim %}{{notify_type}}{% endverbatim %} alert-dismissable">
                 <button type="button" class="close" aria-hidden="true" ng-click="notify_msg=null">&times;</button>
                 {% verbatim %}{{notify_msg}}{% endverbatim %}
+            </div>
+            <div class="mfs-modal-dialog" ng-if="true">
+                <div class="panel panel-{% verbatim %}{{modal_type}}{% endverbatim %}">
+                        <div class="panel-heading">
+                            {% verbatim %}{{modal_title}}{% endverbatim %}
+                        </div>
+                        <div class="panel-body">
+                            <p>{% verbatim %}{{modal_body}}{% endverbatim %}</p>
+                        </div>
+                        <div class="panel-footer">
+                            <button class="btn btn-default" type="button">Cancel</button>
+                            <button class="btn btn-primary" type="button">Ok</button>
+                        </div>
+                </div>
             </div>
         </nav>
         <div ui-view></div>
