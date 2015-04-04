@@ -25,6 +25,7 @@
     <script src="/static/app/login/controller.js"></script>
     <script src="/static/app/home/controller.js"></script>
     <script src="/static/app/common/notification.js"></script>
+    <script src="/static/app/common/modal.js"></script>
     <script src="/static/app/common/users.js"></script>
     <script src="/static/app/common/groups.js"></script>
     <script src="/static/app/app.routes.js"></script>
@@ -270,7 +271,7 @@
                 <button type="button" class="close" aria-hidden="true" ng-click="notify_msg=null">&times;</button>
                 {% verbatim %}{{notify_msg}}{% endverbatim %}
             </div>
-            <div class="mfs-modal-dialog" ng-if="true">
+            <div class="mfs-modal-dialog" ng-show="{% verbatim %}modal_title{% endverbatim %}">
                 <div class="panel panel-{% verbatim %}{{modal_type}}{% endverbatim %}">
                         <div class="panel-heading">
                             {% verbatim %}{{modal_title}}{% endverbatim %}
@@ -279,8 +280,8 @@
                             <p>{% verbatim %}{{modal_body}}{% endverbatim %}</p>
                         </div>
                         <div class="panel-footer">
-                            <button class="btn btn-default" type="button">Cancel</button>
-                            <button class="btn btn-primary" type="button">Ok</button>
+                            <button ng-click="modal_title=null" class="btn btn-default" type="button">Cancel</button>
+                            <button ng-click="modal_onsuccess();modal_title=null" class="btn btn-primary" type="button">Ok</button>
                         </div>
                 </div>
             </div>

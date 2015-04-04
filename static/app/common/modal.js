@@ -1,23 +1,24 @@
 angular.module('bigcity.common.modal', [])
 .service('modal', function ($rootScope) {
     return {
-        modal: function(title, body, type) {
+        modal: function(title, body, onSuccess, type) {
           /* type: error|success|warning. */
           $rootScope.modal_type = type;
           $rootScope.modal_title = title;
           $rootScope.modal_body = body;
+          $rootScope.modal_onsuccess = onSuccess;
         },
-        successModal: function(title, body) {
-          this.message(title, body, 'success');
+        success: function(title, body, onSuccess) {
+          this.modal(title, body, onSuccess, 'success');
         },
-        errorModal: function(title, body) {
-          this.message(title, body, 'danger');
+        error: function(title, body, onSuccess) {
+          this.modal(title, body, onSuccess, 'danger');
         },
-        warningModal: function(title, body) {
-          this.message(title, body, 'warning');
+        warning: function(title, body, onSuccess) {
+          this.modal(title, body, onSuccess, 'warning');
         },
-        infoModal: function(title, body) {
-          this.message(title, body, 'info');
+        info: function(title, body, onSuccess) {
+          this.modal(title, body, onSuccess, 'info');
         }
    };
-})
+});

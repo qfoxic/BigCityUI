@@ -10,8 +10,8 @@ angular.module('bigcity.groups', [
           abstract: true,
           url: '/groups',
           templateUrl: '/static/app/groups/main.html',
-          controller: ['$scope', '$state', 'GroupsService', 'notify',
-            function ($scope, $state, GroupsService, notify) {
+          controller: ['$scope', '$state', 'GroupsService', 'notify', 'modal',
+            function ($scope, $state, GroupsService, notify, modal) {
               $scope.update = function(group, form) {
                 var edited = {id: group.id};
                 angular.forEach(form, function(prop, key) {
@@ -37,22 +37,28 @@ angular.module('bigcity.groups', [
                 });
                 GroupsService.create(edited).then(
                   function(data) {
-                      $scope.group = data.result;
+                      $state.go('groups.list');
                       notify.success('Group was created!');
                   },
                   function(err) {
                       notify.error(err.data.error);
                   });
               };
-              $scope.delete = function(group, form) {
-                GroupsService.delete(group.id).then(
-                  function(data) {
-                      $state.go('groups.list');
-                      notify.success('Group was deleted!');
-                  },
-                  function(err) {
-                      notify.error(err.data.error);
-                  });
+              $scope.delete = function(group, index) {
+                modal.warning(
+                    'Warning!',
+                    'Are sure you want to remove a group ' + group.name,
+                    function(){
+                      GroupsService.delete(group.id).then(
+                          function(data) {
+                                $scope.groups.splice(index, 1);
+                                notify.success('Group was deleted!');
+                          },
+                          function(err) {
+                              notify.error(err.data.error);
+                          });
+                    }
+                );
               };
             }]
         })
@@ -61,11 +67,11 @@ angular.module('bigcity.groups', [
           templateUrl: '/static/app/groups/list.html',
           controller: ['$scope', '$state', 'GroupsService',
             function ($scope, $state, GroupsService) {
-              $scope.groups = {};
+              $scope.$parent.groups = {};
               $scope.loading = true;
               GroupsService.list({}).then(
                   function(data) {
-                    $scope.groups = data.data.result;
+                    $scope.$parent.groups = data.data.result;
                     $scope.loading = false;
                   });
            }]
@@ -98,18 +104,6 @@ angular.module('bigcity.groups', [
               controller: ['$scope', '$stateParams', 'GroupsService', 'notify',
                 function ($scope, $stateParams, GroupsService, notify) {
                   $scope.group = {};
-                }]
-            }
-          }
-        })
-        .state('groups.delete', {
-          url: '/group/:groupId/delete',
-          views: {
-            '': {
-              templateUrl: '/static/app/groups/list.html',
-              controller: ['$scope', '$stateParams', 'GroupsService', 'notify',
-                function ($scope, $stateParams, GroupsService, notify) {
-                  $scope.showDeleteModal = true;
                 }]
             }
           }

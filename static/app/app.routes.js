@@ -4,6 +4,7 @@ angular.module('bigcity', [
   'bigcity.groups',
   'bigcity.home',
   'bigcity.common.notification',
+  'bigcity.common.modal',
   'bigcity.common.users',
   'bigcity.common.groups',
   'ui.router',

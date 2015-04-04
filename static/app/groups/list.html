@@ -31,7 +31,7 @@
               <td align="right">
                 <a ui-sref="groups.update({groupId:group.id})"><i class="fa fa-edit mfs-icon-margin-2"></i></a>
                 <i class="fa fa-bars mfs-icon-margin-2"></i>
-                <i class="fa fa-remove mfs-icon-red mfs-icon-margin-2"></i>
+                <a href="#" ng-click="delete(group, $index)"><i class="fa fa-remove mfs-icon-red mfs-icon-margin-2"></i></a>
               </td>
             </tr>
         </tbody>
