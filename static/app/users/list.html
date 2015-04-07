@@ -5,6 +5,7 @@
         </div>
     </div>
     <div class="row">
+      <button ui-sref="users.create" class="btn btn-outline btn-primary" type="button">Create User</button>
       <table class="table table-striped table-hover">
         <thead>
           <tr>
@@ -25,8 +26,8 @@
             <td colspan="5" align="center"><span>There are no users in a system.</span></td>
           </tr>
         </tbody>
-        <tbody ng-repeat="user in users">
-            <tr>
+        <tbody>
+            <tr ng-repeat="user in users">
               <td>{{user.id}}</td>
               <td>{{user.email}}</td>
               <td>{{user.first_name}}</td>
@@ -34,7 +35,7 @@
               <td align="right">
                 <a ui-sref="users.update({userId:user.id})"><i class="fa fa-edit mfs-icon-margin-2"></i></a>
                 <i class="fa fa-bars mfs-icon-margin-2"></i>
-                <i class="fa fa-remove mfs-icon-red mfs-icon-margin-2"></i>
+                <a href="#" ng-click="delete(user, $index)"><i class="fa fa-remove mfs-icon-red mfs-icon-margin-2"></i></a>
               </td>
             </tr>
         </tbody>

@@ -48,6 +48,9 @@ angular.module('bigcity.common.users', [
       User.get = function(uid) {
         return res.get({userId: uid}).$promise;
       };
+      User.delete = function(uid) {
+        return res.remove({userId: uid}).$promise;
+      };
       User.list = function(params) {
         return $http.get(usersUrl, params);
       };

@@ -10,8 +10,8 @@ angular.module('bigcity.users', [
           abstract: true,
           url: '/users',
           templateUrl: '/static/app/users/main.html',
-          controller: ['$scope', '$state', 'UsersService', 'notify',
-            function ($scope, $state, UsersService, notify) {
+          controller: ['$scope', '$state', 'UsersService', 'notify', 'modal',
+            function ($scope, $state, UsersService, notify, modal) {
               $scope.update = function(user, form) {
                 var edited = {id: user.id};
                 angular.forEach(form, function(prop, key) {
@@ -28,6 +28,38 @@ angular.module('bigcity.users', [
                       notify.error(err.data.error);
                   });
               };
+              $scope.create = function(form) {
+                var edited = {};
+                angular.forEach(form, function(prop, key) {
+                  if (!key.startsWith('$') && prop.$dirty) {
+                    edited[key] = prop.$viewValue;
+                  }
+                });
+                UsersService.create(edited).then(
+                  function(data) {
+                      $state.go('users.list');
+                      notify.success('User was created!');
+                  },
+                  function(err) {
+                      notify.error(err.data.error);
+                  });
+              };
+              $scope.delete = function(user, index) {
+                modal.warning(
+                    'Warning!',
+                    'Are sure you want to remove a user ' + user.email,
+                    function(){
+                      UsersService.delete(user.id).then(
+                          function(data) {
+                                $scope.users.splice(index, 1);
+                                notify.success('User was deleted!');
+                          },
+                          function(err) {
+                              notify.error(err.data.error);
+                          });
+                    }
+                );
+              };
             }]
         })
         .state('users.list', {
@@ -35,22 +67,26 @@ angular.module('bigcity.users', [
           templateUrl: '/static/app/users/list.html',
           controller: ['$scope', '$state', 'UsersService',
             function ($scope, $state, UsersService) {
-              $scope.users = {};
+              $scope.$parent.users = {};
               $scope.loading = true;
               UsersService.list({}).then(
                   function(data) {
-                    $scope.users = data.data.results;
+                    $scope.$parent.users = data.data.results;
                     $scope.loading = false;
                   });
            }]
         })
-        .state('users.register', {
-          url: '/register',
-          templateUrl: '/static/app/users/edit.html',
-          controller: ['$scope', '$state', 'UsersService',
-            function ($scope, $state, UsersService) {
-              $scope.user = {};
-            }]
+        .state('users.create', {
+          url: '/create',
+          views: {
+            '': {
+              templateUrl: '/static/app/users/create.html',
+              controller: ['$scope', '$stateParams', 'UsersService', 'notify',
+                function ($scope, $stateParams, UsersService, notify) {
+                  $scope.user = {};
+                }]
+            }
+          }
         })
         .state('users.profile', {
           url: '/profile',
