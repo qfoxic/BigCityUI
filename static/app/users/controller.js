@@ -10,10 +10,19 @@ angular.module('bigcity.users', [
           abstract: true,
           url: '/users',
           templateUrl: '/static/app/users/main.html',
-          controller: ['$scope', '$state', 'UsersService', 'notify', 'modal',
-            function ($scope, $state, UsersService, notify, modal) {
+          controller: ['$scope', '$state', 'UsersService', 'GroupsService', 'notify', 'modal',
+            function ($scope, $state, UsersService, GroupsService, notify, modal) {
+              $scope.groups = [];
+              GroupsService.list({}).then(
+                  function(data) {
+                    $scope.groups = data.data.result;
+              });
               $scope.update = function(user, form) {
-                var edited = {id: user.id};
+                var edited = {id: user.id},
+                    gids = [];
+                gids = angular.forEach(user.groups, function(prop) {
+                    gids.push(prop.id);
+                });
                 angular.forEach(form, function(prop, key) {
                   if (!key.startsWith('$') && prop.$dirty) {
                     edited[key] = prop.$viewValue;
@@ -21,8 +30,12 @@ angular.module('bigcity.users', [
                 });
                 UsersService.update(edited).then(
                   function(data) {
-                      $scope.user = data.result;
-                      notify.success('User was saved!');
+                        UsersService.updgroups(user.id, gids).then(
+                            function() {
+                                $scope.user = data.result;
+                                notify.success('User was saved!');
+                            }
+                        );
                   },
                   function(err) {
                       notify.error(err.data.error);
@@ -115,7 +128,7 @@ angular.module('bigcity.users', [
                     function(err) {
                       notify.error(err.data.error, 'error');
                     }
-                  )
+                  );
                 }]
             }
           }
@@ -135,11 +148,11 @@ angular.module('bigcity.users', [
                     function(err) {
                       notify.error(err.data.error);
                     }
-                  )
+                  );
                 }]
             }
           }
-        })
+        });
     }
   ]
 );
