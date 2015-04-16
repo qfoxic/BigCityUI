@@ -1,0 +1,33 @@
+<div id="page-wrapper" ui-view>
+    <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">Create user</h1>
+        </div>
+    </div>
+    <div class="row">
+      <form name="form" novalidate class="simple-form" role="form">
+        <div class="form-group input-group"
+             ng-class="{'has-error': form.email.$touched && form.email.$error.email};">
+          <span class="input-group-addon">Email<i class="mfs-icon-red">*</i></span>
+          <input class="form-control" type="email" ng-model="user.email" name="email" required/><br />
+        </div>
+        <div class="form-group input-group"
+             ng-class="{'has-error': form.first_name.$touched && form.first_name.$error.first_name};">
+          <span class="input-group-addon">First Name<i class="mfs-icon-red">*</i></span>
+          <input class="form-control" type="text" ng-model="user.first_name" name="first_name" required/><br />
+        </div>
+        <div class="form-group input-group"
+             ng-class="{'has-error': form.last_name.$touched && form.last_name.$error.last_name};">
+          <span class="input-group-addon">Last Name<i class="mfs-icon-red">*</i></span>
+          <input class="form-control" type="text" ng-model="user.last_name" name="last_name" required/><br />
+        </div>
+        <div class="form-group input-group"
+             ng-class="{'has-error': form.password.$touched && form.password.$error.password};">
+          <span class="input-group-addon">Password<i class="mfs-icon-red">*</i></span>
+          <input class="form-control" type="password" ng-model="user.password" name="password" required/><br />
+        </div>
+        <button type="button" ng-disabled="form.$invalid" ng-click="create(form)" class="btn btn-primary">Save</button>
+      </form>
+    </div>
+</div>
+
