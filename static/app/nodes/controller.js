@@ -1,4 +1,4 @@
-angular.module('bigcity.users', [
+angular.module('bigcity.nodes', [
   'ui.router',
 ])
 
@@ -6,77 +6,35 @@ angular.module('bigcity.users', [
   ['$stateProvider', '$urlRouterProvider',
     function ($stateProvider, $urlRouterProvider) {
       $stateProvider
-        .state('users', {
+        .state('nodes', {
           abstract: true,
-          url: '/users',
-          templateUrl: '/static/app/users/main.html',
-          controller: ['$scope', '$state', 'UsersService', 'notify', 'modal',
-            function ($scope, $state, UsersService, notify, modal) {
+          url: '/nodes',
+          templateUrl: '/static/app/nodes/main.html',
+          controller: ['$scope', '$state', 'notify', 'modal',
+            function ($scope, $state, notify, modal) {
               $scope.update = function(user, form) {
-                var edited = {id: user.id};
-                angular.forEach(form, function(prop, key) {
-                  if (!key.startsWith('$') && prop.$dirty) {
-                    edited[key] = prop.$viewValue;
-                  }
-                });
-                UsersService.update(edited).then(
-                  function(data) {
-                      $scope.user = data.result;
-                      notify.success('User was saved!');
-                  },
-                  function(err) {
-                      notify.error(err.data.error);
-                  });
               };
               $scope.create = function(form) {
-                var edited = {};
-                angular.forEach(form, function(prop, key) {
-                  if (!key.startsWith('$') && prop.$dirty) {
-                    edited[key] = prop.$viewValue;
-                  }
-                });
-                UsersService.create(edited).then(
-                  function(data) {
-                      $state.go('users.list');
-                      notify.success('User was created!');
-                  },
-                  function(err) {
-                      notify.error(err.data.error);
-                  });
               };
               $scope.delete = function(user, index) {
-                modal.warning(
-                    'Warning!',
-                    'Are sure you want to remove a user ' + user.email,
-                    function(){
-                      UsersService.delete(user.id).then(
-                          function(data) {
-                                $scope.users.splice(index, 1);
-                                notify.success('User was deleted!');
-                          },
-                          function(err) {
-                              notify.error(err.data.error);
-                          });
-                    }
-                );
               };
             }]
         })
-        .state('users.list', {
+        .state('nodes.list', {
           url: '/list',
-          templateUrl: '/static/app/users/list.html',
-          controller: ['$scope', '$state', 'UsersService',
-            function ($scope, $state, UsersService) {
-              $scope.$parent.users = {};
+          templateUrl: '/static/app/nodes/list.html',
+          controller: ['$scope', '$state', 'NodesService',
+            function ($scope, $state, NodesService) {
+              $scope.$parent.nodes = {};
               $scope.loading = true;
-              UsersService.list({}).then(
+              NodesService.list({}).then(
                   function(data) {
-                    $scope.$parent.users = data.data.results;
+                    $scope.$parent.nodes = data.results;
                     $scope.loading = false;
                   });
            }]
         })
-        .state('users.create', {
+        .state('nodes.create', {
           url: '/create',
           views: {
             '': {
@@ -88,7 +46,7 @@ angular.module('bigcity.users', [
             }
           }
         })
-        .state('users.profile', {
+        .state('nodes.profile', {
           url: '/profile',
           views: {
             '': {
@@ -100,7 +58,7 @@ angular.module('bigcity.users', [
             }
           }
         })
-        .state('users.update', {
+        .state('nodes.update', {
           url: '/profile/:userId/update',
           views: {
             '': {
@@ -120,7 +78,7 @@ angular.module('bigcity.users', [
             }
           }
         })
-        .state('users.detail', {
+        .state('nodes.detail', {
           url: '/profile/:userId',
           views: {
             '': {
