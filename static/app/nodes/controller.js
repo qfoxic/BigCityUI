@@ -10,28 +10,39 @@ angular.module('bigcity.nodes', [
           abstract: true,
           url: '/nodes',
           templateUrl: '/static/app/nodes/main.html',
-          controller: ['$scope', '$state', 'notify', 'modal',
-            function ($scope, $state, notify, modal) {
+          controller: ['$scope', '$state', 'notify', 'modal', 'NodesService',
+            function ($scope, $state, notify, modal, NodesService) {
               $scope.update = function(user, form) {
               };
               $scope.create = function(form) {
               };
               $scope.delete = function(user, index) {
               };
+              $scope.list = function(page) {
+                if (page < 1 || page > $scope.pages) {
+                  return;
+                }
+                $scope.page = page;
+                $scope.nodes = {};
+                $scope.loading = true;
+                NodesService.list({page: page}).then(
+                    function(data) {
+                      $scope.nodes = data;
+                      $scope.pages = Math.ceil(data.count/50);
+                      $scope.loading = false;
+                    },
+                    function(error){
+                      $scope.loading = false;
+                    });
+              };
             }]
         })
         .state('nodes.list', {
           url: '/list',
           templateUrl: '/static/app/nodes/list.html',
-          controller: ['$scope', '$state', 'NodesService',
-            function ($scope, $state, NodesService) {
-              $scope.$parent.nodes = {};
-              $scope.loading = true;
-              NodesService.list({}).then(
-                  function(data) {
-                    $scope.$parent.nodes = data.results;
-                    $scope.loading = false;
-                  });
+          controller: ['$scope', '$state',
+            function ($scope, $state) {
+              $scope.list(1);
            }]
         })
         .state('nodes.create', {

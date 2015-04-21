@@ -29,7 +29,7 @@
           </tr>
         </tbody>
         <tbody>
-            <tr ng-repeat="node in nodes">
+            <tr ng-repeat="node in nodes.results">
               <td>{{node.path}}</td>
               <td>{{node.kind}}</td>
               <td>{{node.uid}}</td>
@@ -43,6 +43,23 @@
               </td>
             </tr>
         </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="7" align="center">
+              <ul class="pagination">
+                <li ng-class="{disabled: page <= 1}" class="paginate_button previous" tabindex="0">
+                  <a ng-click="list(page-1)" href="javascript:void(0);">Prev</a>
+                </li>
+                <li class="paginate_button disabled" tabindex="0">
+                  <span>Page {{page}}</span>
+                </li>
+                <li ng-class="{disabled: page >= pages}" class="paginate_button next" tabindex="0">
+                  <a ng-click="list(page+1)" href="javascript:void(0);">Next</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </div>
 </div>
