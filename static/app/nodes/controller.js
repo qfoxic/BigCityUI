@@ -18,14 +18,15 @@ angular.module('bigcity.nodes', [
               };
               $scope.delete = function(user, index) {
               };
-              $scope.list = function(page) {
+              $scope.list = function(page, kind, expr) {
                 if (page < 1 || page > $scope.pages) {
                   return;
                 }
                 $scope.page = page;
                 $scope.nodes = {};
+                $scope.pages = 0;
                 $scope.loading = true;
-                NodesService.list({page: page}).then(
+                NodesService.list({page: page, kind: kind, where: expr}).then(
                     function(data) {
                       $scope.nodes = data;
                       $scope.pages = Math.ceil(data.count/50);
@@ -42,7 +43,14 @@ angular.module('bigcity.nodes', [
           templateUrl: '/static/app/nodes/list.html',
           controller: ['$scope', '$state',
             function ($scope, $state) {
-              $scope.list(1);
+              $scope.nodeTypes = ['category', 'advert'];
+              $scope.curType = $scope.nodeTypes[0];
+              $scope.expr = null;
+              $scope.selectType = function(ntype) {
+                  $scope.curType = ntype;
+                  $scope.list(1, $scope.curType, $scope.expr);
+              };
+              $scope.list(1, $scope.curType, $scope.expr);
            }]
         })
         .state('nodes.create', {
