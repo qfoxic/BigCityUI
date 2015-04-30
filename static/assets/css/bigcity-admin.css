@@ -58,3 +58,8 @@ div.flash {
 .mfs-modal-dialog div.panel-footer {
     text-align: right;
 }
+
+.nav-pills > li {
+  margin-bottom: 30px;
+}
+

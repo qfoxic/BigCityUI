@@ -7,7 +7,7 @@ angular.module('bigcity.common.nodes', [
       var nodeUrl = 'http://127.0.0.1:8001/node/',
           nodesUrl = 'http://127.0.0.1:8001/nodes/:kind/',
           Node = {},
-          res = $resource(nodeUrl + ':nid',
+          res = $resource(nodeUrl + ':nid/',
                           {nid:'@id'},
                           {
                               list: {method: 'GET', url: nodesUrl}
@@ -16,6 +16,8 @@ angular.module('bigcity.common.nodes', [
       Node.list = function(params) {
         return res.list(params).$promise;
       };
-
+      Node.get = function(nid) {
+        return res.get({nid: nid}).$promise;
+      };
       return Node;
 }])

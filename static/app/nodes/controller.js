@@ -65,49 +65,17 @@ angular.module('bigcity.nodes', [
             }
           }
         })
-        .state('nodes.profile', {
-          url: '/profile',
-          views: {
-            '': {
-              templateUrl: '/static/app/users/data.html',
-              controller: ['$scope', '$stateParams', 'UsersService',
-                function ($scope, $stateParams, UsersService) {
-                  $scope.user = UsersService.current();
-                }]
-            }
-          }
-        })
-        .state('nodes.update', {
-          url: '/profile/:userId/update',
-          views: {
-            '': {
-              templateUrl: '/static/app/users/edit.html',
-              controller: ['$scope', '$stateParams', 'UsersService', 'notify',
-                function ($scope, $stateParams, UsersService, notify) {
-                  $scope.user = {};
-                  UsersService.get($stateParams.userId).then(
-                    function(data) {
-                      $scope.user = data.result;
-                    },
-                    function(err) {
-                      notify.error(err.data.error, 'error');
-                    }
-                  )
-                }]
-            }
-          }
-        })
         .state('nodes.detail', {
-          url: '/profile/:userId',
+          url: '/detail/:nid',
           views: {
             '': {
-              templateUrl: '/static/app/users/data.html',
-              controller: ['$scope', '$stateParams', 'UsersService', 'notify',
-                function ($scope, $stateParams, UsersService, notify) {
-                  $scope.user = {};
-                  UsersService.get($stateParams.userId).then(
+              templateUrl: '/static/app/nodes/data.html',
+              controller: ['$scope', '$stateParams', 'NodesService', 'notify',
+                function ($scope, $stateParams, NodesService, notify) {
+                  $scope.node = {};
+                  NodesService.get($stateParams.nid).then(
                     function(data) {
-                      $scope.user = data.result;
+                      $scope.node = data.result;
                     },
                     function(err) {
                       notify.error(err.data.error);
