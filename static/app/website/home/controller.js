@@ -1,4 +1,4 @@
-angular.module('bigcity.home', [
+angular.module('bigcity.website.home', [
   'ui.router',
 ])
 
@@ -10,7 +10,7 @@ angular.module('bigcity.home', [
           url: '/',
           views: {
             '': {
-              templateUrl: '/static/app/home/main.html',
+              templateUrl: '/static/app/website/home/main.html',
               controller: ['$scope','$state', '$stateParams', 'UsersService',
                 function ($scope, $state, $stateParams, UsersService) {
                 }]
