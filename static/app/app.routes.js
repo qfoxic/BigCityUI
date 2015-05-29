@@ -1,9 +1,5 @@
 angular.module('bigcity', [
-  'bigcity.users',
-  'bigcity.login',
-  'bigcity.groups',
-  'bigcity.nodes',
-  'bigcity.home',
+  'bigcity.website.home',
   'bigcity.common.notification',
   'bigcity.common.modal',
   'bigcity.common.users',
@@ -23,17 +19,7 @@ angular.module('bigcity', [
       if ($rootScope.curUser) {
           $http.defaults.headers.common.Authorization = 'Token ' + $rootScope.curUser.token;
       }
-
-      $rootScope.$on('$stateChangeStart', function(e, toState, toParams,
-          fromState, fromParams) {
-        if (toState.name === 'login') {
-          return;
-        }
-        if(!$rootScope.curUser) {
-          $state.go('login');
-          e.preventDefault();
-        }
-      });
+      $rootScope.$on("$stateChangeError", console.log.bind(console));
     }
   ]
 )
@@ -48,7 +34,7 @@ angular.module('bigcity', [
     $resourceProvider.defaults.stripTrailingSlashes = false;
 
     $urlRouterProvider
-      .when('/users/', '/users/')
+      .when('/', '/')
       .when('/login/', '/login/')
       .when('/logout/', '/logout/')
       .when('/groups/', '/groups/')

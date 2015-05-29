@@ -11,8 +11,14 @@ angular.module('bigcity.website.home', [
           views: {
             '': {
               templateUrl: '/static/app/website/home/main.html',
-              controller: ['$scope','$state', '$stateParams', 'UsersService',
-                function ($scope, $state, $stateParams, UsersService) {
+              controller: ['$scope','$state', '$stateParams',
+                function ($scope, $state, $stateParams) {
+                }]
+            },
+            'search@': {
+              templateUrl: '/static/app/website/home/search.html',
+              controller: ['$scope','$state', '$stateParams',
+                function ($scope, $state, $stateParams) {
                 }]
             }
           }
