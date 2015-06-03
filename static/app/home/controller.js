@@ -10,10 +10,7 @@ angular.module('bigcity.home', [
           url: '/',
           views: {
             '': {
-              templateUrl: '/static/app/home/main.html',
-              controller: ['$scope','$state', '$stateParams', 'UsersService',
-                function ($scope, $state, $stateParams, UsersService) {
-                }]
+              templateUrl: '/static/app/home/main.html'
             }
           }
         })

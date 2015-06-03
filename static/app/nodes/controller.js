@@ -18,6 +18,7 @@ angular.module('bigcity.nodes', [
               };
               $scope.delete = function(user, index) {
               };
+              // TODO. Make this generic.
               $scope.list = function(page, kind, expr) {
                 if (page < 1 || page > $scope.pages) {
                   return;
