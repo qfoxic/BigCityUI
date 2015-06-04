@@ -1,5 +1,6 @@
 angular.module('bigcity', [
   'bigcity.website.home',
+  'bigcity.website.search',
   'bigcity.common.notification',
   'bigcity.common.modal',
   'bigcity.common.users',
@@ -19,7 +20,6 @@ angular.module('bigcity', [
       if ($rootScope.curUser) {
           $http.defaults.headers.common.Authorization = 'Token ' + $rootScope.curUser.token;
       }
-      $rootScope.$on("$stateChangeError", console.log.bind(console));
     }
   ]
 )
@@ -35,6 +35,7 @@ angular.module('bigcity', [
 
     $urlRouterProvider
       .when('/', '/')
+      .when('/search/', '/search/')
       .when('/login/', '/login/')
       .when('/logout/', '/logout/')
       .when('/groups/', '/groups/')

@@ -1,4 +1,4 @@
-angular.module('bigcity.website.home', [
+angular.module('bigcity.website.search', [
   'ui.router',
 ])
 
@@ -6,20 +6,23 @@ angular.module('bigcity.website.home', [
   ['$stateProvider',
     function ($stateProvider) {
       $stateProvider
-        .state('home', {
-          url: '/',
+        .state('search', {
+          url: '/search',
           views: {
             '': {
-              templateUrl: '/static/app/website/home/main.html',
+              templateUrl: '/static/app/website/search/main.html',
               controller: ['$scope', 'NodesService',
                 function ($scope, NodesService) {
                     NodesService.categories($scope, true);
                 }]
             },
             'search@': {
-                templateUrl: '/static/app/website/home/search.html'
+              templateUrl: '/static/app/website/search/search.html'
             }
           }
+        })
+        .state('search.category', {
+          url: '/:categoryId'
         })
     }
   ]
