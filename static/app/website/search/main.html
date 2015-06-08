@@ -6,7 +6,7 @@
       <div class="col-sm-3">
         <div tabindex="0">
             <select class="form-control" name="category" id="search-category" tabindex="-1">
-              <option ng-repeat="category in categories" ng-disabled="!category.parent">{{category.parent ? '-- ' + category.title : category.title }}</option>
+              <option ng-repeat="category in grouped" ng-disabled="!category.parent">{{category.parent ? '-- ' + category.title : category.title }}</option>
             </select>
         </div>
       </div>
@@ -33,74 +33,7 @@
         <div class="locations-list  list-filter">
           <h5 class="list-title"><strong><a href="#">Location</a></strong></h5>
           <ul class="browse-list list-unstyled">
-            <li> <a href="#"><strong>New York</strong> </a>
-              <ul class="long-list">
-                <li> <a href="#" title="">All Cities</a> </li>
-   <li> <a href="#" title="Albany">Albany</a> </li>
-   <li> <a href="#" title="Altamont">Altamont</a> </li>
-   <li> <a href="#" title="Amagansett">Amagansett</a> </li>
-   <li> <a href="#" title="Amawalk">Amawalk</a> </li>
-
-   <li> <a href="#" title="Bellport">Bellport</a> </li>
-   <li> <a href="#" title="Centereach">Centereach</a> </li>
-   <li> <a href="#" title="Chappaqua">Chappaqua</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="East Elmhurst">East Elmhurst</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="East Greenbush">East Greenbush</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="East Meadow">East Meadow</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Elmont">Elmont</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Elmsford">Elmsford</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Farmingville">Farmingville</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Floral Park">Floral Park</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Flushing">Flushing</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Fonda">Fonda</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Garden City">Garden City</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Garrison">Garrison</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Greenlawn">Greenlawn</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Greenville">Greenville</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Hampton Bays">Hampton Bays</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Harrison">Harrison</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Hastings On Hudson">Hastings On Hudson</a> </li>
-
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Levittown">Levittown</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Lindenhurst">Lindenhurst</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Little Neck">Little Neck</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Lynbrook">Lynbrook</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="New City">New City</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="New Hyde Park">New Hyde Park</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="New Rochelle">New Rochelle</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="New Suffolk">New Suffolk</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="New York">New York</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Oceanside">Oceanside</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Orangeburg">Orangeburg</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Orient">Orient</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Peru">Peru</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Piermont">Piermont</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Pomona">Pomona</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Port Chester">Port Chester</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Putnam Valley">Putnam Valley</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Saint Albans">Saint Albans</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Saint James">Saint James</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Syosset">Syosset</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Syracruse">Syracruse</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Walden">Walden</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Westbury">Westbury</a> </li>
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Westtown">Westtown</a> </li>
-
-   <li class="maxlist-hidden" style="display: none;"> <a href="#" title="Yorktown Heights">Yorktown Heights</a> </li>
-              </ul><p class="maxlist-more"><a href="#">View More (41)</a></p>
+            <li> <a href="#"><strong>Ukraine</strong> </a>
             </li>
           </ul>
         </div>

@@ -17,6 +17,7 @@ angular.module('bigcity.website.search', [
             templateUrl: '/static/app/website/search/main.html',
             controller: ['$scope', 'categories', function($scope, categories) {
                 $scope.data = categories;
+                $scope.grouped = categories[2];
             }]
         })
         .state('search.all', {
