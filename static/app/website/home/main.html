@@ -4,11 +4,11 @@
       <h2 class="title-2">Find Classified Ads World Wide </h2>
       <div class="row">
         <div class="col-md-4 col-sm-4 ">
-          <div class="cat-list" ng-repeat="category in nodes.results.slice(0, 4)">
+          <div class="cat-list" ng-repeat="category in nodes.slice(0, 4)">
             <h3 class="cat-title"><a ui-sref="search.category({categoryId: category.id})"><i class="fa fa-car ln-shadow"></i> {{category.title}} <span class="count">277,959</span> </a>
             <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
              </h3>
-            <ul class="cat-collapse collapse in cat-id-1" ng-repeat="subcategory in subnodes.results|filter:category.id:subcategory.parent==category.id">
+            <ul class="cat-collapse collapse in cat-id-1" ng-repeat="subcategory in subnodes|filter:category.id:subcategory.parent==category.id">
               <li> <a href="category.html">{{ subcategory.title }}</a> </li>
             </ul>
           </div>
@@ -17,21 +17,21 @@
           <div class="cat-list" ng-if="loading">
               <i class="fa fa-spinner fa-spin"></i>
           </div>
-          <div class="cat-list" ng-repeat="category in nodes.results.slice(4, 8)">
+          <div class="cat-list" ng-repeat="category in nodes.slice(4, 8)">
             <h3 class="cat-title"><a href="category.html"><i class="fa fa-car ln-shadow"></i> {{category.title}} <span class="count">277,959</span> </a>
             <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
              </h3>
-            <ul class="cat-collapse collapse in cat-id-1" ng-repeat="subcategory in subnodes.results|filter:category.id:subcategory.parent==category.id">
+            <ul class="cat-collapse collapse in cat-id-1" ng-repeat="subcategory in subnodes|filter:category.id:subcategory.parent==category.id">
               <li> <a href="category.html">{{ subcategory.title }}</a> </li>
             </ul>
           </div>
         </div>
         <div class="col-md-4 col-sm-4 last-column">
-          <div class="cat-list" ng-repeat="category in nodes.results.slice(8, 12)">
+          <div class="cat-list" ng-repeat="category in nodes.slice(8, 12)">
             <h3 class="cat-title"><a href="category.html"><i class="fa fa-car ln-shadow"></i> {{category.title}} <span class="count">277,959</span> </a>
             <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
              </h3>
-            <ul class="cat-collapse collapse in cat-id-1" ng-repeat="subcategory in subnodes.results|filter:category.id:subcategory.parent==category.id">
+            <ul class="cat-collapse collapse in cat-id-1" ng-repeat="subcategory in subnodes|filter:category.id:subcategory.parent==category.id">
               <li> <a href="category.html">{{ subcategory.title }}</a> </li>
             </ul>
           </div>

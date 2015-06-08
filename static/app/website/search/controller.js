@@ -10,14 +10,16 @@ angular.module('bigcity.website.search', [
           url: '/search',
           views: {
             '': {
-              templateUrl: '/static/app/website/search/main.html',
-              controller: ['$scope', 'NodesService',
-                function ($scope, NodesService) {
-                    NodesService.categories($scope, true);
-                }]
+              templateUrl: '/static/app/website/search/main.html'
             },
             'search@': {
-              templateUrl: '/static/app/website/search/search.html'
+              templateUrl: '/static/app/website/search/search.html',
+              controller: ['$scope', 'NodesService',
+                function ($scope, NodesService) {
+                    NodesService.categories().then(function(data) {
+                        $scope.grouped = data[2];
+                    });
+                }]
             }
           }
         })
