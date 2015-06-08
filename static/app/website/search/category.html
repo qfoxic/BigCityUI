@@ -1,0 +1,10 @@
+<div class="categories-list  list-filter">
+ <h5 class="list-title"><strong><a ui-sref="search.all()"><i class="fa fa-angle-left"></i> All Categories</a></strong></h5>
+ <ul class=" list-unstyled">
+   <li><a href="#"><span class="title"><strong>{{parent.title}}</strong></span><span class="count">&nbsp;86626</span></a>
+     <ul class=" list-unstyled long-list">
+       <li ng-repeat="child in children"><a href="#">{{child.title}} <span class="count">(143)</span></a></li>
+     </ul>
+   </li>
+ </ul>
+</div>

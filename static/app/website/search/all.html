@@ -1,0 +1,8 @@
+<div class="categories-list  list-filter">
+ <h5 class="list-title"><strong> All Categories</strong></h5>
+ <ul class=" list-unstyled">
+     <ul class=" list-unstyled long-list">
+       <li ng-repeat="category in categories"><a ui-sref="search.category({categoryId:category.id})">{{category.title}} <span class="count">(143)</span></a></li>
+     </ul>
+ </ul>
+</div>

@@ -32,7 +32,7 @@ angular.module('bigcity.common.nodes', [
                     function(data) {
                         subnodes = data.results;
                         merged = utils.flattenTree(nodes, subnodes);
-                        deferred.resolve([nodes, subnodes, merged]);
+                        deferred.resolve([nodes, subnodes, merged.flattenArr, merged.flattenDict]);
                     }, function(error) { deferred.reject(); });
             }, function(error) { deferred.reject(); });
 

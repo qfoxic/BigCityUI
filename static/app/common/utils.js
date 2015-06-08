@@ -12,15 +12,18 @@ angular.module('bigcity.common.utils', [])
             return grouped;
         },
         flattenTree: function(parentArr, childArr) {
-            var res = [],
+            var arr = [],
+                dict = {},
                 grouped = this.groupByArray(childArr, 'parent');
             angular.forEach(parentArr, function(val, key) {
-                this.push(val);
+                arr.push(val);
+                dict[val.id] = val;
                 angular.forEach(grouped[val.id], function(val, key) {
-                        this.push(val);
-                    }, res);
-                }, res);
-            return res;
+                        arr.push(val);
+                        dict[val.id] = val;
+                    });
+                }, arr);
+            return {flattenArr: arr, flattenDict: dict};
         }
    };
 })
