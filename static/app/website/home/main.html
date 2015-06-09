@@ -34,7 +34,7 @@
             <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
              </h3>
             <ul class="cat-collapse collapse in cat-id-1" ng-repeat="subcategory in subnodes|filter:category.id:subcategory.parent==category.id">
-              <li> <a href="category.html">{{ subcategory.title }}</a> </li>
+              <li> <a ui-sref="search.category({categoryId: subcategory.id})">{{ subcategory.title }}</a> </li>
             </ul>
           </div>
         </div>
@@ -47,7 +47,7 @@
             <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
              </h3>
             <ul class="cat-collapse collapse in cat-id-1" ng-repeat="subcategory in subnodes|filter:category.id:subcategory.parent==category.id">
-              <li> <a href="category.html">{{ subcategory.title }}</a> </li>
+              <li> <a ui-sref="search.category({categoryId: subcategory.id})">{{ subcategory.title }}</a> </li>
             </ul>
           </div>
         </div>
@@ -57,7 +57,7 @@
             <span data-target=".cat-id-1" data-toggle="collapse" class="btn-cat-collapsed collapsed">   <span class=" icon-down-open-big"></span> </span>
              </h3>
             <ul class="cat-collapse collapse in cat-id-1" ng-repeat="subcategory in subnodes|filter:category.id:subcategory.parent==category.id">
-              <li> <a href="category.html">{{ subcategory.title }}</a> </li>
+              <li> <a ui-sref="search.category({categoryId: subcategory.id})">{{ subcategory.title }}</a> </li>
             </ul>
           </div>
         </div>

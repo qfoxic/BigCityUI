@@ -971,6 +971,7 @@ button.btn-search {
   clear: both;
   display: block;
   height: auto;
+  min-height: 50px;
   overflow: auto;
   width: 100%;
 }

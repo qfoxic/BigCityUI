@@ -37,6 +37,10 @@ angular.module('bigcity.common.nodes', [
             }, function(error) { deferred.reject(); });
 
             return deferred.promise;
-      }
+      };
+      Node.adverts = function(category, direct) {
+          return res.list({kind: 'advert', table: 'children',
+                            tparams: 'pid=' + category.id + ',direct=' + direct}).$promise;
+      };
       return Node;
 }])

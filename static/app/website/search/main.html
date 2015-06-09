@@ -1,12 +1,12 @@
 <div class="search-row-wrapper">
-  <div class="container ">
+  <div class="container" ui-view="search">
       <div class="col-sm-3">
         <input class="form-control keyword" type="text" placeholder="e.g. Mobile Sale">
       </div>
       <div class="col-sm-3">
         <div tabindex="0">
-            <select class="form-control" name="category" id="search-category" tabindex="-1">
-              <option ng-repeat="category in grouped" ng-disabled="!category.parent">{{category.parent ? '-- ' + category.title : category.title }}</option>
+            <select class="form-control" name="category" tabindex="-1">
+              <option ng-selected="category.id===current.id" ng-repeat="category in grouped">{{category.parent ? '-- ' + category.title : category.title }}</option>
             </select>
         </div>
       </div>
@@ -29,16 +29,6 @@
       <div class="inner-box">
          <div class="categories-list  list-filter" ui-view="category"></div>
         <!--/.categories-list-->
-
-        <div class="locations-list  list-filter">
-          <h5 class="list-title"><strong><a href="#">Location</a></strong></h5>
-          <ul class="browse-list list-unstyled">
-            <li> <a href="#"><strong>Ukraine</strong> </a>
-            </li>
-          </ul>
-        </div>
-        <!--/.locations-list-->
-
         <div class="locations-list  list-filter">
           <h5 class="list-title"><strong><a href="#">Price range</a></strong></h5>
           <form role="form" class="form-inline ">
@@ -55,23 +45,6 @@
           </form>
           <div style="clear:both"></div>
         </div><!--/.list-filter-->
-        <div class="locations-list  list-filter">
-          <h5 class="list-title"><strong><a href="#">Seller</a></strong></h5>
-          <ul class="browse-list list-unstyled long-list">
-            <li> <a href="sub-category-sub-location.html"><strong>All Ads</strong> <span class="count">228,705</span></a></li>
-            <li> <a href="sub-category-sub-location.html">Business <span class="count">28,705</span></a></li>
-            <li> <a href="sub-category-sub-location.html">Personal <span class="count">18,705</span></a></li>
-          </ul>
-        </div><!--/.list-filter-->
-        <div class="locations-list  list-filter">
-          <h5 class="list-title"><strong><a href="#">Condition</a></strong></h5>
-          <ul class="browse-list list-unstyled long-list">
-            <li> <a href="sub-category-sub-location.html">New <span class="count">228,705</span></a></li>
-            <li> <a href="sub-category-sub-location.html">Used <span class="count">28,705</span></a></li>
-            <li> <a href="sub-category-sub-location.html">None </a></li>
-          </ul>
-        </div><!--/.list-filter-->
-        <div style="clear:both"></div>
       </div>
 
       <!--/.categories-list-->
@@ -79,45 +52,59 @@
   </div>
   <!--/.page-side-bar-->
   <div class="col-sm-9 page-content col-thin-left">
-
-
     <div class="category-list">
       <div class="tab-box ">
-
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs add-tabs" id="ajaxTabs" role="tablist">
-          <li class="active"><a href="#allAds" data-url="ajax/1.html" role="tab" data-toggle="tab">All Ads <span class="badge">228,705</span></a></li>
-          <li><a href="#businessAds" data-url="ajax/2.html" role="tab" data-toggle="tab">Business <span class="badge">22,805</span></a></li>
-          <li><a href="#personalAds" data-url="ajax/3.html" role="tab" data-toggle="tab">Personal <span class="badge">18,705</span></a></li>
+        <ul class="nav nav-tabs add-tabs">
+          <li class="active"><a>All Ads <span class="badge">228,705</span></a></li>
+          <li><a>Business <span class="badge">22,805</span></a></li>
+          <li><a>Personal <span class="badge">18,705</span></a></li>
         </ul>
         <div class="tab-filter">
-          <div class="selecter select-short-by closed" tabindex="0"><select class="selectpicker selecter-element" data-style="btn-select" data-width="auto" tabindex="-1">
-            <option value="Short by">Short by</option>
+          <div class="selecter select-short-by closed" tabindex="0">
+          <select class="selectpicker selecter-element">
+            <option value="Short by">Sort by</option>
             <option value="Price: Low to High">Price: Low to High</option>
             <option value="Price: High to Low">Price: High to Low</option>
-          </select><span class="selecter-selected">Short by</span><div class="selecter-options scroller"><div class="scroller-bar" style="height: 100px;"><div class="scroller-track" style="height: 100px; margin-bottom: 0px; margin-top: 0px;"><div class="scroller-handle"></div></div></div><div class="scroller-content"><span class="selecter-item selected" data-value="Short by">Short by</span><span class="selecter-item" data-value="Price: Low to High">Price: Low to High</span><span class="selecter-item" data-value="Price: High to Low">Price: High to Low</span></div></div></div>
+          </select>
         </div>
       </div>
       <!--/.tab-box-->
-
-      <div class="listing-filter">
-        <div class="pull-left col-xs-6">
-          <div class="breadcrumb-list"> <a href="#" class="current"> <span>All ads</span></a> in New York <a href="#selectRegion" id="dropdownMenu1" data-toggle="modal"> <span class="caret"></span> </a> </div>
-        </div>
-        <div class="pull-right col-xs-6 text-right listing-view-action"> <span class="list-view active"><i class="  icon-th"></i></span> <span class="compact-view"><i class=" icon-th-list  "></i></span> <span class="grid-view "><i class=" icon-th-large "></i></span> </div>
-        <div style="clear:both"></div>
-      </div>
-      <!--/.listing-filter-->
-
       <div class="adds-wrapper">
-
           <div class="tab-content">
-              <div class="tab-pane active" id="allAds">This is the home pane...</div>
+              <div class="tab-pane active" ui-view="adverts">
+                <div class="item-list make-list text-center" ng-if="loading">
+                    <i class="fa fa-spinner fa-spin"></i>
+                </div>
+                <div class="item-list make-list text-center" ng-if="adverts.length == 0 && !loading">
+                    <span>There are no adverts found.</span>
+                </div>
+                <div class="item-list make-list" ng-repeat="advert in adverts">
+                    <div class="add-desc-box col-sm-7">
+                        <div class="add-details">
+                            <h5 class="add-title">
+                                <a href="ads-details.html">{{advert.title}}</a>
+                            </h5>
+                            <span class="info-row">
+                                <span class="date"><i class="icon-clock"></i>{{advert.created}}</span>-
+                                <span class="category">{{advert.parent.title}}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 text-right  price-box">
+                        <h2 class="item-price"> $ {{advert.price}} </h2>
+                        <a class="btn btn-danger  btn-sm make-favorite"> <i class="fa fa-certificate"></i>
+                            <span>Top Ads</span>
+                        </a>
+                        <a class="btn btn-default  btn-sm make-favorite">
+                            <i class="fa fa-heart"></i> <span>Save</span>
+                        </a>
+                    </div>
+                </div>
+              </div>
               <div class="tab-pane" id="businessAds"></div>
               <div class="tab-pane" id="personalAds"></div>
             </div>
-
-
       </div>
       <!--/.adds-wrapper-->
 

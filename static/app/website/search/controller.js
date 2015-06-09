@@ -52,6 +52,33 @@ angular.module('bigcity.website.search', [
                                 return n.parent === parentNodeId});
                         }
                     ]
+                },
+                'search': {
+                    controller: ['$scope', '$stateParams',
+                        function($scope, $stateParams) {
+                            var catDict = $scope.data[3],
+                                curCat = catDict[$stateParams.categoryId],
+                                parentNodeId = curCat.parent ? curCat.parent : curCat.id
+
+                            $scope.current = curCat;
+                            $scope.parent = catDict[parentNodeId];
+                        }
+                    ]
+                },
+                'adverts': {
+                    controller: ['$scope', '$stateParams', 'NodesService',
+                        function($scope, $stateParams, NodesService) {
+                            var catDict = $scope.data[3],
+                                curCat = catDict[$stateParams.categoryId];
+
+                            $scope.adverts = [];
+                            $scope.loading = true;
+
+                            NodesService.adverts(curCat, curCat.parent ? '1' : '').then(function(data) {
+                                $scope.adverts = data.results;
+                            }).finally(function(){$scope.loading = false;});
+                        }
+                    ]
                 }
             }
         })
