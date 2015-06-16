@@ -40,7 +40,21 @@ angular.module('bigcity.common.nodes', [
       };
       Node.adverts = function(category, direct) {
           return res.list({kind: 'advert', table: 'children',
-                            tparams: 'pid=' + category.id + ',direct=' + direct}).$promise;
+                           tparams: 'pid=' + category.id + ',direct=' + direct}).$promise;
       };
+      Node.nearestAds = function(params) {
+          //location, price_from, price_to, order_by, parent, text
+          var priceTo = params.priceTo ? params.priceTo : '9999999999.0',
+              priceFrom = params.priceFrom ? params.priceFrom : '0',
+              whereCond = (params.text ? 'text like "' + params.text + '" and ' : '') +
+                          ('(price >= ' + priceFrom + ' and price <= ' +
+                           priceTo + ')')
+          // Resolve location, add current location if nothing was specified.
+          // add $http to root scope.
+          // http://maps.googleapis.com/maps/api/geocode/json?address='Sambir'
+          return res.list({kind: 'advert', table: 'nearest',
+                           tparams: 'parent=' + params.parent,
+                           where: whereCond}).$promise;
+      }
       return Node;
 }])

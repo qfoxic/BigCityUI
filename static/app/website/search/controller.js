@@ -62,6 +62,10 @@ angular.module('bigcity.website.search', [
 
                             $scope.current = curCat;
                             $scope.parent = catDict[parentNodeId];
+                            debugger;
+                            $scope.search = function() {
+                                
+                            }
                         }
                     ]
                 },
