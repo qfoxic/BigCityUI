@@ -84,6 +84,7 @@ angular.module('bigcity.website.search', ['ui.router'])
                                     curCat = catDict[$stateParams.categoryId];
 
                                 $scope.$parent.loading = true;
+                                $scope.$parent.adverts = [];
                                 NodesService.nearest({
                                     category: curCat.id
                                 }).then(function (data) {
