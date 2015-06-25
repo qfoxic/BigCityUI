@@ -67,7 +67,7 @@ angular.module('bigcity.website.search', ['ui.router'])
                                     $scope.$parent.adverts = [];
                                     $scope.$parent.loading = true;
                                     NodesService.nearest({
-                                        category: $scope.current,
+                                        category: curCat.id,
                                         location: $scope.location,
                                         text: $scope.text
                                     }).then(function (data) {
