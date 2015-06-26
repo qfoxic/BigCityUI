@@ -1,10 +1,34 @@
-<div class="categories-list  list-filter">
- <h5 class="list-title"><strong><a ui-sref="search.all()"><i class="fa fa-angle-left"></i> All Categories</a></strong></h5>
- <ul class=" list-unstyled">
-   <li><a ui-sref="search.category({categoryId: parent.id})"><span class="title"><strong>{{parent.title}}</strong></span><span class="count">&nbsp;86626</span></a>
-     <ul class=" list-unstyled long-list">
-       <li ng-repeat="child in children"><a ui-sref="search.category({categoryId: child.id})">{{child.title}} <span class="count">(143)</span></a></li>
-     </ul>
-   </li>
- </ul>
-</div>
+<aside>
+  <div class="inner-box">
+    <div class="categories-list  list-filter">
+       <h5 class="list-title"><strong><a ui-sref="search.all()"><i class="fa fa-angle-left"></i> All Categories</a></strong></h5>
+       <ul class=" list-unstyled">
+       <li><a ui-sref="search.category({categoryId: parent.id})"><span class="title"><strong>{{parent.title}}</strong></span><span class="count">&nbsp;86626</span></a>
+         <ul class=" list-unstyled long-list">
+           <li ng-repeat="child in children"><a ui-sref="search.category({categoryId: child.id})">{{child.title}} <span class="count">(143)</span></a></li>
+         </ul>
+       </li>
+       </ul>
+    </div>
+
+    <!--/.categories-list-->
+    <div class="locations-list  list-filter">
+      <h5 class="list-title"><strong><a href="#">Price range</a></strong></h5>
+        <div class="form-group col-sm-4 no-padding">
+          <input type="text" placeholder="$ 2000 " ng-model="priceFrom" class="form-control">
+        </div>
+        <div class="form-group col-sm-1 no-padding text-center"> - </div>
+        <div class="form-group col-sm-4 no-padding">
+          <input type="text" placeholder="$ 3000 " ng-model="priceTo" class="form-control">
+        </div>
+        <div class="form-group col-sm-3 no-padding">
+          <button
+                  class="btn btn-default pull-right"
+                  ng-click="search({categoryId: current.id, priceFrom: priceFrom, priceTo: priceTo})">GO
+          </button>
+        </div>
+      <div style="clear:both"></div>
+    </div><!--/.list-filter-->
+  </div>
+  <!--/.categories-list-->
+</aside>

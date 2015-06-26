@@ -1,0 +1,23 @@
+<div class="col-sm-3">
+    <input class="form-control keyword" type="text" placeholder="e.g. Mobile Sale" ng-model="text">
+</div>
+<div class="col-sm-3">
+    <div tabindex="0">
+        <select class="form-control" name="category" tabindex="-1" ng-model="selectedCat">
+          <option value="{{category.id}}" ng-selected="category.id===current.id" ng-repeat="category in grouped">
+              {{category.parent ? '-- ' + category.title : category.title }}
+          </option>
+        </select>
+    </div>
+</div>
+<div class="col-sm-3">
+    <div tabindex="0">
+      <input class="form-control keyword" type="text" placeholder="Enter Location" ng-model="location">
+    </div>
+</div>
+<div class="col-sm-3">
+    <button
+            class="btn btn-block btn-primary"
+            ng-click="search({categoryId: selectedCat, text: text, location: location})"> <i class="fa fa-search"></i>
+    </button>
+</div>
