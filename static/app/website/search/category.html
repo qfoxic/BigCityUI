@@ -15,16 +15,19 @@
     <div class="locations-list  list-filter">
       <h5 class="list-title"><strong><a href="#">Price range</a></strong></h5>
         <div class="form-group col-sm-4 no-padding">
-          <input type="text" placeholder="$ 2000 " ng-model="priceFrom" class="form-control">
+          <input type="text" placeholder="$ 2000 " ng-model="searchParams.priceFrom" class="form-control">
         </div>
         <div class="form-group col-sm-1 no-padding text-center"> - </div>
         <div class="form-group col-sm-4 no-padding">
-          <input type="text" placeholder="$ 3000 " ng-model="priceTo" class="form-control">
+          <input type="text" placeholder="$ 3000 " ng-model="searchParams.priceTo" class="form-control">
         </div>
         <div class="form-group col-sm-3 no-padding">
           <button
                   class="btn btn-default pull-right"
-                  ng-click="search({categoryId: current.id, priceFrom: priceFrom, priceTo: priceTo})">GO
+                  ng-click="search({categoryId: current.id || current,
+                                    text: searchParams.text, location: searchParams.location,
+                                    priceFrom: searchParams.priceFrom, priceTo: searchParams.priceTo,
+                                    order: searchParams.order})">GO
           </button>
         </div>
       <div style="clear:both"></div>

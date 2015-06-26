@@ -19,6 +19,13 @@ angular.module('bigcity.website.search', ['ui.router'])
                         $scope.loading = false;
                         $scope.data = categories;
                         $scope.grouped = categories[2];
+                        $scope.searchParams = {
+                            location: null,
+                            text: null,
+                            priceFrom: null,
+                            priceTo: null,
+                            order: null
+                        };
                         $scope.search = function (params) {
                             $scope.adverts = [];
                             $scope.loading = true;
@@ -27,7 +34,8 @@ angular.module('bigcity.website.search', ['ui.router'])
                                 priceTo: params.priceTo,
                                 priceFrom: params.priceFrom,
                                 text: params.text,
-                                location: params.location
+                                location: params.location,
+                                order: params.order
                             }).then(function (data) {
                                 $scope.loading = false;
                                 $scope.adverts = data.results;
@@ -62,11 +70,10 @@ angular.module('bigcity.website.search', ['ui.router'])
                                 $scope.categories = $scope.data[2];
                                 $scope.current = curCat;
                                 $scope.parent = catDict[parentNodeId];
-                                $scope.priceTo = null;
-                                $scope.priceFrom = null;
                                 $scope.children = angular.element.grep(childNodes, function (n) {
                                     return n.parent === parentNodeId;
                                 });
+                                $scope.searchParams = $scope.$parent.searchParams;
                             }]
                     },
                     'search': {
@@ -78,28 +85,16 @@ angular.module('bigcity.website.search', ['ui.router'])
                                     parentNodeId = curCat.parent || curCat.id;
 
                                 $scope.current = curCat;
-                                $scope.selectedCat = curCat.id;
-                                $scope.location = '';
-                                $scope.text = '';
                                 $scope.parent = catDict[parentNodeId];
+                                $scope.searchParams = $scope.$parent.searchParams;
                             }]
                     },
                     'adverts': {
-                        controller: ['$scope', '$stateParams', 'NodesService',
-                            function ($scope, $stateParams, NodesService) {
+                        controller: ['$scope', '$stateParams',
+                            function ($scope, $stateParams) {
                                 var catDict = $scope.data[3],
                                     curCat = catDict[$stateParams.categoryId];
-
-                                $scope.$parent.loading = true;
-                                $scope.$parent.adverts = [];
-                                //TODO. Put to parent controller.
-                                NodesService.nearest({
-                                    category: curCat.id
-                                }).then(function (data) {
-                                    $scope.$parent.adverts = data.results;
-                                }).finally(function () {
-                                    $scope.$parent.loading = false;
-                                });
+                                $scope.search({categoryId: curCat.id});
                             }]
                     }
                 }
