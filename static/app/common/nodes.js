@@ -29,7 +29,11 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                             function (data) {
                                 subnodes = data.results;
                                 merged = utils.flattenTree(nodes, subnodes);
-                                deferred.resolve([nodes, subnodes, merged.flattenArr, merged.flattenDict]);
+                                deferred.resolve([
+                                    nodes,
+                                    subnodes,
+                                    merged.flattenArr,
+                                    merged.flattenDict]);
                             },
                             function () {deferred.reject(); }
                         );
@@ -43,6 +47,7 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                 var deffered = $q.defer(),
                     priceTo = params.priceTo || '9999999999.0',
                     priceFrom = params.priceFrom || '0',
+                    page = params.page || 1,
                     whereCond = (params.text ? 'text like "' + params.text + '" and ' : '') +
                                 ('(price >= ' + priceFrom + ' and price <= ' +
                                  priceTo + ')'),
@@ -54,6 +59,7 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                         table: 'nearest',
                         tparams: 'parent=' + params.category + ',lat=' + data.lat + ',lon=' + data.lng,
                         where: whereCond,
+                        page: page,
                         order: order
                     }).$promise.then(function (resp) {
                         deffered.resolve(resp);

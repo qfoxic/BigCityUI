@@ -20,11 +20,13 @@ angular.module('bigcity.website.search', ['ui.router'])
                         $scope.data = categories;
                         $scope.grouped = categories[2];
                         $scope.searchParams = {
+                            categoryId: null,
                             location: null,
                             text: null,
                             priceFrom: null,
                             priceTo: null,
-                            order: null
+                            order: '',
+                            page: 0
                         };
                         $scope.search = function (params) {
                             $scope.adverts = [];
@@ -35,22 +37,49 @@ angular.module('bigcity.website.search', ['ui.router'])
                                 priceFrom: params.priceFrom,
                                 text: params.text,
                                 location: params.location,
+                                page: params.page,
                                 order: params.order
                             }).then(function (data) {
                                 $scope.loading = false;
                                 $scope.adverts = data.results;
                             });
                         };
+                        $scope.next = function () {
+                            if ($scope.adverts) {
+                                $scope.searchParams.page += 1;
+                                $scope.search($scope.searchParams);
+                            }
+                        };
+                        $scope.prev = function () {
+                            if ($scope.searchParams.page >= 0) {
+                                $scope.searchParams.page -= 1;
+                                $scope.search($scope.searchParams);
+                            }
+                        };
                     }]
             })
             .state('search.all', {
                 url: '/all',
                 views: {
-                    'category': {
-                        templateUrl: '/static/app/website/search/all.html',
+                    'aside': {
+                        templateUrl: '/static/app/website/search/aside.html',
                         controller: ['$scope',
                             function ($scope) {
-                                $scope.categories = $scope.data[0];
+                                var childNodes = $scope.data[0];
+
+                                $scope.current = null;
+                                $scope.searchParams = $scope.$parent.searchParams;
+                                $scope.children = angular.element.grep(childNodes, function (n) {
+                                    return n.parent === null;
+                                });
+                            }]
+                    },
+                    'search': {
+                        templateUrl: '/static/app/website/search/search.html',
+                        controller: ['$scope',
+                            function ($scope) {
+                                $scope.current = null;
+                                $scope.searchParams = $scope.$parent.searchParams;
                             }]
                     }
                 }
@@ -59,7 +88,7 @@ angular.module('bigcity.website.search', ['ui.router'])
                 url: '/:categoryId',
                 views: {
                     'aside': {
-                        templateUrl: '/static/app/website/search/category.html',
+                        templateUrl: '/static/app/website/search/aside.html',
                         controller: ['$scope', '$stateParams',
                             function ($scope, $stateParams) {
                                 var catDict = $scope.data[3],
