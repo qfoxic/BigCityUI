@@ -26,7 +26,7 @@ angular.module('bigcity.website.search', ['ui.router'])
                             priceFrom: null,
                             priceTo: null,
                             order: '',
-                            page: 0
+                            page: 1
                         };
                         $scope.search = function (params) {
                             $scope.adverts = [];
@@ -51,7 +51,7 @@ angular.module('bigcity.website.search', ['ui.router'])
                             }
                         };
                         $scope.prev = function () {
-                            if ($scope.searchParams.page >= 0) {
+                            if ($scope.searchParams.page > 1) {
                                 $scope.searchParams.page -= 1;
                                 $scope.search($scope.searchParams);
                             }
@@ -123,6 +123,8 @@ angular.module('bigcity.website.search', ['ui.router'])
                             function ($scope, $stateParams) {
                                 var catDict = $scope.data[3],
                                     curCat = catDict[$stateParams.categoryId];
+
+                                $scope.$parent.searchParams.categoryId = curCat.id;
                                 $scope.search({categoryId: curCat.id});
                             }]
                     }
