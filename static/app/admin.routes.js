@@ -9,6 +9,7 @@ angular.module('bigcity', [
   'bigcity.common.users',
   'bigcity.common.groups',
   'bigcity.common.nodes',
+    'bigcity.common.utils',
   'ui.router',
   'LocalStorageModule',
 ])
