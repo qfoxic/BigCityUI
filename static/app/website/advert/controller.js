@@ -8,6 +8,25 @@ angular.module('bigcity.website.advert', [
             abstract: true,
             templateUrl: '/static/app/website/advert/main.html'
         })
+        .state('advert.create', {
+            url: '/create',
+            resolve: {
+                categories: function (NodesService) {
+                    return NodesService.categories();
+                }
+            },
+            views: {
+                'preview': {
+                    templateUrl: '/static/app/website/advert/create.html',
+                    controller: ['$scope', 'categories', function ($scope, categories) {
+                        $scope.grouped = categories ? categories[2] : [];
+                    }]
+                },
+                'aside': {
+                    templateUrl: '/static/app/website/advert/create.aside.html'
+                }
+            }
+        })
         .state('advert.preview', {
             url: '/:advertId',
             resolve: {
@@ -25,8 +44,7 @@ angular.module('bigcity.website.advert', [
                 'preview': {
                     templateUrl: '/static/app/website/advert/preview.html',
                     controller: ['$scope', '$sce', 'advert', function ($scope, $sce, advert) {
-                        var text = advert.result.text;
-                        advert.result.text = $sce.trustAsHtml(text);
+                        advert.result.text = $sce.trustAsHtml(advert.result.text);
                         $scope.advert = advert.result;
                     }]
                 },
