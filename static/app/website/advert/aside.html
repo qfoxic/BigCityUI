@@ -4,9 +4,8 @@
         <div class="panel-content user-info">
             <div class="panel-body text-center">
                 <div class="seller-info">
-                    <h3 class="no-margin">Richard Aki</h3>
-                    <p>Location: <strong>New York</strong></p>
-                    <p> Joined: <strong>12 Mar 2009</strong></p>
+                    <h3 class="no-margin">{{advert.owner.first_name}} {{advert.owner.last_name}}</h3>
+                    <p> Joined: <strong class="date">{{advert.owner.date_joined}}</strong></p>
                 </div>
                 <div class="user-ads-action">
                     <a href="#contactAdvertiser" data-toggle="modal" class="btn   btn-default btn-block">

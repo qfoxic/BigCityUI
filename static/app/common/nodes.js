@@ -4,16 +4,23 @@ angular.module('bigcity.common.nodes', ['ngResource'])
             'use strict';
 
             var nodeUrl = 'http://127.0.0.1:8001/node/',
+                advertUrl = 'http://127.0.0.1:8001/advert/',
                 nodesUrl = 'http://127.0.0.1:8001/nodes/:kind/',
                 Node = {},
                 res = $resource(nodeUrl + ':nid/',
+                          {nid: '@id'},
+                          {list: {method: 'GET', url: nodesUrl}}),
+                resAdverts = $resource(advertUrl + ':nid/',
                           {nid: '@id'},
                           {list: {method: 'GET', url: nodesUrl}});
 
             Node.list = function (params) {
                 return res.list(params).$promise;
             };
-            Node.get = function (nid) {
+            Node.get = function (nid, kind) {
+                if (kind === 'advert') {
+                    return resAdverts.get({nid: nid}).$promise;
+                }
                 return res.get({nid: nid}).$promise;
             };
             Node.categories = function () {

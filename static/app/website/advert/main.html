@@ -1,13 +1,5 @@
 <div class="main-container">
-    <div class="container">
-        <ol class="breadcrumb pull-left">
-            <li><a href="#"><i class="icon-home fa"></i></a></li>
-            <li><a href="category.html">All Ads</a></li>
-            <li><a href="sub-category-sub-location.html">Electronics</a></li>
-            <li class="active">Mobile Phones</li>
-        </ol>
-        <div class="pull-right backtolist"><a href="sub-category-sub-location.html"> <i class="fa fa-angle-double-left"></i> Back to Results</a></div>
-    </div>
+    <div class="container" ui-view="header"></div>
     <div class="container">
         <div class="row">
             <div class="col-sm-9 page-content col-thin-right" ui-view="preview"></div>
