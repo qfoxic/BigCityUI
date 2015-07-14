@@ -1,43 +1,29 @@
-angular.module('bigcity.website.advert', [
+angular.module('bigcity.website.user', [
     'ui.router'
 ]).config(['$stateProvider', function ($stateProvider) {
     'use strict';
     $stateProvider
-        .state('advert', {
-            url: '/advert',
+        .state('user', {
+            url: '/user',
             abstract: true
         })
-        .state('advert.create', {
+        .state('user.create', {
             url: '/create',
-            resolve: {
-                categories: function (NodesService) {
-                    return NodesService.categories();
-                }
-            },
             views: {
                 'preview': {
-                    templateUrl: '/static/app/website/advert/create.html',
-                    controller: ['$scope', 'categories', 'NodesService',
-                        function ($scope, categories, NodesService) {
-                            $scope.grouped = categories ? categories[2] : [];
-                            $scope.advert = {
-                                category: null,
-                                title: null,
-                                price: null,
-                                text: null
-                            };
-                            $scope.create = function (advert) {
-                                NodesService.create(advert, 'advert');
-                            };
+                    templateUrl: '/static/app/website/user/create.html',
+                    controller: ['$scope', 'NodesService',
+                        function ($scope, NodesService) {
+
                         }]
                 },
                 'aside': {
-                    templateUrl: '/static/app/website/advert/create.aside.html'
+                    templateUrl: '/static/app/website/user/aside.html'
                 }
             }
         })
-        .state('advert.preview', {
-            url: '/:advertId',
+        .state('user.preview', {
+            url: '/:userId',
             resolve: {
                 advert: function ($stateParams, NodesService) {
                     return NodesService.get($stateParams.advertId, 'advert');
@@ -58,7 +44,7 @@ angular.module('bigcity.website.advert', [
                     }]
                 },
                 'aside': {
-                    templateUrl: '/static/app/website/advert/preview.aside.html',
+                    templateUrl: '/static/app/website/advert/aside.html',
                     controller: ['$scope', 'advert', function ($scope, advert) {
                         $scope.advert = advert.result;
                     }]

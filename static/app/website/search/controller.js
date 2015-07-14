@@ -11,7 +11,6 @@ angular.module('bigcity.website.search', ['ui.router'])
                         return NodesService.categories();
                     }
                 },
-                templateUrl: '/static/app/website/search/main.html',
                 controller: ['$scope', 'categories', 'NodesService',
                     function ($scope, categories, NodesService) {
                         $scope.categories = [];
@@ -74,12 +73,19 @@ angular.module('bigcity.website.search', ['ui.router'])
                                 });
                             }]
                     },
-                    'search': {
-                        templateUrl: '/static/app/website/search/search.html',
+                    'topheader': {
+                        templateUrl: '/static/app/website/search/topheader.html',
                         controller: ['$scope',
                             function ($scope) {
                                 $scope.current = null;
                                 $scope.searchParams = $scope.$parent.searchParams;
+                            }]
+                    },
+                    'preview': {
+                        templateUrl: '/static/app/website/search/preview.html',
+                        controller: ['$scope',
+                            function ($scope) {
+                                $scope.search({});
                             }]
                     }
                 }
@@ -105,8 +111,8 @@ angular.module('bigcity.website.search', ['ui.router'])
                                 $scope.searchParams = $scope.$parent.searchParams;
                             }]
                     },
-                    'search': {
-                        templateUrl: '/static/app/website/search/search.html',
+                    'topheader': {
+                        templateUrl: '/static/app/website/search/topheader.html',
                         controller: ['$scope', '$stateParams',
                             function ($scope, $stateParams) {
                                 var catDict = $scope.data[3],
@@ -118,7 +124,8 @@ angular.module('bigcity.website.search', ['ui.router'])
                                 $scope.searchParams = $scope.$parent.searchParams;
                             }]
                     },
-                    'adverts': {
+                    'preview': {
+                        templateUrl: '/static/app/website/search/preview.html',
                         controller: ['$scope', '$stateParams',
                             function ($scope, $stateParams) {
                                 var catDict = $scope.data[3],

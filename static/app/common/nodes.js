@@ -23,6 +23,12 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                 }
                 return res.get({nid: nid}).$promise;
             };
+            Node.create = function (data, kind) {
+                if (kind === 'advert') {
+                    return resAdverts.save(data).$promise;
+                }
+                return res.save(data).$promise;
+            };
             Node.categories = function () {
                 var pids = [], nodes = [], subnodes = [], merged = [], deferred = $q.defer();
 

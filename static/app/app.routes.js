@@ -2,6 +2,7 @@ angular.module('bigcity', [
     'bigcity.website.home',
     'bigcity.website.search',
     'bigcity.website.advert',
+    'bigcity.website.user',
     'bigcity.common.notification',
     'bigcity.common.modal',
     'bigcity.common.users',
@@ -35,11 +36,9 @@ angular.module('bigcity', [
 
             $urlRouterProvider
                 .when('/', '/')
-                .when('/search/', '/search/')
+                .when('/search/', '/search/all')
                 .when('/login/', '/login/')
                 .when('/logout/', '/logout/')
-                .when('/groups/', '/groups/')
-                .when('/nodes/', '/nodes/')
                 .otherwise('/');
         }]
 );

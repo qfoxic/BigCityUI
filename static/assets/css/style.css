@@ -169,6 +169,14 @@ form input[type="text"], form input[type="email"], form input[type="password"] {
 .form-control {
 }
 
+input.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+  box-shadow: 0 1px 0 #16a085, 0 -1px 0 #16a085, -1px 0 0 #16a085, 1px 0 0 #16a085;
+  -webkit-box-shadow: 0 1px 0 #16a085, 0 -1px 0 #16a085, -1px 0 0 #16a085, 1px 0 0 #16a085;
+  -moz-box-shadow: 0 1px 0 #16a085, 0 -1px 0 #16a085, -1px 0 0 #16a085, 1px 0 0 #16a085;
+  outline: 0 none;
+}
+
 p.required, .required sup {
   color: #e74c3c;
 }
