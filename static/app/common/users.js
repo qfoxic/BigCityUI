@@ -28,7 +28,7 @@ angular.module('bigcity.common.users', [
                     var token = 'Token ' + resp.data.result.token;
                     cache.clearAll();
                     $rootScope.curUser = resp.data.result;
-                    cache.set('usr', resp.data.result);
+                    cache.set($rootScope.userCacheName, resp.data.result);
                     $http.defaults.headers.common.Authorization = token;
                 });
                 return h;
@@ -50,7 +50,7 @@ angular.module('bigcity.common.users', [
                 return res.update(userData).$promise;
             };
             User.current = function () {
-                return cache.get('usr') || {};
+                return cache.get($rootScope.userCacheName) || {};
             };
             User.get = function (uid) {
                 return res.get({userId: uid}).$promise;

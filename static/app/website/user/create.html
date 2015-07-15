@@ -3,33 +3,14 @@
 
     <div class="row">
         <div class="col-sm-12">
-            <form class="form-horizontal">
+            <form class="form-horizontal" name="form" novalidate>
                 <fieldset>
-                    <div class="form-group required">
-                        <label class="col-md-4 control-label">You are a <sup>*</sup></label>
-
-                        <div class="col-md-6">
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios1"
-                                           value="option1" checked="">
-                                    Professional </label>
-                            </div>
-                            <div class="radio">
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios2"
-                                           value="option2">
-                                    Individual </label>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group required">
                         <label class="col-md-4 control-label">First Name <sup>*</sup></label>
 
                         <div class="col-md-6">
-                            <input name="" placeholder="First Name" class="form-control input-md"
-                                   required="" type="text">
+                            <input name="first_name" placeholder="First Name" class="form-control input-md"
+                                   required type="text" ng-model="user.first_name">
                         </div>
                     </div>
 
@@ -37,8 +18,8 @@
                         <label class="col-md-4 control-label">Last Name <sup>*</sup></label>
 
                         <div class="col-md-6">
-                            <input name="textinput" placeholder="Last Name"
-                                   class="form-control input-md" type="text">
+                            <input name="last_name" placeholder="Last Name"
+                                   class="form-control input-md" type="text" ng-model="user.last_name" >
                         </div>
                     </div>
 
@@ -46,8 +27,8 @@
                         <label class="col-md-4 control-label">Phone Number <sup>*</sup></label>
 
                         <div class="col-md-6">
-                            <input name="textinput" placeholder="Phone Number"
-                                   class="form-control input-md" type="text">
+                            <input name="phone" placeholder="Phone Number"
+                                   class="form-control input-md" type="phone" ng-model="user.phone">
 
                             <div class="checkbox">
                                 <label>
@@ -58,19 +39,29 @@
                         </div>
                     </div>
 
+                    <div class="form-group required">
+                        <label class="col-md-4 control-label">Your Current Location <sup>*</sup></label>
+
+                        <div class="col-md-6">
+                            <input name="address" placeholder="State, City, Street"
+                                   class="form-control input-md" type="text" ng-model="user.address">
+
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="col-md-4 control-label">Gender</label>
 
                         <div class="col-md-6">
                             <div class="radio">
                                 <label for="Gender-0">
-                                    <input name="Gender" id="Gender-0" value="1" checked="checked"
-                                           type="radio">
+                                    <input name="Gender" id="Gender-0" value="m" checked="checked"
+                                           type="radio" ng-model="user.gender">
                                     Male </label>
                             </div>
                             <div class="radio">
                                 <label for="Gender-1">
-                                    <input name="Gender" id="Gender-1" value="2" type="radio">
+                                    <input name="Gender" id="Gender-1" value="f" type="radio" ng-model="user.gender">
                                     Female </label>
                             </div>
                         </div>
@@ -81,7 +72,7 @@
 
                         <div class="col-md-6">
                                             <textarea class="form-control" id="textarea"
-                                                      name="textarea">About Yourself</textarea>
+                                                      name="resume" ng-model="user.resume">About Yourself</textarea>
                         </div>
                     </div>
                     <div class="form-group required">
@@ -90,7 +81,7 @@
 
                         <div class="col-md-6">
                             <input type="email" class="form-control" id="inputEmail3"
-                                   placeholder="Email">
+                                   placeholder="Email" name="email" ng-model="user.email">
                         </div>
                     </div>
                     <div class="form-group required">
@@ -98,9 +89,9 @@
 
                         <div class="col-md-6">
                             <input type="password" class="form-control" id="inputPassword3"
-                                   placeholder="Password">
+                                   placeholder="Password" name="password" ng-model="user.password">
 
-                            <p class="help-block">At least 5 characters </p>
+                            <p class="help-block">At least 6 characters </p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -110,12 +101,14 @@
                             <div class="termbox mb10">
                                 <label class="checkbox-inline" for="checkboxes-1">
                                     <input name="checkboxes" id="checkboxes-1" value="1"
-                                           type="checkbox">
+                                           type="checkbox" ng-model="conditions">
                                     I have read and agree to the <a href="terms-conditions.html">Terms
                                     &amp; Conditions</a> </label>
                             </div>
                             <div style="clear:both"></div>
-                            <a class="btn btn-primary" href="account-home.html">Register</a></div>
+                            <a class="btn btn-primary"
+                               ng-disabled="!conditions || form.$invalid"
+                               ng-click="conditions && !form.$invalid && create(user)">Register</a></div>
                     </div>
                 </fieldset>
             </form>

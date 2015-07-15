@@ -44,8 +44,8 @@
                 <div class="navbar-collapse collapse">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="login.html">Login</a></li>
-                        <li><a ui-sref="user.create">Signup</a></li>
+                        <li><a ng-show="!curUser.id">Login</a><a ui-sref="user.logout" ng-show="curUser.id">Logout</a></li>
+                        <li><a ng-show="!curUser.id" ui-sref="user.create">Signup</a></li>
                         <li class="postadd">
                             <a class="btn btn-block btn-border btn-post btn-danger" ui-sref="advert.create">Post Free
                                 Add</a>

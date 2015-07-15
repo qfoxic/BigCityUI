@@ -1,9 +1,13 @@
 1. Add images to advert preview.
-2. Add user login/logout
+
+2. Add user login <--
+
 3. Add user profile page.
-4. Add usersign in page. <--
+
 2. Add advert creation.
+
 3. Admin: add advert creation.
+
 4. Check UI size of inputs and buttons on search page.
 5. Check UI Sort Price combobox.
 6. Add save search functionality.

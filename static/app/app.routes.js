@@ -16,7 +16,8 @@ angular.module('bigcity', [
         ['$rootScope', '$state', '$stateParams', 'localStorageService', '$http',
             function ($rootScope, $state, $stateParams, localStorageService, $http) {
                 'use strict';
-                $rootScope.curUser = localStorageService.get('usr');
+                $rootScope.userCacheName = 'webusr';
+                $rootScope.curUser = localStorageService.get($rootScope.userCacheName);
                 $rootScope.cache = localStorageService;
                 $rootScope.$state = $state;
                 $rootScope.$stateParams = $stateParams;
