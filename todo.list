@@ -1,8 +1,13 @@
 1. Add images to advert preview.
 
-2. Add user login <--
+2. login page. Lost your password.
 
-3. Add user profile page.
+3. Make gender required field.
+4. Login. handle auth error.
+5. Add spinner to indicate some operation.
+
+3. Add user profile page. <--
+   3.1 Update password.
 
 2. Add advert creation.
 

@@ -44,7 +44,10 @@
                 <div class="navbar-collapse collapse">
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a ng-show="!curUser.id">Login</a><a ui-sref="user.logout" ng-show="curUser.id">Logout</a></li>
+                        <li>
+                            <a ng-show="!curUser.id" ui-sref="user.login">Login</a>
+                            <a ui-sref="user.logout" ng-show="curUser.id">Logout</a>
+                        </li>
                         <li><a ng-show="!curUser.id" ui-sref="user.create">Signup</a></li>
                         <li class="postadd">
                             <a class="btn btn-block btn-border btn-post btn-danger" ui-sref="advert.create">Post Free
@@ -66,7 +69,7 @@
             <div class="container" ui-view="header"></div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-9 page-content col-thin-right" ui-view="preview"></div>
+                    <div ng-class="{'col-sm-9 page-content': !loginPage }" class="col-thin-right" ui-view="preview"></div>
                     <div class="col-sm-3 page-sidebar-right" ui-view="aside"></div>
                 </div>
             </div>

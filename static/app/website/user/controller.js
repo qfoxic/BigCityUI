@@ -7,6 +7,29 @@ angular.module('bigcity.website.user', [
             url: '/user',
             abstract: true
         })
+        .state('user.login', {
+            url: '/login',
+            views: {
+                preview: {
+                    templateUrl: '/static/app/website/user/login.html',
+                    controller: ['UsersService', '$state', '$scope',
+                        function (UsersService, $state, $scope) {
+                            $scope.username = null;
+                            $scope.password = null;
+                            // Hack. Used only to correct a html layout.
+                            $scope.loginPage = true;
+                            $scope.login = function () {
+                                UsersService.login({
+                                    username: $scope.username,
+                                    password: $scope.password
+                                }).then(function (data) {
+                                    $state.go('user.preview', {userId: data.data.result.id});
+                                });
+                            };
+                        }]
+                }
+            }
+        })
         .state('user.logout', {
             url: '/logout',
             views: {
