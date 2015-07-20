@@ -86,28 +86,27 @@ angular.module('bigcity.website.user', [
         .state('user.preview', {
             url: '/:userId',
             resolve: {
-                advert: function ($stateParams, NodesService) {
-                    return NodesService.get($stateParams.advertId, 'advert');
+                user: function ($stateParams, UsersService) {
+                    return UsersService.get($stateParams.userId);
                 }
             },
             views: {
-                'header': {
-                    templateUrl: '/static/app/website/advert/header.html',
-                    controller: ['$scope', 'advert', function ($scope, advert) {
-                        $scope.advert = advert.result;
-                    }]
-                },
                 'preview': {
-                    templateUrl: '/static/app/website/advert/preview.html',
-                    controller: ['$scope', '$sce', 'advert', function ($scope, $sce, advert) {
-                        advert.result.text = $sce.trustAsHtml(advert.result.text);
-                        $scope.advert = advert.result;
+                    templateUrl: '/static/app/website/user/profile.html',
+                    controller: ['$scope', 'user', 'UsersService', function ($scope, user, UsersService) {
+                        $scope.userProfile = true;
+                        $scope.user = user.result;
+                        $scope.submit = function(user) {
+                            // TODO. Add callbacks to handle success and fail.
+                            UsersService.update(user);
+                        };
                     }]
                 },
-                'aside': {
-                    templateUrl: '/static/app/website/advert/aside.html',
-                    controller: ['$scope', 'advert', function ($scope, advert) {
-                        $scope.advert = advert.result;
+                'laside': {
+                    templateUrl: '/static/app/website/user/laside.profile.html',
+                    controller: ['$scope', 'user', function ($scope, user) {
+                        $scope.userProfile = true;
+                        $scope.user = user.result;
                     }]
                 }
             }

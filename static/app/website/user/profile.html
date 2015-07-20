@@ -1,0 +1,129 @@
+<div class="inner-box">
+    <div class="row">
+        <div class="col-md-5 col-xs-4 col-xxs-12">
+            <h3 class="no-padding text-center-480 useradmin"><a> {{user.first_name}} {{user.last_name}} </a></h3>
+        </div>
+    </div>
+</div>
+<div class="inner-box">
+    <div class="welcome-msg">
+        <h3 class="page-sub-header2 clearfix no-padding">Hello {{user.first_name}} {{user.last_name}} </h3>
+        <span class="page-sub-header-sub small">You last logged in at: {{user.last_login}}</span>
+    </div>
+    <div id="accordion" class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="#collapseB1" data-toggle="collapse"> My details </a></h4>
+            </div>
+            <div class="panel-collapse collapse in" id="collapseB1">
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">First Name</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" ng-model="user.first_name" value="{{ user.first_name }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Last name</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" ng-model="user.last_name" value="{{ user.last_name }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Email</label>
+
+                            <div class="col-sm-9">
+                                <input type="email" class="form-control" ng-model="user.email" value="{{ user.email }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Address</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" ng-model="user.address" value="{{ user.address }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="Phone" class="col-sm-3 control-label">Phone</label>
+
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control" id="Phone" ng-model="user.phone" value="{{ user.phone }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" ng-click="submit(user)" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="#collapseB2" data-toggle="collapse"> Settings </a></h4>
+            </div>
+            <div class="panel-collapse" id="collapseB2">
+                <div class="panel-body">
+                    <form class="form-horizontal" role="form">
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox">
+                                        Comments are enabled on my ads </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">New Password</label>
+
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Confirm Password</label>
+
+                            <div class="col-sm-9">
+                                <input type="password" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title"><a href="#collapseB3" data-toggle="collapse"> Preferences </a></h4>
+            </div>
+            <div class="panel-collapse" id="collapseB3">
+                <div class="panel-body">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    I want to receive newsletter. </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox">
+                                    I want to receive advice on buying and selling. </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
