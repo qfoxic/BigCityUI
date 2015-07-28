@@ -10,7 +10,8 @@ angular.module('bigcity', [
     'bigcity.common.nodes',
     'bigcity.common.utils',
     'ui.router',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'angularFileUpload'
 ])
     .run(
         ['$rootScope', '$state', '$stateParams', 'localStorageService', '$http',
@@ -38,6 +39,7 @@ angular.module('bigcity', [
             $urlRouterProvider
                 .when('/', '/')
                 .when('/search/', '/search/all')
+                .when('/advert/', '/advert/')
                 .when('/login/', '/login/')
                 .when('/logout/', '/logout/')
                 .otherwise('/');

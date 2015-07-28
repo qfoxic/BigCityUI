@@ -1,18 +1,19 @@
 angular.module('bigcity.common.nodes', ['ngResource'])
-    .service('NodesService', ['$resource', '$q', 'utils',
-        function ($resource, $q, utils) {
+    .service('NodesService', ['$resource', '$q', 'utils', 'FileUploader', '$rootScope',
+        function ($resource, $q, utils, FileUploader, $rootScope) {
             'use strict';
 
             var nodeUrl = 'http://127.0.0.1:8001/node/',
                 advertUrl = 'http://127.0.0.1:8001/advert/',
                 nodesUrl = 'http://127.0.0.1:8001/nodes/:kind/',
+                imageUrl = 'http://127.0.0.1:8001/image/',
                 Node = {},
                 res = $resource(nodeUrl + ':nid/',
-                          {nid: '@id'},
-                          {list: {method: 'GET', url: nodesUrl}}),
+                    {nid: '@id'},
+                    {list: {method: 'GET', url: nodesUrl}}),
                 resAdverts = $resource(advertUrl + ':nid/',
-                          {nid: '@id'},
-                          {list: {method: 'GET', url: nodesUrl}});
+                    {nid: '@id'},
+                    {list: {method: 'GET', url: nodesUrl}});
 
             Node.list = function (params) {
                 return res.list(params).$promise;
@@ -22,6 +23,25 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                     return resAdverts.get({nid: nid}).$promise;
                 }
                 return res.get({nid: nid}).$promise;
+            };
+            Node.uploader = function (advertData) {
+                return new FileUploader({
+                    url: imageUrl,
+                    queueLimit: 5,
+                    alias: 'content',
+                    // Seems that will be useless after carrying to NodesService.
+                    headers: {
+                        Authorization: 'Token ' + $rootScope.curUser.token
+                    },
+                    formData: [
+                        {'uid': advertData.uid},
+                        {'perm': advertData.perm},
+                        {'parent': advertData.id},
+                        {'title': advertData.title},
+                        {'asset_type': 'image'}
+                        //{'content_type': 'image/jpg'}
+                    ]
+                });
             };
             Node.create = function (data, kind) {
                 if (kind === 'advert') {
@@ -37,7 +57,9 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                         nodes = data.results;
                         // Merge pids to a comma separated string.
                         angular.forEach(nodes,
-                            function (val) {this.push('"' + val.id + '"'); }, pids);
+                            function (val) {
+                                this.push('"' + val.id + '"');
+                            }, pids);
                         Node.list({page: 1, kind: 'category', where: 'parent in (' + pids.join() + ')'}).then(
                             function (data) {
                                 subnodes = data.results;
@@ -48,10 +70,14 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                                     merged.flattenArr,
                                     merged.flattenDict]);
                             },
-                            function () {deferred.reject(); }
+                            function () {
+                                deferred.reject();
+                            }
                         );
                     },
-                    function () { deferred.reject(); }
+                    function () {
+                        deferred.reject();
+                    }
                 );
 
                 return deferred.promise;
@@ -62,8 +88,8 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                     priceFrom = params.priceFrom || '0',
                     page = params.page || 1,
                     whereCond = (params.text ? 'text like "' + params.text + '" and ' : '') +
-                                ('(price >= ' + priceFrom + ' and price <= ' +
-                                 priceTo + ')'),
+                        ('(price >= ' + priceFrom + ' and price <= ' +
+                        priceTo + ')'),
                     order = params.order;
 
                 utils.resolveAddressToGeo(params.location).then(function (data) {
@@ -75,10 +101,10 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                         page: page,
                         order: order
                     }).$promise.then(function (resp) {
-                        deffered.resolve(resp);
-                    }).finally(function () {
-                        deffered.reject([]);
-                    });
+                            deffered.resolve(resp);
+                        }).finally(function () {
+                            deffered.reject([]);
+                        });
                 });
                 return deffered.promise;
             };

@@ -1,14 +1,19 @@
 <div class="inner-box category-content">
     <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> Post a Free Classified Ad</strong></h2>
+
     <div class="row">
         <div class="col-sm-12">
             <form class="form-horizontal" name="form" novalidate>
                 <fieldset>
                     <!-- Select Basic -->
+                    <div class="content-subheading"><i class="icon-user fa"></i> <strong>Step 1. Create your
+                        ads.</strong></div>
                     <div class="form-group">
                         <label class="col-md-3 control-label required">Category<sup>*</sup></label>
+
                         <div class="col-md-8">
-                            <select class="form-control" name="category" tabindex="-1" ng-model="advert.category" required>
+                            <select class="form-control" name="category" tabindex="-1" ng-model="advert.category"
+                                    required>
                                 <option value="{{category.id}}" ng-repeat="category in grouped">
                                     {{category.parent ? '-- ' + category.title : category.title }}
                                 </option>
@@ -57,38 +62,55 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label"></label>
 
+                        <div class="col-md-8" ng-if="!uploader">
+                            <submit ng-click="!form.$invalid && create(advert)" class="btn btn-primary btn-lg">Submit
+                            </submit>
+                        </div>
+                    </div>
+                    <div class="content-subheading"><i class="icon-user fa"></i>
+                        <strong>Step 2. Upload your photos
+                            <span ng-if="!uploader" class="label label-warning">Please save your advert first.</span>
+                        </strong>
+                    </div>
                     <!-- photo -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label" for="textarea"> Picture </label>
+                        <div class="col-md-8" ng-if="uploader">
+                            <input ng-if="uploader.queue.length < 5" type="file" nv-file-select uploader="uploader" />
+                            <input ng-if="uploader.queue.length >= 5" type="file" disabled />
 
-                        <div class="col-md-8">
-                            <div class="mb10">
-                                <input id="input-upload-img1" type="file" class="file" data-preview-file-type="text">
+                            <p class="help-block">
+                                <span>Add up to 5 photos. Use a real image of your product, not catalogs.</span>
+                            </p>
+                        </div>
+                        <div class="col-md-12" ng-if="uploader">
+                            <div class="panel panel-default">
+                                <table class="table">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>File</th>
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in uploader.queue">
+                                        <td><span>{{item.file.name}}</span></td>
+                                        <td>
+                                            <button ng-if="!item.isUploaded" class="btn btn-default btn-xs" ng-click="item.remove()">remove</button>
+                                        </td>
+                                        <td>
+                                            <button ng-if="!item.isUploaded" class="btn btn-primary btn-xs" ng-click="item.upload()">upload</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="mb10">
-                                <input id="input-upload-img2" type="file" class="file" data-preview-file-type="text">
-                            </div>
-                            <div class="mb10">
-                                <input id="input-upload-img3" type="file" class="file" data-preview-file-type="text">
-                            </div>
-                            <div class="mb10">
-                                <input id="input-upload-img4" type="file" class="file" data-preview-file-type="text">
-                            </div>
-                            <div class="mb10">
-                                <input id="input-upload-img5" type="file" class="file" data-preview-file-type="text">
-                            </div>
-                            <p class="help-block">Add up to 5 photos. Use a real image of your product, not
-                                catalogs.</p>
                         </div>
                     </div>
                     <!-- Button  -->
-                    <div class="form-group">
-                        <label class="col-md-3 control-label"></label>
-                        <div class="col-md-8">
-                            <submit ng-click="!form.$invalid && create(advert)" class="btn btn-success btn-lg">Submit</submit>
-                        </div>
-                    </div>
                 </fieldset>
             </form>
         </div>

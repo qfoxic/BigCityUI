@@ -19,11 +19,14 @@
 
    ADVERT
 1. Add images to advert preview.
+2. Disable creation of images before advert was created.
+3. Add image preview on advert creation.
 2. Implement favourite ads.
 2. Add advert creation.
 3. Admin: add advert creation.
 6. Add save search functionality.
 8. File upload on form advert creation and finish form creation.
+9. Implement possibility to change fields dependently on a category on advert creation.
 
    SEARCH
 4. Check UI size of inputs and buttons on search page.

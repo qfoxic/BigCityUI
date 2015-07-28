@@ -11,6 +11,7 @@ angular.module('bigcity.website.advert', [
             url: '/create',
             resolve: {
                 categories: function (NodesService) {
+
                     return NodesService.categories();
                 }
             },
@@ -24,10 +25,26 @@ angular.module('bigcity.website.advert', [
                                 category: null,
                                 title: null,
                                 price: null,
-                                text: null
+                                text: null,
+                                // TODO REmove hardcoded items.
+                                square_gen: 70,
+                                room_height: 2,
+                                floor: 2,
+                                square_live: 100,
+                                floors: 12,
+                                rooms: 12,
+                                wall_type: 0,
+                                build_type: 0
                             };
+                            $scope.uploader = null;
                             $scope.create = function (advert) {
-                                NodesService.create(advert, 'advert');
+                                NodesService.create(advert, 'advert').then(
+                                    function(data) {
+                                        $scope.uploader = NodesService.uploader(data.result);
+                                    },
+                                    function(error) {
+
+                                    });
                             };
                         }]
                 },
