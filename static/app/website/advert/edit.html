@@ -6,27 +6,13 @@
             <form class="form-horizontal" name="form" novalidate>
                 <fieldset>
                     <!-- Select Basic -->
-                    <div class="content-subheading"><i class="icon-user fa"></i> <strong>Step 1. Create your
-                        ads.</strong></div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label required">Category<sup>*</sup></label>
-
-                        <div class="col-md-8">
-                            <select class="form-control" name="category" tabindex="-1" ng-model="advert.parent"
-                                    required>
-                                <option value="{{category.id}}" ng-repeat="category in grouped">
-                                    {{category.parent ? '-- ' + category.title : category.title }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
+                    <div class="content-subheading"><i class="icon-user fa"></i> <strong>Update advert. Category: {{advert.parent.title}}</strong></div>
                     <!-- Text input-->
                     <div class="form-group">
                         <label class="col-md-3 control-label required" for="Adtitle">Ad title<sup>*</sup></label>
 
                         <div class="col-md-8">
-                            <input id="Adtitle" name="title" placeholder="Ad title" class="form-control input-md"
+                            <input id="Adtitle" name="title" class="form-control input-md"
                                    required type="text" ng-model="advert.title">
                             <span class="help-block">A great title needs at least 60 characters. </span></div>
                     </div>
@@ -50,7 +36,7 @@
                         <div class="col-md-4">
                             <div class="input-group"><span class="input-group-addon">$</span>
                                 <input
-                                        id="Price" name="price" class="form-control" placeholder="00.00"
+                                        id="Price" name="price" class="form-control"
                                         required type="text" ng-model="advert.price">
                             </div>
                         </div>
@@ -63,32 +49,29 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="Location">Location<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="Location">Location</label>
 
                         <div class="col-md-8">
                             <input id="Location" name="location" class="form-control input-md"
-                                   required type="text" placeholder="country, city, street" ng-model="advert.location">
-                            </div>
+                                   required type="text" ng-model="advert.location">
+                        </div>
                     </div>
-
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
 
-                        <div class="col-md-8" ng-if="!uploader">
-                            <submit ng-click="!form.$invalid && create(advert)" class="btn btn-primary btn-lg">Submit
+                        <div class="col-md-8">
+                            <submit ng-click="!form.$invalid && save(advert)" class="btn btn-primary btn-lg">Submit
                             </submit>
                         </div>
                     </div>
                     <div class="content-subheading"><i class="icon-user fa"></i>
-                        <strong>Step 2. Upload your photos
-                            <span ng-if="!uploader" class="label label-warning">Please save your advert first.</span>
-                        </strong>
+                        <strong>Photos</strong>
                     </div>
                     <!-- photo -->
                     <div class="form-group">
                         <div class="col-md-8" ng-if="uploader">
-                            <input ng-if="uploader.queue.length < 5" type="file" nv-file-select uploader="uploader"/>
-                            <input ng-if="uploader.queue.length >= 5" type="file" disabled/>
+                            <input ng-if="uploader.queue.length < 5" type="file" nv-file-select uploader="uploader" />
+                            <input ng-if="uploader.queue.length >= 5" type="file" disabled />
 
                             <p class="help-block">
                                 <span>Add up to 5 photos. Use a real image of your product, not catalogs.</span>
@@ -108,14 +91,10 @@
                                     <tr ng-repeat="item in uploader.queue">
                                         <td><span>{{item.file.name}}</span></td>
                                         <td>
-                                            <button ng-if="!item.isUploaded" class="btn btn-default btn-xs"
-                                                    ng-click="item.remove()">remove
-                                            </button>
+                                            <button ng-if="!item.isUploaded" class="btn btn-default btn-xs" ng-click="item.remove()">remove</button>
                                         </td>
                                         <td>
-                                            <button ng-if="!item.isUploaded" class="btn btn-primary btn-xs"
-                                                    ng-click="item.upload()">upload
-                                            </button>
+                                            <button ng-if="!item.isUploaded" class="btn btn-primary btn-xs" ng-click="item.upload()">upload</button>
                                         </td>
                                     </tr>
                                     </tbody>

@@ -5,48 +5,18 @@
         <span class="category">{{advert.parent.title}} </span> -
         <span class="item-location"><i class="fa fa-map-marker"></i> {{advert.city}} </span>
     </span>
-    <div class="ads-image">
+
+    <div ng-if="::images" class="ads-image">
         <h1 class="pricetag"> ${{advert.price}}</h1>
-        <div class="bx-wrapper" style="max-width: 100%;">
-            <div class="bx-viewport" style="width: 100%; overflow: hidden; position: relative; height: 286px;">
-                <ul class="bxslider" style="width: 515%; position: relative; -webkit-transition-duration: 0s; transition-duration: 0s; -webkit-transform: translate3d(-508px, 0px, 0px);">
-                    <li style="float: left; list-style: none; position: relative; width: 508px;" class="bx-clone">
-                        <img src="images/item/tp-big/Image00013.jpg" alt="img">
-                    </li>
-                    <li style="float: left; list-style: none; position: relative; width: 508px;">
-                        <img src="images/item/tp-big/Image00014.jpg" alt="img">
-                    </li>
-                    <li style="float: left; list-style: none; position: relative; width: 508px;">
-                        <img src="images/item/tp-big/Image00015.jpg" alt="img">
-                    </li>
-                    <li style="float: left; list-style: none; position: relative; width: 508px;">
-                        <img src="images/item/tp-big/Image00013.jpg" alt="img">
-                    </li>
-                    <li style="float: left; list-style: none; position: relative; width: 508px;" class="bx-clone">
-                        <img src="images/item/tp-big/Image00014.jpg" alt="img">
-                    </li>
-                </ul>
-            </div>
-            <div class="bx-controls bx-has-controls-direction">
-                <div class="bx-controls-direction">
-                    <a class="bx-prev" href="">Prev</a><a class="bx-next" href="">Next</a>
-                </div>
-            </div>
-        </div>
-        <div id="bx-pager">
-            <a class="thumb-item-link active" data-slide-index="0" href="">
-                <img src="images/item/tp/Image00014.jpg" alt="img">
-            </a>
-            <a class="thumb-item-link" data-slide-index="1" href="">
-                <img src="images/item/tp/Image00015.jpg" alt="img">
-            </a>
-            <a class="thumb-item-link" data-slide-index="2" href="">
-                <img src="images/item/tp/Image00013.jpg" alt="img">
-            </a>
-        </div>
+        <carousel no-wrap="false">
+            <slide ng-repeat="image in ::images">
+                <img ng-src="{{api}}/image/{{image.id}}/image" style="margin:auto;">
+            </slide>
+        </carousel>
     </div>
     <div class="Ads-Details">
         <h5 class="list-title"><strong>Ads Details</strong></h5>
+
         <div class="row">
             <div class="ads-details-info col-md-8" ng-bind-html="advert.text"></div>
             <div class="col-md-4">
@@ -59,10 +29,11 @@
                 </aside>
                 <div class="ads-action">
                     <ul class="list-border">
-                        <li><a href="#"> <i class=" fa fa-user"></i> More ads by User </a> </li>
-                        <li><a href="#"> <i class=" fa fa-heart"></i> Save ad </a> </li>
-                        <li><a href="#"> <i class="fa fa-share-alt"></i> Share ad </a> </li>
-                        <li><a href="#reportAdvertiser" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i> Report abuse </a> </li>
+                        <li><a href="#"> <i class=" fa fa-user"></i> More ads by User </a></li>
+                        <li><a href="#"> <i class=" fa fa-heart"></i> Save ad </a></li>
+                        <li><a href="#"> <i class="fa fa-share-alt"></i> Share ad </a></li>
+                        <li><a href="#reportAdvertiser" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i>
+                            Report abuse </a></li>
                     </ul>
                 </div>
             </div>

@@ -1,5 +1,6 @@
    COMMON
 1. Remove flipping of pages while loading some info.
+2. Provide constants.
 
 
    LOGIN
@@ -11,22 +12,21 @@
 2. Implement favourite ads.
 3. Handle user update fail and success.
 5. Add submit button spinner to indicate some operation when save profile.
-3. Add user profile page. <--
-   3.1 Update password.
+3. Add user profile page.
+   3.1 Update password.!!!
 6. Add save search functionality.
 
 
 
    ADVERT
-1. Add images to advert preview.
-2. Disable creation of images before advert was created.
-3. Add image preview on advert creation.
 2. Implement favourite ads.
-2. Add advert creation.
 3. Admin: add advert creation.
 6. Add save search functionality.
-8. File upload on form advert creation and finish form creation.
 9. Implement possibility to change fields dependently on a category on advert creation.
+10. Create advert - add
+11. Edit advert <--.
+     save functionality;
+     images functionality;
 
    SEARCH
 4. Check UI size of inputs and buttons on search page.

@@ -6,6 +6,7 @@ angular.module('bigcity.common.nodes', ['ngResource'])
             var nodeUrl = 'http://127.0.0.1:8001/node/',
                 advertUrl = 'http://127.0.0.1:8001/advert/',
                 nodesUrl = 'http://127.0.0.1:8001/nodes/:kind/',
+                imagesUrl = 'http://127.0.0.1:8001/images/:nid/',
                 imageUrl = 'http://127.0.0.1:8001/image/',
                 Node = {},
                 res = $resource(nodeUrl + ':nid/',
@@ -13,7 +14,13 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                     {list: {method: 'GET', url: nodesUrl}}),
                 resAdverts = $resource(advertUrl + ':nid/',
                     {nid: '@id'},
-                    {list: {method: 'GET', url: nodesUrl}});
+                    {
+                        list: {method: 'GET', url: nodesUrl},
+                        update: {method: 'PUT'},
+                    }),
+                resImages = $resource(imageUrl + ':nid/',
+                    {nid: '@id'},
+                    {list: {method: 'GET', url: imagesUrl, isArray: true}});
 
             Node.list = function (params) {
                 return res.list(params).$promise;
@@ -23,6 +30,9 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                     return resAdverts.get({nid: nid}).$promise;
                 }
                 return res.get({nid: nid}).$promise;
+            };
+            Node.images = function (params) {
+                return resImages.list(params).$promise;
             };
             Node.uploader = function (advertData) {
                 return new FileUploader({
@@ -39,15 +49,46 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                         {'parent': advertData.id},
                         {'title': advertData.title},
                         {'asset_type': 'image'}
-                        //{'content_type': 'image/jpg'}
                     ]
                 });
             };
             Node.create = function (data, kind) {
                 if (kind === 'advert') {
-                    return resAdverts.save(data).$promise;
+                    var deferred = $q.defer();
+                    utils.resolveAddressToGeo(data.location).then(function (loc) {
+                        data.loc = [loc.lng, loc.lat];
+                        data.country = loc.address.country;
+                        data.region = loc.address.state;
+                        data.city = loc.address.city;
+                        data.street = loc.address.street;
+                        resAdverts.save(data).$promise.then(function (resp) {
+                            deferred.resolve(resp);
+                        }).finally(function () {
+                            deferred.reject([]);
+                        });
+                    });
+                    return deferred.promise;
                 }
                 return res.save(data).$promise;
+            };
+            Node.update = function (data, kind) {
+                if (kind === 'advert') {
+                    var deferred = $q.defer();
+                    utils.resolveAddressToGeo(data.location).then(function (loc) {
+                        data.loc = [loc.lng, loc.lat];
+                        data.country = loc.address.country;
+                        data.region = loc.address.state;
+                        data.city = loc.address.city;
+                        data.street = loc.address.street;
+                        resAdverts.update(data).$promise.then(function (resp) {
+                            deferred.resolve(resp);
+                        }).finally(function () {
+                            deferred.reject([]);
+                        });
+                    });
+                    return deferred.promise;
+                }
+                return res.update(data).$promise;
             };
             Node.categories = function () {
                 var pids = [], nodes = [], subnodes = [], merged = [], deferred = $q.defer();
