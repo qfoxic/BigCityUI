@@ -16,7 +16,8 @@ angular.module('bigcity.users', [
                             GroupsService.list({}).then(
                                 function (data) {
                                     $scope.groups = data.data.result;
-                                });
+                                }
+                            );
                             $scope.update = function (user, form) {
                                 var edited = {id: user.id},
                                     gids = [];

@@ -16,7 +16,7 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                     {nid: '@id'},
                     {
                         list: {method: 'GET', url: nodesUrl},
-                        update: {method: 'PUT'},
+                        update: {method: 'PUT'}
                     }),
                 resImages = $resource(imageUrl + ':nid/',
                     {nid: '@id'},
@@ -34,10 +34,13 @@ angular.module('bigcity.common.nodes', ['ngResource'])
             Node.images = function (params) {
                 return resImages.list(params).$promise;
             };
-            Node.uploader = function (advertData) {
+            Node.removeImage = function (imageId) {
+                return resImages.remove({nid: imageId}).$promise;
+            };
+            Node.uploader = function (advertData, queueLimit) {
                 return new FileUploader({
                     url: imageUrl,
-                    queueLimit: 5,
+                    queueLimit: queueLimit || 5,
                     alias: 'content',
                     // Seems that will be useless after carrying to NodesService.
                     headers: {

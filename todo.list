@@ -20,13 +20,13 @@
 
    ADVERT
 2. Implement favourite ads.
+3. MOve count of images to upload to constants.
+
 3. Admin: add advert creation.
 6. Add save search functionality.
 9. Implement possibility to change fields dependently on a category on advert creation.
-10. Create advert - add
-11. Edit advert <--.
-     save functionality;
-     images functionality;
+10. Create/Edit advert - add fields related to buildings.
+
 
    SEARCH
 4. Check UI size of inputs and buttons on search page.
