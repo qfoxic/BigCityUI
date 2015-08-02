@@ -93,6 +93,12 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                 }
                 return res.update(data).$promise;
             };
+            Node.delete = function (data, kind) {
+                if (kind === 'advert') {
+                    return resAdverts.remove(data).$promise;
+                }
+                return res.remove(data).$promise;
+            };
             Node.categories = function () {
                 var pids = [], nodes = [], subnodes = [], merged = [], deferred = $q.defer();
 

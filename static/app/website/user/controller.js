@@ -110,5 +110,37 @@ angular.module('bigcity.website.user', [
                     }]
                 }
             }
+        })
+        .state('user.preview.myads', {
+            url: '/myads',
+            views: {
+                '': {
+                    templateUrl: '/static/app/website/user/profile.myads.html',
+                    controller: ['$scope', 'user', 'NodesService', function ($scope, user, NodesService) {
+                        $scope.userProfile = true;
+                        $scope.user = user.result;
+                        $scope.adverts = null;
+                        $scope.removeAdvert = function (advert) {
+                            NodesService.delete({nid: advert.id}, 'advert').then(
+                                function (data) {
+                                    var index = $scope.adverts.indexOf(advert);
+                                    $scope.adverts.splice(index, 1);
+                                },
+                                function (error) {
+                                    //TODO. Handle error.
+                                }
+                            );
+                        };
+                        NodesService.list({kind: 'advert', where: 'uid=' + user.result.id, order: 'updated'}).then(
+                            function (data) {
+                                $scope.adverts = data.results;
+                            },
+                            function (error) {
+
+                            }
+                        );
+                    }]
+                }
+            }
         });
 }]);

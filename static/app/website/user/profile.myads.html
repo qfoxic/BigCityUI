@@ -1,0 +1,53 @@
+<div class="inner-box">
+    <h2 class="title-2"><i class="icon-docs"></i> My Ads </h2>
+
+    <div class="table-responsive">
+        <table id="addManageTable"
+               class="table table-striped table-bordered add-manage-table table demo footable-loaded footable"
+               data-filter="#filter" data-filter-text-only="true">
+            <thead>
+                <tr>
+                    <th data-sort-ignore="true"> Adds Details</th>
+                    <th data-type="numeric"> Price</th>
+                    <th> Option</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr ng-if="!adverts">
+                <td colspan="3" align="center"><span><i class="fa fa-spinner fa-spin"></i></span></td>
+            </tr>
+            <tr ng-if="adverts.length === 0">
+                <td colspan="3" align="center"><span>You don't have adverts yet.</span></td>
+            </tr>
+            <tr ng-repeat="advert in adverts">
+                <td style="width:58%" class="ads-details-td">
+                    <div>
+                        <p>
+                            <strong>
+                                <a ui-sref="advert.preview({advertId: advert.id})" title="{{advert.title}}">{{advert.title}}</a>
+                            </strong>
+                        </p>
+
+                        <p>
+                            <strong> Posted On </strong>:
+                            {{advert.created}}
+                        </p>
+
+                        <p><strong>Located In:</strong> {{advert.city}}</p>
+                    </div>
+                </td>
+                <td style="width:16%" class="price-td">
+                    <div><strong>{{advert.price}}</strong></div>
+                </td>
+                <td style="width:10%" class="action-td">
+                    <div>
+                        <p><a ui-sref="advert.edit({advertId:advert.id})" class="btn btn-primary btn-xs"> <i class="fa fa-edit"></i> Edit </a></p>
+                        <p><a ng-click="removeAdvert(advert)" class="btn btn-danger btn-xs"> <i class=" fa fa-trash"></i> Delete </a></p>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
