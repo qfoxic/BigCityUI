@@ -4,11 +4,11 @@
         <div class="adds-wrapper">
             <div class="tab-content">
                 <div class="tab-pane active" ui-view="adverts">
-                    <div class="item-list make-list text-center" ng-if="loading">
+                    <div class="item-list make-list text-center" ng-if="!adverts">
                         <i class="fa fa-spinner fa-spin"></i>
                     </div>
                     <div class="item-list make-list text-center"
-                         ng-if="adverts.length === 0 && !loading">
+                         ng-if="adverts.length === 0">
                         <span>There are no adverts found.</span>
                     </div>
                     <div class="item-list make-list" ng-repeat="advert in adverts">
@@ -38,7 +38,7 @@
         <!--/.adds-wrapper-->
     </div>
 </div>
-<div ng-show="adverts && !loading" class="pagination-bar text-center">
+<div ng-show="(adverts.length !== 0) && (adverts.length >= 50)" class="pagination-bar text-center">
     <ul class="pagination">
         <li><a class="pagination-btn" ng-click="prev()">Prev</a></li>
         <li><a class="pagination-btn" ng-click="next()">Next</a></li>

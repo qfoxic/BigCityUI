@@ -158,15 +158,15 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                     res.list({
                         kind: 'advert',
                         table: 'nearest',
-                        tparams: 'parent=' + params.category + ',lat=' + data.lat + ',lon=' + data.lng,
+                        tparams: (params.category ? 'parent=' + params.category + ',' : '') + 'lat=' + data.lat + ',lon=' + data.lng,
                         where: whereCond,
                         page: page,
                         order: order
                     }).$promise.then(function (resp) {
-                            deffered.resolve(resp);
-                        }).finally(function () {
-                            deffered.reject([]);
-                        });
+                        deffered.resolve(resp);
+                    }).finally(function () {
+                        deffered.reject([]);
+                    });
                 });
                 return deffered.promise;
             };

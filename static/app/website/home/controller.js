@@ -9,7 +9,17 @@ angular.module('bigcity.website.home', [
                     url: '/',
                     views: {
                         topheader: {
-                            templateUrl: '/static/app/website/home/topheader.html'
+                            templateUrl: '/static/app/website/home/topheader.html',
+                            controller: ['$scope', '$state',
+                                function ($scope, $state) {
+                                    $scope.searchParams = {
+                                        location: null,
+                                        text: null
+                                    };
+                                    $scope.search = function (searchParams) {
+                                        $state.go('search.all', searchParams);
+                                    };
+                                }]
                         },
                         preview: {
                             templateUrl: '/static/app/website/home/preview.html',

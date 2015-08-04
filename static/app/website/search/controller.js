@@ -14,8 +14,7 @@ angular.module('bigcity.website.search', ['ui.router'])
                 controller: ['$scope', 'categories', 'NodesService',
                     function ($scope, categories, NodesService) {
                         $scope.categories = [];
-                        $scope.adverts = [];
-                        $scope.loading = false;
+                        $scope.adverts = null;
                         $scope.data = categories;
                         $scope.grouped = categories[2];
                         $scope.searchParams = {
@@ -28,8 +27,7 @@ angular.module('bigcity.website.search', ['ui.router'])
                             page: 1
                         };
                         $scope.search = function (params) {
-                            $scope.adverts = [];
-                            $scope.loading = true;
+                            $scope.adverts = null;
                             NodesService.nearest({
                                 category: params.categoryId,
                                 priceTo: params.priceTo,
@@ -39,7 +37,6 @@ angular.module('bigcity.website.search', ['ui.router'])
                                 page: params.page,
                                 order: params.order
                             }).then(function (data) {
-                                $scope.loading = false;
                                 $scope.adverts = data.results;
                             });
                         };
@@ -58,7 +55,7 @@ angular.module('bigcity.website.search', ['ui.router'])
                     }]
             })
             .state('search.all', {
-                url: '/all',
+                url: '/all?location&text',
                 views: {
                     'aside': {
                         templateUrl: '/static/app/website/search/aside.html',
@@ -83,9 +80,9 @@ angular.module('bigcity.website.search', ['ui.router'])
                     },
                     'preview': {
                         templateUrl: '/static/app/website/search/preview.html',
-                        controller: ['$scope',
-                            function ($scope) {
-                                $scope.search({});
+                        controller: ['$scope', '$stateParams',
+                            function ($scope, $stateParams) {
+                                $scope.search($stateParams);
                             }]
                     }
                 }
