@@ -43,8 +43,8 @@ angular.module('bigcity.website.advert', [
                 views: {
                     'preview': {
                         templateUrl: '/static/app/website/advert/create.html',
-                        controller: ['$scope', 'categories', 'NodesService',
-                            function ($scope, categories, NodesService) {
+                        controller: ['$scope', 'categories', 'NodesService', 'messages',
+                            function ($scope, categories, NodesService, messages) {
                                 $scope.grouped = categories ? categories[2] : [];
                                 $scope.advert = {
                                     parent: null,
@@ -65,12 +65,14 @@ angular.module('bigcity.website.advert', [
                                 $scope.uploader = null;
                                 $scope.images = [];
                                 $scope.create = function (advert) {
+                                    messages.info('Creating advert. Please wait...');
                                     NodesService.create(advert, 'advert').then(
                                         function (data) {
+                                            messages.success('Advert was saved.');
                                             $scope.uploader = $scope.getUploader(data.result, 5, $scope);
                                         },
-                                        function (error) {
-
+                                        function (data) {
+                                            messages.error('Could not create advert. Please try again.');
                                         }
                                     );
                                 };
@@ -97,8 +99,8 @@ angular.module('bigcity.website.advert', [
                 views: {
                     'preview': {
                         templateUrl: '/static/app/website/advert/edit.html',
-                        controller: ['$scope', 'categories', 'advert', 'images', 'NodesService',
-                            function ($scope, categories, advert, images, NodesService) {
+                        controller: ['$scope', 'categories', 'advert', 'images', 'NodesService', 'messages',
+                            function ($scope, categories, advert, images, NodesService, messages) {
                                 var uploader = $scope.getUploader(advert.result, 5 - images.length, $scope);
                                 $scope.grouped = categories ? categories[2] : [];
                                 $scope.images = images;
@@ -127,10 +129,13 @@ angular.module('bigcity.website.advert', [
                                             edited[key] = prop.$viewValue;
                                         }
                                     });
+                                    messages.info('Saving advert. Please wait...');
                                     NodesService.update(edited, 'advert').then(
                                         function (data) {
+                                            messages.success('Advert was saved.');
                                         },
                                         function (error) {
+                                            messages.error('Could not save advert. Please try again.');
                                         }
                                     );
                                 };

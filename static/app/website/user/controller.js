@@ -12,8 +12,8 @@ angular.module('bigcity.website.user', [
             views: {
                 preview: {
                     templateUrl: '/static/app/website/user/login.html',
-                    controller: ['UsersService', '$state', '$scope',
-                        function (UsersService, $state, $scope) {
+                    controller: ['UsersService', '$state', '$scope', 'messages',
+                        function (UsersService, $state, $scope, messages) {
                             $scope.username = null;
                             $scope.password = null;
                             // Hack. Used only to correct a html layout.
@@ -22,9 +22,14 @@ angular.module('bigcity.website.user', [
                                 UsersService.login({
                                     username: $scope.username,
                                     password: $scope.password
-                                }).then(function (data) {
-                                    $state.go('user.preview', {userId: data.data.result.id});
-                                });
+                                }).then(
+                                    function (data) {
+                                        $state.go('user.preview', {userId: data.data.result.id});
+                                    },
+                                    function (resp) {
+                                        messages.error('Could not sign in a user. Password or an email was incorrect.');
+                                    }
+                                );
                             };
                         }]
                 }
@@ -37,7 +42,7 @@ angular.module('bigcity.website.user', [
                     controller: ['UsersService', '$state',
                         function (UsersService, $state) {
                             UsersService.logout().then(function () {
-                                $state.go('home');
+                                $state.go('user.login');
                             });
                         }]
                 }
@@ -48,8 +53,8 @@ angular.module('bigcity.website.user', [
             views: {
                 'preview': {
                     templateUrl: '/static/app/website/user/create.html',
-                    controller: ['$scope', 'UsersService', '$state',
-                        function ($scope, UsersService, $state) {
+                    controller: ['$scope', 'UsersService', '$state', 'messages',
+                        function ($scope, UsersService, $state, messages) {
                             $scope.conditions = false;
                             $scope.user = {
                                 first_name: null,
@@ -72,7 +77,7 @@ angular.module('bigcity.website.user', [
                                         });
                                     },
                                     function (error) {
-                                        // TODO. Do something.
+                                        messages.error('Could not create a user. Please try again.');
                                     }
                                 );
                             };
@@ -93,14 +98,36 @@ angular.module('bigcity.website.user', [
             views: {
                 'preview': {
                     templateUrl: '/static/app/website/user/profile.html',
-                    controller: ['$scope', 'user', 'UsersService', function ($scope, user, UsersService) {
-                        $scope.userProfile = true;
-                        $scope.user = user.result;
-                        $scope.submit = function(user) {
-                            // TODO. Add callbacks to handle success and fail.
-                            UsersService.update(user);
-                        };
-                    }]
+                    controller: ['$scope', 'user', 'UsersService', 'messages',
+                        function ($scope, user, UsersService, messages) {
+                            $scope.userProfile = true;
+                            $scope.user = user.result;
+                            $scope.chpasswd = {
+                                password: null,
+                                password1: null
+                            };
+                            $scope.submit = function (user) {
+                                messages.info('Updating the user. Please wait ...');
+                                UsersService.update(user).then(
+                                    function (data) {
+                                        messages.success('The user was updated.');
+                                    },
+                                    function (resp) {
+                                        messages.error('Could not update the user. Please try again.');
+                                    }
+                                );
+                            };
+                            $scope.chpasswd = function (user, password) {
+                                UsersService.chpasswd(user.id, password).then(
+                                    function (data) {
+                                        messages.success('Password was changed.');
+                                    },
+                                    function (resp) {
+                                        messages.error('Could not update a password. Please try again.');
+                                    }
+                                );
+                            };
+                        }]
                 },
                 'laside': {
                     templateUrl: '/static/app/website/user/laside.profile.html',
@@ -116,30 +143,30 @@ angular.module('bigcity.website.user', [
             views: {
                 '': {
                     templateUrl: '/static/app/website/user/profile.myads.html',
-                    controller: ['$scope', 'user', 'NodesService', function ($scope, user, NodesService) {
-                        $scope.userProfile = true;
-                        $scope.user = user.result;
-                        $scope.adverts = null;
-                        $scope.removeAdvert = function (advert) {
-                            NodesService.delete({nid: advert.id}, 'advert').then(
+                    controller: ['$scope', 'user', 'NodesService', 'messages',
+                        function ($scope, user, NodesService, messages) {
+                            $scope.userProfile = true;
+                            $scope.user = user.result;
+                            $scope.adverts = null;
+                            $scope.removeAdvert = function (advert) {
+                                messages.info('Removing an advert. Please wait ...');
+                                NodesService.delete({nid: advert.id}, 'advert').then(
+                                    function (data) {
+                                        var index = $scope.adverts.indexOf(advert);
+                                        $scope.adverts.splice(index, 1);
+                                        messages.success('Advert was removed.');
+                                    },
+                                    function (error) {
+                                        messages.error('Could not remove advert. Please try again.');
+                                    }
+                                );
+                            };
+                            NodesService.list({kind: 'advert', where: 'uid=' + user.result.id, order: 'updated'}).then(
                                 function (data) {
-                                    var index = $scope.adverts.indexOf(advert);
-                                    $scope.adverts.splice(index, 1);
-                                },
-                                function (error) {
-                                    //TODO. Handle error.
+                                    $scope.adverts = data.results;
                                 }
                             );
-                        };
-                        NodesService.list({kind: 'advert', where: 'uid=' + user.result.id, order: 'updated'}).then(
-                            function (data) {
-                                $scope.adverts = data.results;
-                            },
-                            function (error) {
-
-                            }
-                        );
-                    }]
+                        }]
                 }
             }
         });

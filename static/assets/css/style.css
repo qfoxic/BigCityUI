@@ -10,7 +10,12 @@
   }
 }
 
-
+#error-container {
+     margin-top:10px;
+     margin-left: 10px;
+     position: fixed;
+     z-index: 9999;
+}
 
 a {
   color: #369;

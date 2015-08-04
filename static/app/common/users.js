@@ -10,6 +10,7 @@ angular.module('bigcity.common.users', [
                 logoutUrl = 'http://127.0.0.1:8001/logout/',
                 usersUrl = 'http://127.0.0.1:8001/users/',
                 updGroups = 'http://127.0.0.1:8001/user/:userId/updgroups/',
+                chPasswd = 'http://127.0.0.1:8001/user/:userId/chpasswd/',
                 cache = $rootScope.cache,
                 User = {},
                 res = $resource(
@@ -17,7 +18,8 @@ angular.module('bigcity.common.users', [
                     {userId: '@id'},
                     {
                         update: {method: 'PUT'},
-                        updgroups: {method: 'POST', url: updGroups}
+                        updgroups: {method: 'POST', url: updGroups},
+                        chpasswd: {method: 'POST', url: chPasswd}
                     }
                 );
 
@@ -63,6 +65,9 @@ angular.module('bigcity.common.users', [
             };
             User.updgroups = function (uid, gids) {
                 return res.updgroups({id: uid, gids: gids}).$promise;
+            };
+            User.chpasswd = function (uid, password) {
+                return res.chpasswd({id: uid, password: password}).$promise;
             };
 
             return User;

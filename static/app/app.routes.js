@@ -3,7 +3,7 @@ angular.module('bigcity', [
     'bigcity.website.search',
     'bigcity.website.advert',
     'bigcity.website.user',
-    'bigcity.common.notification',
+    'bigcity.common.messages',
     'bigcity.common.modal',
     'bigcity.common.users',
     'bigcity.common.groups',
@@ -14,10 +14,9 @@ angular.module('bigcity', [
     'LocalStorageModule',
     'angularFileUpload'
 ])
-    // TODO. Replace All possible values with that.
+    //TODO. Replace All possible values with that.
     .constant('API_SERVER', 'http://127.0.0.1')
-    .run(
-    ['$rootScope', '$state', '$stateParams', 'localStorageService', '$http',
+    .run(['$rootScope', '$state', '$stateParams', 'localStorageService', '$http',
         function ($rootScope, $state, $stateParams, localStorageService, $http) {
             'use strict';
             $rootScope.userCacheName = 'webusr'; // TODO. This is a constant.
@@ -29,8 +28,15 @@ angular.module('bigcity', [
             if ($rootScope.curUser) {
                 $http.defaults.headers.common.Authorization = 'Token ' + $rootScope.curUser.token;
             }
-        }]
-)
+
+            $rootScope.$on('$stateChangeStart', function () {
+                angular.element('#wrapper').toggleClass('whirl traditional');
+            });
+            $rootScope.$on('$stateChangeSuccess', function () {
+                angular.element('#wrapper').toggleClass('whirl traditional');
+            });
+        }])
+
     .config(['$urlRouterProvider', 'localStorageServiceProvider', '$resourceProvider',
         function ($urlRouterProvider, localStorageServiceProvider, $resourceProvider) {
             'use strict';

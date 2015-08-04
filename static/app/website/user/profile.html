@@ -77,31 +77,29 @@
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
-                                <div class="col-sm-12">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">
-                                            Comments are enabled on my ads </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-sm-3 control-label">New Password</label>
 
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" placeholder="">
+                                    <input ng-model="chpasswd.password" type="password" class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Confirm Password</label>
 
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" placeholder="">
+                                    <input ng-model="chpasswd.password1" type="password" class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <button type="submit" class="btn btn-primary">Update</button>
+                                    <button
+                                            ng-disabled="!chpasswd.password || (chpasswd.password != chpasswd.password1)"
+                                            type="submit"
+                                            ng-click="chpasswd(user, chpasswd.password)"
+                                            class="btn btn-primary">Update</button>
+                                    <span ng-show="(chpasswd.password && chpasswd.password1) && (chpasswd.password != chpasswd.password1)">
+                                        Passwords doesn't match
+                                    </span>
                                 </div>
                             </div>
                         </form>

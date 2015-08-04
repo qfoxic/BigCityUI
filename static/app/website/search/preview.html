@@ -8,11 +8,11 @@
                         <i class="fa fa-spinner fa-spin"></i>
                     </div>
                     <div class="item-list make-list text-center"
-                         ng-if="adverts.length == 0 && !loading">
+                         ng-if="adverts.length === 0 && !loading">
                         <span>There are no adverts found.</span>
                     </div>
                     <div class="item-list make-list" ng-repeat="advert in adverts">
-                        <div class="add-desc-box col-sm-7">
+                        <div class="add-desc-box col-sm-8">
                             <div class="add-details">
                                 <h5 class="add-title">
                                     <a ui-sref="advert.preview({advertId: advert.id})">{{advert.title}}</a>
@@ -25,12 +25,8 @@
                                     </span>
                             </div>
                         </div>
-                        <div class="col-sm-3 text-right  price-box">
+                        <div class="col-sm-4 text-right  price-box">
                             <h2 class="item-price"> $ {{advert.price}} </h2>
-                            <a class="btn btn-danger  btn-sm make-favorite"> <i
-                                    class="fa fa-certificate"></i>
-                                <span>Top Ads</span>
-                            </a>
                             <a class="btn btn-default  btn-sm make-favorite">
                                 <i class="fa fa-heart"></i> <span>Save</span>
                             </a>
@@ -40,9 +36,6 @@
             </div>
         </div>
         <!--/.adds-wrapper-->
-
-        <div class="tab-box  save-search-bar text-center"><a href=""> <i class=" icon-star-empty"></i>
-            Save Search </a></div>
     </div>
 </div>
 <div ng-show="adverts && !loading" class="pagination-bar text-center">

@@ -1,6 +1,6 @@
 angular.module('bigcity.common.nodes', ['ngResource'])
-    .service('NodesService', ['$resource', '$q', 'utils', 'FileUploader', '$rootScope',
-        function ($resource, $q, utils, FileUploader, $rootScope) {
+    .service('NodesService', ['$resource', '$q', 'utils', 'FileUploader', '$rootScope', 'messages',
+        function ($resource, $q, utils, FileUploader, $rootScope, messages) {
             'use strict';
 
             var nodeUrl = 'http://127.0.0.1:8001/node/',
@@ -38,7 +38,7 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                 return resImages.remove({nid: imageId}).$promise;
             };
             Node.uploader = function (advertData, queueLimit) {
-                return new FileUploader({
+                var uploader = new FileUploader({
                     url: imageUrl,
                     queueLimit: queueLimit || 5,
                     alias: 'content',
@@ -54,6 +54,18 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                         {'asset_type': 'image'}
                     ]
                 });
+                uploader.onBeforeUploadItem = function (item) {
+                    messages.info('Uploading file ' + item.file.name + '. Please wait ...');
+                };
+                uploader.onCompleteItem = function (item, response) {
+                    if (response.error) {
+                        messages.error('Could not upload file ' + item.file.name + '. ' + response.error);
+                    } else {
+                        messages.success('File ' + item.file.name + ' was uploaded.');
+                    }
+                };
+
+                return uploader;
             };
             Node.create = function (data, kind) {
                 if (kind === 'advert') {

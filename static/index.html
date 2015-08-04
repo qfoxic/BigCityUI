@@ -15,6 +15,7 @@
     <title>Bigcity</title>
     <!-- Bootstrap core CSS -->
     <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/assets/css/whirl.css" rel="stylesheet">
     <link href="/static/assets/css/font-awesome.css" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template -->
     <link href="/static/assets/css/style.css" rel="stylesheet">
@@ -29,7 +30,12 @@
 <body>
 
 <div id="wrapper">
-
+    <div class="row" id="error-container">
+        <div ng-repeat="message in messages" class="alert alert-{% verbatim %}{{message.type}}{% endverbatim %} alert-dismissable">
+            <button type="button" ng-click="removeMessage(message)" class="close" data-dismiss="alert">×</button>
+            {% verbatim %}{{message.text}}{% endverbatim %}
+        </div>
+    </div>
     <div class="header" ui-view="mainheader">
         <nav class="navbar   navbar-site navbar-default" role="navigation">
             <div class="container">
@@ -57,16 +63,16 @@
                             </a>
                             <ul class="dropdown-menu user-menu">
                                 <li class="active">
-                                    <a ui-sref="user.preview({userId: curUser.id})"><i class="icon-home"></i>Personal Home</a>
+                                    <a ui-sref="user.preview({userId: curUser.id})"><i class="icon-home"></i>Personal
+                                        Home</a>
                                 </li>
                                 <li>
-                                    <a ui-sref="user.preview.myads({userId: curUser.id})"><i class="icon-th-thumb"></i>My ads</a>
+                                    <a ui-sref="user.preview.myads({userId: curUser.id})"><i class="icon-th-thumb"></i>My
+                                        ads</a>
                                 </li>
                                 <li>
-                                    <a ui-sref="user.preview.favourite({userId: curUser.id})"><i class="icon-heart"></i>Favourite ads</a>
-                                </li>
-                                <li>
-                                    <a ui-sref="user.preview.saved({userId: curUser.id})"><i class="icon-star-circled"></i>Saved search</a>
+                                    <a ui-sref="user.preview.favourite({userId: curUser.id})"><i class="icon-heart"></i>Favourite
+                                        ads</a>
                                 </li>
                             </ul>
                         </li>
@@ -94,7 +100,8 @@
             <div class="container">
                 <div class="row">
                     <div ng-class="{'col-sm-3 page-sidebar-right': userProfile }" ui-view="laside"></div>
-                    <div ng-class="{'col-sm-9 page-content': !loginPage }" class="col-thin-right" ui-view="preview"></div>
+                    <div ng-class="{'col-sm-9 page-content': !loginPage }" class="col-thin-right"
+                         ui-view="preview"></div>
                     <div class="col-sm-3 page-sidebar-right" ui-view="aside"></div>
                 </div>
             </div>
@@ -226,7 +233,7 @@
 <script src="/static/app/website/search/controller.js"></script>
 <script src="/static/app/website/advert/controller.js"></script>
 <script src="/static/app/website/user/controller.js"></script>
-<script src="/static/app/common/notification.js"></script>
+<script src="/static/app/common/messages.js"></script>
 <script src="/static/app/common/modal.js"></script>
 <script src="/static/app/common/users.js"></script>
 <script src="/static/app/common/groups.js"></script>

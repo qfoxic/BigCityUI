@@ -18,12 +18,12 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-4 text-center col-sm-4">
-            <div class="cat-list" ng-if="loading">
+        <div class="col-md-4 col-sm-4">
+            <div class="cat-list text-center" ng-if="loading">
                 <i class="fa fa-spinner fa-spin"></i>
             </div>
             <div class="cat-list" ng-repeat="category in nodes.slice(4, 8)">
-                <h3 class="cat-title"><a href="category.html"><i class="fa fa-car ln-shadow"></i>
+                <h3 class="cat-title"><a><i class="fa fa-car ln-shadow"></i>
                     {{category.title}} <span class="count">277,959</span> </a>
                                     <span data-target=".cat-id-1" data-toggle="collapse"
                                           class="btn-cat-collapsed collapsed">   <span

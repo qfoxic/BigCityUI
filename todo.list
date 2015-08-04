@@ -1,39 +1,24 @@
    COMMON
-1. Remove flipping of pages while loading some info.
 2. Provide constants.
 
 
 HOME PAGE.
-1. Add search functionality.
+1. Add search redirect to searching..
 
 
    LOGIN
 2. login page. Lost your password.
-4. Login. handle auth error.
 
    USER PROFILE.
-3. User profileMake gender required field.
-2. Implement favourite ads.
-3. Handle user update fail and success.
-5. Add submit button spinner to indicate some operation when save profile.
-3. Add user profile page.
-   3.1 Update password.!!!
-6. Add save search functionality.
+2. Implement saved ads.
+
 
 
 
    ADVERT
-2. Implement favourite ads.
+2. Implement saved ads.
 3. MOve count of images to upload to constants.
 
 3. Admin: add advert creation.
-6. Add save search functionality.
 9. Implement possibility to change fields dependently on a category on advert creation.
 10. Create/Edit advert - add fields related to buildings.
-
-
-   SEARCH
-4. Check UI size of inputs and buttons on search page.
-5. Check UI Sort Price combobox.
-7. Remove UI flipping on advert create and advert search.
-

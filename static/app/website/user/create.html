@@ -50,18 +50,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Gender</label>
+                        <label class="col-md-4 control-label">Gender <sup>*</sup></label>
 
                         <div class="col-md-6">
                             <div class="radio">
                                 <label for="Gender-0">
                                     <input name="Gender" id="Gender-0" value="m" checked="checked"
-                                           type="radio" ng-model="user.gender">
+                                           type="radio" ng-model="user.gender" required>
                                     Male </label>
                             </div>
                             <div class="radio">
                                 <label for="Gender-1">
-                                    <input name="Gender" id="Gender-1" value="f" type="radio" ng-model="user.gender">
+                                    <input name="Gender" id="Gender-1" value="f" type="radio" ng-model="user.gender" required>
                                     Female </label>
                             </div>
                         </div>
