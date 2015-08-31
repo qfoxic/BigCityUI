@@ -11,7 +11,8 @@ angular.module('bigcity', [
     'bigcity.common.nodes',
     'bigcity.common.utils',
     'ui.router',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'angularFileUpload'
 ])
     .run(['$rootScope', '$state', '$stateParams', 'localStorageService', '$http', 'notify',
         function ($rootScope, $state, $stateParams, localStorageService, $http, notify) {

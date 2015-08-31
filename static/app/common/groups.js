@@ -4,7 +4,7 @@ angular.module('bigcity.common.groups', [
 
 .service('GroupsService', ['$resource', '$http', '$rootScope',
   function ($resource, $http, $rootScope) {
-      var groupUrl = 'http://127.0.0.1:8001/group/',
+      var groupUrl = 'http://api.bigcity.today/group/',
           cache = $rootScope.cache,
           Group = {},
           res = $resource(groupUrl + ':groupId/',

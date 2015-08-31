@@ -5,12 +5,12 @@ angular.module('bigcity.common.users', [
     .service('UsersService', ['$resource', '$http', '$rootScope',
         function ($resource, $http, $rootScope) {
             'use strict';
-            var userUrl = 'http://127.0.0.1:8001/user/',
-                loginUrl = 'http://127.0.0.1:8001/login/',
-                logoutUrl = 'http://127.0.0.1:8001/logout/',
-                usersUrl = 'http://127.0.0.1:8001/users/',
-                updGroups = 'http://127.0.0.1:8001/user/:userId/updgroups/',
-                chPasswd = 'http://127.0.0.1:8001/user/:userId/chpasswd/',
+            var userUrl = 'http://api.bigcity.today/user/',
+                loginUrl = 'http://api.bigcity.today/login/',
+                logoutUrl = 'http://api.bigcity.today/logout/',
+                usersUrl = 'http://api.bigcity.today/users/',
+                updGroups = 'http://api.bigcity.today/user/:userId/updgroups/',
+                chPasswd = 'http://api.bigcity.today/user/:userId/chpasswd/',
                 cache = $rootScope.cache,
                 User = {},
                 res = $resource(

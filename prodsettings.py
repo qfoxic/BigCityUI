@@ -24,7 +24,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['54.201.118.26']
+ALLOWED_HOSTS = ['www.bigcity.today']
 
 
 # Application definition

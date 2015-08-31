@@ -8,7 +8,7 @@ angular.module('bigcity.login', [
             $stateProvider
                 .state('login', {
                     url: '/login',
-                    templateUrl: '/static/app/login/main.html',
+                    templateUrl: '/static/app/admin/login/main.html',
                     controller: ['$scope', 'UsersService', '$state', 'notify',
                         function ($scope, UsersService, $state, notify) {
                             $scope.user = {};

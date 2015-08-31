@@ -6,7 +6,7 @@ angular.module('bigcity.nodes', ['ui.router'])
             .state('nodes', {
                 abstract: true,
                 url: '/nodes',
-                templateUrl: '/static/app/nodes/main.html',
+                templateUrl: '/static/app/admin/nodes/main.html',
                 controller: ['$scope', '$state', 'notify', 'modal', 'NodesService',
                     function ($scope, $state, notify, modal, NodesService) {
                         $scope.update = function (user, form) {
@@ -38,7 +38,7 @@ angular.module('bigcity.nodes', ['ui.router'])
             })
             .state('nodes.list', {
                 url: '/list',
-                templateUrl: '/static/app/nodes/list.html',
+                templateUrl: '/static/app/admin/nodes/list.html',
                 controller: ['$scope', '$state',
                     function ($scope, $state) {
                         $scope.nodeTypes = ['category', 'advert'];
@@ -55,7 +55,7 @@ angular.module('bigcity.nodes', ['ui.router'])
                 url: '/create',
                 views: {
                     '': {
-                        templateUrl: '/static/app/users/create.html',
+                        templateUrl: '/static/app/admin/users/create.html',
                         controller: ['$scope', '$stateParams', 'UsersService', 'notify',
                             function ($scope, $stateParams, UsersService, notify) {
                                 $scope.user = {};
@@ -67,7 +67,7 @@ angular.module('bigcity.nodes', ['ui.router'])
                 url: '/detail/:nid',
                 views: {
                     '': {
-                        templateUrl: '/static/app/nodes/data.html',
+                        templateUrl: '/static/app/admin/nodes/data.html',
                         controller: ['$scope', '$stateParams', 'NodesService', 'notify',
                             function ($scope, $stateParams, NodesService, notify) {
                                 $scope.node = {};

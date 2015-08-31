@@ -9,7 +9,7 @@ angular.module('bigcity.website.advert', [
                 abstract: true,
                 controller: ['$scope', 'NodesService', function ($scope, NodesService) {
                     //TODO. Constant.
-                    $scope.api = 'http://127.0.0.1:8001';
+                    $scope.api = 'http://api.bigcity.today';
                     $scope.getUploader = function (advertData, queueNumber, scope) {
                         var uploader = NodesService.uploader(advertData, queueNumber);
                         uploader.onSuccessItem = function (item, response) {

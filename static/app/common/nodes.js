@@ -3,11 +3,11 @@ angular.module('bigcity.common.nodes', ['ngResource'])
         function ($resource, $q, utils, FileUploader, $rootScope, messages) {
             'use strict';
 
-            var nodeUrl = 'http://127.0.0.1:8001/node/',
-                advertUrl = 'http://127.0.0.1:8001/advert/',
-                nodesUrl = 'http://127.0.0.1:8001/nodes/:kind/',
-                imagesUrl = 'http://127.0.0.1:8001/images/:nid/',
-                imageUrl = 'http://127.0.0.1:8001/image/',
+            var nodeUrl = 'http://api.bigcity.today/node/',
+                advertUrl = 'http://api.bigcity.today/advert/',
+                nodesUrl = 'http://api.bigcity.today/nodes/:kind/',
+                imagesUrl = 'http://api.bigcity.today/images/:nid/',
+                imageUrl = 'http://api.bigcity.today/image/',
                 Node = {},
                 res = $resource(nodeUrl + ':nid/',
                     {nid: '@id'},

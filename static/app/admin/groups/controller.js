@@ -9,7 +9,7 @@ angular.module('bigcity.groups', [
         .state('groups', {
           abstract: true,
           url: '/groups',
-          templateUrl: '/static/app/groups/main.html',
+          templateUrl: '/static/app/admin/groups/main.html',
           controller: ['$scope', '$state', 'GroupsService', 'notify', 'modal',
             function ($scope, $state, GroupsService, notify, modal) {
               $scope.update = function(group, form) {
@@ -64,7 +64,7 @@ angular.module('bigcity.groups', [
         })
         .state('groups.list', {
           url: '/list',
-          templateUrl: '/static/app/groups/list.html',
+          templateUrl: '/static/app/admin/groups/list.html',
           controller: ['$scope', '$state', 'GroupsService',
             function ($scope, $state, GroupsService) {
               $scope.$parent.groups = {};
@@ -80,7 +80,7 @@ angular.module('bigcity.groups', [
           url: '/group/:groupId/update',
           views: {
             '': {
-              templateUrl: '/static/app/groups/edit.html',
+              templateUrl: '/static/app/admin/groups/edit.html',
               controller: ['$scope', '$stateParams', 'GroupsService', 'notify',
                 function ($scope, $stateParams, GroupsService, notify) {
                   $scope.group = {};
@@ -100,7 +100,7 @@ angular.module('bigcity.groups', [
           url: '/group/create',
           views: {
             '': {
-              templateUrl: '/static/app/groups/create.html',
+              templateUrl: '/static/app/admin/groups/create.html',
               controller: ['$scope', '$stateParams', 'GroupsService', 'notify',
                 function ($scope, $stateParams, GroupsService, notify) {
                   $scope.group = {};
@@ -112,7 +112,7 @@ angular.module('bigcity.groups', [
           url: '/groups/:groupId',
           views: {
             '': {
-              templateUrl: '/static/app/groups/data.html',
+              templateUrl: '/static/app/admin/groups/data.html',
               controller: ['$scope', '$stateParams', 'GroupsService', 'notify',
                 function ($scope, $stateParams, GroupsService, notify) {
                   $scope.group = {};

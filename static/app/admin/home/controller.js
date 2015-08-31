@@ -10,7 +10,7 @@ angular.module('bigcity.home', [
           url: '/',
           views: {
             '': {
-              templateUrl: '/static/app/home/main.html'
+              templateUrl: '/static/app/admin/home/main.html'
             }
           }
         })

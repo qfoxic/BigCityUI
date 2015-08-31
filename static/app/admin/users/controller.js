@@ -9,7 +9,7 @@ angular.module('bigcity.users', [
                 .state('users', {
                     abstract: true,
                     url: '/users',
-                    templateUrl: '/static/app/users/main.html',
+                    templateUrl: '/static/app/admin/users/main.html',
                     controller: ['$scope', '$state', 'UsersService', 'GroupsService', 'notify', 'modal',
                         function ($scope, $state, UsersService, GroupsService, notify, modal) {
                             $scope.groups = [];
@@ -80,7 +80,7 @@ angular.module('bigcity.users', [
                 })
                 .state('users.list', {
                     url: '/list',
-                    templateUrl: '/static/app/users/list.html',
+                    templateUrl: '/static/app/admin/users/list.html',
                     controller: ['$scope', '$state', 'UsersService',
                         function ($scope, $state, UsersService) {
                             $scope.$parent.users = {};
@@ -96,7 +96,7 @@ angular.module('bigcity.users', [
                     url: '/create',
                     views: {
                         '': {
-                            templateUrl: '/static/app/users/create.html',
+                            templateUrl: '/static/app/admin/users/create.html',
                             controller: ['$scope', '$stateParams', 'UsersService', 'notify',
                                 function ($scope, $stateParams, UsersService, notify) {
                                     $scope.user = {};
@@ -108,7 +108,7 @@ angular.module('bigcity.users', [
                     url: '/profile',
                     views: {
                         '': {
-                            templateUrl: '/static/app/users/data.html',
+                            templateUrl: '/static/app/admin/users/data.html',
                             controller: ['$scope', '$stateParams', 'UsersService',
                                 function ($scope, $stateParams, UsersService) {
                                     $scope.user = UsersService.current();
@@ -120,7 +120,7 @@ angular.module('bigcity.users', [
                     url: '/profile/:userId/update',
                     views: {
                         '': {
-                            templateUrl: '/static/app/users/edit.html',
+                            templateUrl: '/static/app/admin/users/edit.html',
                             controller: ['$scope', '$stateParams', 'UsersService', 'notify',
                                 function ($scope, $stateParams, UsersService, notify) {
                                     $scope.user = {};
@@ -140,7 +140,7 @@ angular.module('bigcity.users', [
                     url: '/profile/:userId',
                     views: {
                         '': {
-                            templateUrl: '/static/app/users/data.html',
+                            templateUrl: '/static/app/admin/users/data.html',
                             controller: ['$scope', '$stateParams', 'UsersService', 'notify',
                                 function ($scope, $stateParams, UsersService, notify) {
                                     $scope.user = {};
