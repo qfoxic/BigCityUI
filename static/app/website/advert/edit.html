@@ -28,7 +28,75 @@
                             </textarea>
                         </div>
                     </div>
+                     <div class="form-group">
+                        <label class="col-md-3 control-label required" for="GenSquare">General square of an appartment<sup>*</sup></label>
 
+                        <div class="col-md-8">
+                            <input id="GenSquare" name="square_gen" placeholder="70, 100, etc." class="form-control input-md"
+                                   required type="number" ng-model="advert.square_gen">
+                            <span class="help-block">Provide general square in a meters.</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required" for="HSquare">Houseroom<sup>*</sup></label>
+
+                        <div class="col-md-8">
+                            <input id="HSquare" name="square_live" placeholder="70, 100, etc." class="form-control input-md"
+                                   required type="number" ng-model="advert.square_live">
+                            <span class="help-block">Please provide a houseroom in a meters.</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required" for="RoomHeight">A height of an appartment.<sup>*</sup></label>
+
+                        <div class="col-md-8">
+                            <input id="RoomHeight" name="room_height" placeholder="2.5, 1.8 etc" class="form-control input-md"
+                                   required type="number" ng-model="advert.room_height">
+                            <span class="help-block">Provide height of an appartment in a meters.</span></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required" for="RoomN">Number of rooms in an appartment<sup>*</sup></label>
+
+                        <div class="col-md-8">
+                            <input id="RoomN" name="rooms" placeholder="1, 2 etc" class="form-control input-md"
+                                   required type="number" ng-model="advert.rooms"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required" for="Floors">What number of floors your building have?<sup>*</sup></label>
+
+                        <div class="col-md-8">
+                            <input id="Floors" name="floors" placeholder="2, 9 etc" class="form-control input-md"
+                                   required type="number" ng-model="advert.floors">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required" for="Floor">What floor your flat is on?<sup>*</sup></label>
+
+                        <div class="col-md-8">
+                            <input id="Floor" name="floor" placeholder="2, 9 etc" class="form-control input-md"
+                                   required type="number" ng-model="advert.floor">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required">Type of a building's wall.<sup>*</sup></label>
+
+                        <div class="col-md-8">
+                            <select class="form-control" name="wall_type" ng-model="advert.wall_type"
+                                    required>
+                                <option value="0">Ferroconcrete</option>
+                                <option value="1">Brick</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label required">Type of a building.<sup>*</sup></label>
+
+                        <div class="col-md-8">
+                            <select class="form-control" name="build_type" ng-model="advert.build_type"
+                                    required>
+                                <option value="0">New</option>
+                                <option value="1">Secondary</option>
+                            </select>
+                        </div>
+                    </div>
                     <!-- Prepended text-->
                     <div class="form-group">
                         <label class="col-md-3 control-label required" for="Price">Price<sup>*</sup></label>

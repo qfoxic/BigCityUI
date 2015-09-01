@@ -1,11 +1,6 @@
    COMMON
 2. Provide constants.
 
-
-HOME PAGE.
-1. Add search redirect to searching..
-
-
    LOGIN
 2. login page. Lost your password.
 
@@ -21,4 +16,5 @@ HOME PAGE.
 
 3. Admin: add advert creation.
 9. Implement possibility to change fields dependently on a category on advert creation.
-10. Create/Edit advert - add fields related to buildings.
+10. Create/Edit advert - add fields related to buildings.!!! <---
+11. Translations.

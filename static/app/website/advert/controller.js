@@ -52,15 +52,14 @@ angular.module('bigcity.website.advert', [
                                     price: null,
                                     text: null,
                                     location: null,
-                                    // TODO REmove hardcoded items.
-                                    square_gen: 70,
-                                    room_height: 2,
-                                    floor: 2,
-                                    square_live: 100,
-                                    floors: 12,
-                                    rooms: 12,
-                                    wall_type: 0,
-                                    build_type: 0
+                                    square_gen: null,
+                                    room_height: null,
+                                    floor: null,
+                                    square_live: null,
+                                    floors: null,
+                                    rooms: null,
+                                    wall_type: null,
+                                    build_type: null
                                 };
                                 $scope.uploader = null;
                                 $scope.images = [];
@@ -109,7 +108,7 @@ angular.module('bigcity.website.advert', [
                                     title: advert.result.title,
                                     price: advert.result.price,
                                     text: advert.result.text,
-                                    location: advert.result.city + ', ' + advert.result.street,
+                                    location: advert.result.street,
                                     square_gen: advert.result.square_gen,
                                     room_height: advert.result.room_height,
                                     floor: advert.result.floor,
