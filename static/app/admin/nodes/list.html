@@ -7,7 +7,14 @@
     <div class="row">
       <div class="row">
         <div class="col-lg-4">
-          <button ui-sref="users.create" class="btn btn-outline btn-primary" type="button">Create Node</button>
+           <button ui-sref="nodes.create({nodeType:curTypeCreate})" class="btn btn-outline btn-primary" type="button">Create Node</button>
+           <button type="button"
+                   class="btn btn-outline btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+               <span class="caret"></span>
+           </button>
+           <ul class="dropdown-menu dropdown-menu-left" role="menu" ng-model="curTypeCreate">
+               <li ng-repeat="ntype in createNodeTypes" ><a ng-click="selectTypeCreate(ntype)">{{ntype}}</a></li>
+           </ul>
         </div>
         <div class="col-lg-6 pull-right">
             <div class="input-group">
@@ -26,6 +33,7 @@
         <thead>
           <tr>
             <th>Path</th>
+            <th>Title</th>
             <th>Kind</th>
             <th>Uid</th>
             <th>Gid</th>
@@ -36,17 +44,18 @@
         </thead>
         <tbody ng-if="loading">
           <tr>
-            <td colspan="7" align="center"><i class="fa fa-spinner fa-spin"></i></td>
+            <td colspan="8" align="center"><i class="fa fa-spinner fa-spin"></i></td>
           </tr>
         </tbody>
         <tbody ng-if="nodes.length == 0">
           <tr>
-            <td colspan="7" align="center"><span>There are no nodes in a system.</span></td>
+            <td colspan="8" align="center"><span>There are no nodes in a system.</span></td>
           </tr>
         </tbody>
         <tbody>
             <tr ng-repeat="node in nodes.results">
               <td>{{node.path}}</td>
+              <td>{{node.title}}</td>
               <td>{{node.kind}}</td>
               <td>{{node.uid}}</td>
               <td>{{node.gid}}</td>
@@ -55,13 +64,13 @@
               <td align="right">
                 <a ui-sref="nodes.detail({nid:node.id})"><i class="fa fa-edit mfs-icon-margin-2"></i></a>
                 <i class="fa fa-bars mfs-icon-margin-2"></i>
-                <a href="#" ng-click="delete(node, $index)"><i class="fa fa-remove mfs-icon-red mfs-icon-margin-2"></i></a>
+                <a ng-click="delete(node)"><i class="fa fa-remove mfs-icon-red mfs-icon-margin-2"></i></a>
               </td>
             </tr>
         </tbody>
         <tfoot>
           <tr>
-            <td colspan="7" align="center">
+            <td colspan="8" align="center">
               <ul class="pagination">
                 <li ng-class="{disabled: page <= 1}" class="paginate_button previous" tabindex="0">
                   <a ng-click="list(page-1, curType, expr)" href="javascript:void(0);">Prev</a>

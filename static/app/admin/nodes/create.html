@@ -1,33 +1,33 @@
 <div id="page-wrapper" ui-view>
     <div class="row">
         <div class="col-lg-12">
-          <h1 class="page-header">Create user</h1>
+            <h1 class="page-header">Create Node</h1>
         </div>
     </div>
     <div class="row">
-      <form name="form" novalidate class="simple-form" role="form">
-        <div class="form-group input-group"
-             ng-class="{'has-error': form.email.$touched && form.email.$error.email};">
-          <span class="input-group-addon">Email<i class="mfs-icon-red">*</i></span>
-          <input class="form-control" type="email" ng-model="user.email" name="email" required/><br />
-        </div>
-        <div class="form-group input-group"
-             ng-class="{'has-error': form.first_name.$touched && form.first_name.$error.first_name};">
-          <span class="input-group-addon">First Name<i class="mfs-icon-red">*</i></span>
-          <input class="form-control" type="text" ng-model="user.first_name" name="first_name" required/><br />
-        </div>
-        <div class="form-group input-group"
-             ng-class="{'has-error': form.last_name.$touched && form.last_name.$error.last_name};">
-          <span class="input-group-addon">Last Name<i class="mfs-icon-red">*</i></span>
-          <input class="form-control" type="text" ng-model="user.last_name" name="last_name" required/><br />
-        </div>
-        <div class="form-group input-group"
-             ng-class="{'has-error': form.password.$touched && form.password.$error.password};">
-          <span class="input-group-addon">Password<i class="mfs-icon-red">*</i></span>
-          <input class="form-control" type="password" ng-model="user.password" name="password" required/><br />
-        </div>
-        <button type="button" ng-disabled="form.$invalid" ng-click="create(form)" class="btn btn-primary">Save</button>
-      </form>
+        <form name="form" novalidate class="simple-form" role="form">
+            <div class="form-group input-group">
+                <span class="input-group-addon">Category</span>
+
+                <select class="form-control" name="category" tabindex="-1" ng-model="node.parent">
+                    <option value="{{category.id}}" ng-repeat="category in grouped">
+                        {{category.parent ? '-- ' + category.title : category.title }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group input-group"
+                 ng-class="{'has-error': form.title.$touched && form.title.$error.title};">
+                <span class="input-group-addon">Category Title<i class="mfs-icon-red">*</i></span>
+                <input class="form-control" type="text" ng-model="node.title" name="title" required/><br/>
+            </div>
+            <div class="form-group input-group"
+                 ng-class="{'has-error': form.perm.$touched && form.perm.$error.perm};">
+                <span class="input-group-addon">Permission<i class="mfs-icon-red">*</i></span>
+                <input class="form-control" type="text" ng-model="node.perm" name="perm" required/><br/>
+            </div>
+            <button type="button" ng-disabled="form.$invalid" ng-click="create(node, 'category')" class="btn btn-primary">Save
+            </button>
+        </form>
     </div>
 </div>
 

@@ -26,7 +26,7 @@
     <script src="/static/app/admin/groups/controller.js"></script>
     <script src="/static/app/admin/login/controller.js"></script>
     <script src="/static/app/admin/home/controller.js"></script>
-    <script src="/static/app/common/notification.js"></script>
+    <script src="/static/app/common/messages.js"></script>
     <script src="/static/app/common/modal.js"></script>
     <script src="/static/app/common/users.js"></script>
     <script src="/static/app/common/groups.js"></script>
@@ -271,9 +271,11 @@
                     </ul>
                 </div>
             </div>
-            <div ng-show="notify_msg" class="mfs-message alert alert-{% verbatim %}{{notify_type}}{% endverbatim %} alert-dismissable">
-                <button type="button" class="close" aria-hidden="true" ng-click="notify_msg=null">&times;</button>
-                {% verbatim %}{{notify_msg}}{% endverbatim %}
+            <div class="row" id="error-container">
+                <div ng-repeat="message in messages" class="alert alert-{% verbatim %}{{message.type}}{% endverbatim %} alert-dismissable">
+                    <button type="button" ng-click="removeMessage(message)" class="close" data-dismiss="alert">×</button>
+                    {% verbatim %}{{message.text}}{% endverbatim %}
+                </div>
             </div>
             <div class="mfs-modal-dialog" ng-show="{% verbatim %}modal_title{% endverbatim %}">
                 <div class="panel panel-{% verbatim %}{{modal_type}}{% endverbatim %}">

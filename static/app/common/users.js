@@ -2,15 +2,15 @@ angular.module('bigcity.common.users', [
     'ngResource'
 ])
 
-    .service('UsersService', ['$resource', '$http', '$rootScope',
-        function ($resource, $http, $rootScope) {
+    .service('UsersService', ['$resource', '$http', '$rootScope', 'API_SERVER',
+        function ($resource, $http, $rootScope, API_SERVER) {
             'use strict';
-            var userUrl = 'http://api.bigcity.today/user/',
-                loginUrl = 'http://api.bigcity.today/login/',
-                logoutUrl = 'http://api.bigcity.today/logout/',
-                usersUrl = 'http://api.bigcity.today/users/',
-                updGroups = 'http://api.bigcity.today/user/:userId/updgroups/',
-                chPasswd = 'http://api.bigcity.today/user/:userId/chpasswd/',
+            var userUrl = API_SERVER + '/user/',
+                loginUrl = API_SERVER + '/login/',
+                logoutUrl = API_SERVER + '/logout/',
+                usersUrl = API_SERVER + '/users/',
+                updGroups = API_SERVER + '/user/:userId/updgroups/',
+                chPasswd = API_SERVER + '/user/:userId/chpasswd/',
                 cache = $rootScope.cache,
                 User = {},
                 res = $resource(

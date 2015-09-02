@@ -14,8 +14,8 @@ angular.module('bigcity', [
     'LocalStorageModule',
     'angularFileUpload'
 ])
-    //TODO. Replace All possible values with that.
-    .constant('API_SERVER', 'http://127.0.0.1')
+    .constant('API_SERVER', 'http://127.0.0.1:8001')
+    //.constant('API_SERVER', 'api.bigcity.today')
     .run(['$rootScope', '$state', '$stateParams', 'localStorageService', '$http',
         function ($rootScope, $state, $stateParams, localStorageService, $http) {
             'use strict';

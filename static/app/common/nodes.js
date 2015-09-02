@@ -1,18 +1,25 @@
 angular.module('bigcity.common.nodes', ['ngResource'])
-    .service('NodesService', ['$resource', '$q', 'utils', 'FileUploader', '$rootScope', 'messages',
-        function ($resource, $q, utils, FileUploader, $rootScope, messages) {
+    .service('NodesService', ['$resource', '$q', 'utils', 'FileUploader', '$rootScope', 'messages', 'API_SERVER',
+        function ($resource, $q, utils, FileUploader, $rootScope, messages, API_SERVER) {
             'use strict';
 
-            var nodeUrl = 'http://api.bigcity.today/node/',
-                advertUrl = 'http://api.bigcity.today/advert/',
-                nodesUrl = 'http://api.bigcity.today/nodes/:kind/',
-                imagesUrl = 'http://api.bigcity.today/images/:nid/',
-                imageUrl = 'http://api.bigcity.today/image/',
+            var nodeUrl = API_SERVER + '/node/',
+                advertUrl = API_SERVER + '/advert/',
+                categoryUrl = API_SERVER + '/category/',
+                nodesUrl = API_SERVER + '/nodes/:kind/',
+                imagesUrl = API_SERVER + '/images/:nid/',
+                imageUrl = API_SERVER + '/image/',
                 Node = {},
                 res = $resource(nodeUrl + ':nid/',
                     {nid: '@id'},
                     {list: {method: 'GET', url: nodesUrl}}),
                 resAdverts = $resource(advertUrl + ':nid/',
+                    {nid: '@id'},
+                    {
+                        list: {method: 'GET', url: nodesUrl},
+                        update: {method: 'PUT'}
+                    }),
+                resCategory = $resource(categoryUrl + ':nid/',
                     {nid: '@id'},
                     {
                         list: {method: 'GET', url: nodesUrl},
@@ -83,6 +90,11 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                         });
                     });
                     return deferred.promise;
+                } else if (kind === 'category') {
+                    if (!data.parent) {
+                        data.parent = undefined;
+                    }
+                    return resCategory.save(data).$promise;
                 }
                 return res.save(data).$promise;
             };
@@ -108,6 +120,8 @@ angular.module('bigcity.common.nodes', ['ngResource'])
             Node.delete = function (data, kind) {
                 if (kind === 'advert') {
                     return resAdverts.remove(data).$promise;
+                } else if (kind === 'category') {
+                    return resCategory.remove(data).$promise;
                 }
                 return res.remove(data).$promise;
             };

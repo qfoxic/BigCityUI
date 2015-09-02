@@ -4,7 +4,7 @@ angular.module('bigcity', [
     'bigcity.groups',
     'bigcity.nodes',
     'bigcity.home',
-    'bigcity.common.notification',
+    'bigcity.common.messages',
     'bigcity.common.modal',
     'bigcity.common.users',
     'bigcity.common.groups',
@@ -14,8 +14,22 @@ angular.module('bigcity', [
     'LocalStorageModule',
     'angularFileUpload'
 ])
-    .run(['$rootScope', '$state', '$stateParams', 'localStorageService', '$http', 'notify',
-        function ($rootScope, $state, $stateParams, localStorageService, $http, notify) {
+    .constant('API_SERVER', 'http://127.0.0.1:8001')
+    .constant('NODE_TYPES', {
+        CATEGORY: 'category',
+        ADVERT: 'advert'
+    }).
+    constant('NODE_MODELS', {
+        category: {
+            parent: null,
+            title: null,
+            uid: 1, // Hardcoded to root.
+            perm: '666'
+        }
+    })
+    //.constant('API_SERVER', 'api.bigcity.today')
+    .run(['$rootScope', '$state', '$stateParams', 'localStorageService', '$http',
+        function ($rootScope, $state, $stateParams, localStorageService, $http) {
             $rootScope.userCacheName = 'usr';
             $rootScope.curUser = localStorageService.get($rootScope.userCacheName);
             $rootScope.cache = localStorageService;

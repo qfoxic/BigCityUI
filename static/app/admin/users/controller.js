@@ -10,8 +10,8 @@ angular.module('bigcity.users', [
                     abstract: true,
                     url: '/users',
                     templateUrl: '/static/app/admin/users/main.html',
-                    controller: ['$scope', '$state', 'UsersService', 'GroupsService', 'notify', 'modal',
-                        function ($scope, $state, UsersService, GroupsService, notify, modal) {
+                    controller: ['$scope', '$state', 'UsersService', 'GroupsService', 'messages', 'modal',
+                        function ($scope, $state, UsersService, GroupsService, messages, modal) {
                             $scope.groups = [];
                             GroupsService.list({}).then(
                                 function (data) {
@@ -34,12 +34,12 @@ angular.module('bigcity.users', [
                                         UsersService.updgroups(user.id, gids).then(
                                             function () {
                                                 $scope.user = data.result;
-                                                notify.success('User was saved!');
+                                                messages.success('User was saved!');
                                             }
                                         );
                                     },
                                     function (err) {
-                                        notify.error(err.data.error);
+                                        messages.error(err.data.error);
                                     }
                                 );
                             };
@@ -53,10 +53,10 @@ angular.module('bigcity.users', [
                                 UsersService.create(edited).then(
                                     function () {
                                         $state.go('users.list');
-                                        notify.success('User was created!');
+                                        messages.success('User was created!');
                                     },
                                     function (err) {
-                                        notify.error(err.data.error);
+                                        messages.error(err.data.error);
                                     }
                                 );
                             };
@@ -68,10 +68,10 @@ angular.module('bigcity.users', [
                                         UsersService.delete(user.id).then(
                                             function (data) {
                                                 $scope.users.splice(index, 1);
-                                                notify.success('User was deleted!');
+                                                messages.success('User was deleted!');
                                             },
                                             function (err) {
-                                                notify.error(err.data.error);
+                                                messages.error(err.data.error);
                                             });
                                     }
                                 );
@@ -97,8 +97,8 @@ angular.module('bigcity.users', [
                     views: {
                         '': {
                             templateUrl: '/static/app/admin/users/create.html',
-                            controller: ['$scope', '$stateParams', 'UsersService', 'notify',
-                                function ($scope, $stateParams, UsersService, notify) {
+                            controller: ['$scope', '$stateParams', 'UsersService', 'messages',
+                                function ($scope, $stateParams, UsersService, messages) {
                                     $scope.user = {};
                                 }]
                         }
@@ -121,15 +121,15 @@ angular.module('bigcity.users', [
                     views: {
                         '': {
                             templateUrl: '/static/app/admin/users/edit.html',
-                            controller: ['$scope', '$stateParams', 'UsersService', 'notify',
-                                function ($scope, $stateParams, UsersService, notify) {
+                            controller: ['$scope', '$stateParams', 'UsersService', 'messages',
+                                function ($scope, $stateParams, UsersService, messages) {
                                     $scope.user = {};
                                     UsersService.get($stateParams.userId).then(
                                         function (data) {
                                             $scope.user = data.result;
                                         },
                                         function (err) {
-                                            notify.error(err.data.error, 'error');
+                                            messages.error(err.data.error, 'error');
                                         }
                                     );
                                 }]
@@ -141,15 +141,15 @@ angular.module('bigcity.users', [
                     views: {
                         '': {
                             templateUrl: '/static/app/admin/users/data.html',
-                            controller: ['$scope', '$stateParams', 'UsersService', 'notify',
-                                function ($scope, $stateParams, UsersService, notify) {
+                            controller: ['$scope', '$stateParams', 'UsersService', 'messages',
+                                function ($scope, $stateParams, UsersService, messages) {
                                     $scope.user = {};
                                     UsersService.get($stateParams.userId).then(
                                         function (data) {
                                             $scope.user = data.result;
                                         },
                                         function (err) {
-                                            notify.error(err.data.error);
+                                            messages.error(err.data.error);
                                         }
                                     );
                                 }]
