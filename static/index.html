@@ -50,10 +50,10 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-if="!curUser.id">
-                            <a ui-sref="user.login">Login</a>
+                            <a ui-sref="user.login">{% verbatim %}{{'LOGIN' | translate}}{% endverbatim %}</a>
                         </li>
                         <li ng-if="!curUser.id">
-                            <a ui-sref="user.create">Signup</a>
+                            <a ui-sref="user.create">{% verbatim %}{{'SIGNUP' | translate}}{% endverbatim %}</a>
                         </li>
                         <li ng-if="curUser.id" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -80,8 +80,9 @@
                             <a ui-sref="user.logout">Signout <i class="glyphicon glyphicon-off"></i></a>
                         </li>
                         <li class="postadd">
-                            <a class="btn btn-block btn-border btn-post btn-danger" ui-sref="advert.create">Post Free
-                                Add</a>
+                            <a class="btn btn-block btn-border btn-post btn-danger" ui-sref="advert.create">
+                                {% verbatim %}{{'POST_FREE_ADD' | translate}}{% endverbatim %}
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -227,6 +228,7 @@
 <script src="/static/assets/libs/angular-resource.js"></script>
 <script src="/static/assets/libs/angular-file-upload.js"></script>
 <script src="/static/assets/libs/angular-local-storage.js"></script>
+<script src="/static/assets/libs/angular-translate.min.js"></script>
 <script src="/static/assets/libs/ui-bootstrap-tpls-0.13.1.js"></script>
 <!--TODO Get bootstrap templates locally. -->
 <script src="/static/app/website/home/controller.js"></script>

@@ -12,7 +12,8 @@ angular.module('bigcity', [
     'ui.router',
     'ui.bootstrap',
     'LocalStorageModule',
-    'angularFileUpload'
+    'angularFileUpload',
+    'pascalprecht.translate'
 ])
     .constant('API_SERVER', 'http://127.0.0.1:8001')
     //.constant('API_SERVER', 'api.bigcity.today')
@@ -53,4 +54,30 @@ angular.module('bigcity', [
                 .when('/logout/', '/logout/')
                 .otherwise('/');
         }]
+    )
+    .config(['$translateProvider', function ($translateProvider) {
+        $translateProvider.translations('en_EN', {
+            'LOGIN':'Login',
+            'SIGNUP': 'Signup',
+            'POST_FREE_ADD': 'Post Free Add',
+            'FIND_CLASSIFIED_ADS_H1': 'Find classified ads',
+            'FIND_CLASSIFIED_ADS_P': 'Find local classified ads on Bigcity in Minutes',
+            'LOCATION': 'Location...',
+            'I_AM_LOOKING_FOR': 'I\'m looking for a ...',
+            'FIND': 'Find'
+        });
+        $translateProvider.translations('ua_UA', {
+            'LOGIN':'Ввійти',
+            'SIGNUP': 'Зареєструватись',
+            'POST_FREE_ADD': 'Додати Оголошення',
+            'FIND_CLASSIFIED_ADS_H1': 'Знайти оголошення',
+            'FIND_CLASSIFIED_ADS_P': 'Знайти місцеві оголошення в Bigcity',
+            'LOCATION': 'Місцезнаходження...',
+            'I_AM_LOOKING_FOR': 'Я намагаюсь знайти ...',
+            'FIND': 'Пошук'
+
+        });
+        $translateProvider.use('ua_UA');
+    }]
 );
+
