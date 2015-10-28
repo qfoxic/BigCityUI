@@ -63,21 +63,19 @@
                             </a>
                             <ul class="dropdown-menu user-menu">
                                 <li class="active">
-                                    <a ui-sref="user.preview({userId: curUser.id})"><i class="icon-home"></i>Personal
-                                        Home</a>
+                                    <a ui-sref="user.preview({userId: curUser.id})">
+                                        <i class="icon-home"></i>{% verbatim %}{{'PERSONAL_HOME' | translate}}{% endverbatim %}
+                                    </a>
                                 </li>
                                 <li>
-                                    <a ui-sref="user.preview.myads({userId: curUser.id})"><i class="icon-th-thumb"></i>My
-                                        ads</a>
-                                </li>
-                                <li>
-                                    <a ui-sref="user.preview.favourite({userId: curUser.id})"><i class="icon-heart"></i>Favourite
-                                        ads</a>
+                                    <a ui-sref="user.preview.myads({userId: curUser.id})">
+                                        <i class="icon-th-thumb"></i>{% verbatim %}{{'MY_ADS' | translate}}{% endverbatim %}
+                                    </a>
                                 </li>
                             </ul>
                         </li>
                         <li ng-if="curUser.id">
-                            <a ui-sref="user.logout">Signout <i class="glyphicon glyphicon-off"></i></a>
+                            <a ui-sref="user.logout">{% verbatim %}{{'SIGNOUT' | translate}}{% endverbatim %} <i class="glyphicon glyphicon-off"></i></a>
                         </li>
                         <li class="postadd">
                             <a class="btn btn-block btn-border btn-post btn-danger" ui-sref="advert.create">
@@ -122,7 +120,7 @@
                             <div class="iconbox-wrap-content">
                                 <h5><span>2200</span></h5>
 
-                                <div class="iconbox-wrap-text">Trusted Seller</div>
+                                <div class="iconbox-wrap-text">{% verbatim %}{{'TRUSTED_SELLER' | translate}}{% endverbatim %}</div>
                             </div>
                         </div>
                         <!-- /..iconbox -->
@@ -139,7 +137,7 @@
                             <div class="iconbox-wrap-content">
                                 <h5><span>100</span></h5>
 
-                                <div class="iconbox-wrap-text">Categories</div>
+                                <div class="iconbox-wrap-text">{% verbatim %}{{'CATEGORIES' | translate}}{% endverbatim %}</div>
                             </div>
                         </div>
                         <!-- /..iconbox -->
@@ -156,7 +154,7 @@
                             <div class="iconbox-wrap-content">
                                 <h5><span>700</span></h5>
 
-                                <div class="iconbox-wrap-text">Location</div>
+                                <div class="iconbox-wrap-text">{% verbatim %}{{'LOCATIONS' | translate}}{% endverbatim %}</div>
                             </div>
                         </div>
                         <!-- /..iconbox -->
@@ -173,7 +171,7 @@
                             <div class="iconbox-wrap-content">
                                 <h5><span>50,000</span></h5>
 
-                                <div class="iconbox-wrap-text"> Facebook Fans</div>
+                                <div class="iconbox-wrap-text">{% verbatim %}{{'FACEBOOK_FANS' | translate}}{% endverbatim %}</div>
                             </div>
                         </div>
                         <!-- /..iconbox -->
@@ -191,10 +189,9 @@
         <div class="page-bottom-info-inner">
 
             <div class="page-bottom-info-content text-center">
-                <h1>If you have any questions, comments or concerns, please call the Classified Advertising department
-                    at (000) 555-5555</h1>
+                <h1>{% verbatim %}{{ 'PAGE_BOTTOM_INFO_CONTENT' | translate }}{% endverbatim %}</h1>
                 <a class="btn  btn-lg btn-primary-dark" href="tel:+000000000">
-                    <i class="icon-mobile"></i> <span class="hide-xs color50">Call Now:</span> (000) 555-5555 </a>
+                    <i class="icon-mobile"></i> <span class="hide-xs color50">{% verbatim %}{{ 'CALL_NOW' | translate }}{% endverbatim %}:</span> (000) 555-5555 </a>
             </div>
 
         </div>
@@ -204,9 +201,13 @@
     <div class="footer" id="footer">
         <div class="container">
             <ul class=" pull-left navbar-link footer-nav">
-                <li><a href="index.html"> Home </a> <a href="about-us.html"> About us </a> <a href="#"> Terms and
-                    Conditions </a> <a href="#"> Privacy Policy </a> <a href="contact.html"> Contact us </a> <a
-                        href="faq.html"> FAQ </a>
+                <li>
+                    <a href="index.html">{% verbatim %}{{ 'HOME' | translate }}{% endverbatim %}</a>
+                    <a href="about-us.html">{% verbatim %}{{ 'ABOUT_US' | translate }}{% endverbatim %}</a>
+                    <a href="#">{% verbatim %}{{ 'TERMS_AND_CONDITIONS' | translate }}{% endverbatim %}</a>
+                    <a href="#">{% verbatim %}{{ 'PRIVACY_POLICY' | translate }}{% endverbatim %}</a>
+                    <a href="contact.html">{% verbatim %}{{ 'CONTACT_US' | translate }}{% endverbatim %}</a>
+                    <a href="faq.html">{% verbatim %}{{ 'FAQ' | translate }}{% endverbatim %}</a>
             </ul>
             <ul class=" pull-right navbar-link footer-nav">
                 <li> &copy; 2015 BootClassified</li>

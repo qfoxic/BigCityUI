@@ -1,15 +1,14 @@
 <div class="inner-box category-content">
-    <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> Post a Free Classified Ad</strong></h2>
+    <h2 class="title-2 uppercase"><strong> <i class="icon-docs"></i> {{'POST_A_FREE_AD'|translate}}</strong></h2>
 
     <div class="row">
         <div class="col-sm-12">
             <form class="form-horizontal" name="form" novalidate>
                 <fieldset>
                     <!-- Select Basic -->
-                    <div class="content-subheading"><i class="icon-user fa"></i> <strong>Step 1. Create your
-                        ads.</strong></div>
+                    <div class="content-subheading"><i class="icon-user fa"></i> <strong>{{'STEP_1'|translate}}</strong></div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required">Category<sup>*</sup></label>
+                        <label class="col-md-3 control-label required">{{'CATEGORY'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
                             <select class="form-control" name="category" tabindex="-1" ng-model="advert.parent"
@@ -22,95 +21,94 @@
                     </div>
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="Adtitle">Ad title<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="Adtitle">{{'TITLE'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
-                            <input id="Adtitle" name="title" placeholder="Ad title" class="form-control input-md"
+                            <input id="Adtitle" name="title" placeholder="{{'TITLE'|translate}}" class="form-control input-md"
                                    required type="text" ng-model="advert.title">
-                            <span class="help-block">A great title needs at least 60 characters. </span></div>
+                            <span class="help-block">{{'GREAT_TITLE_NEED'|translate}} </span></div>
                     </div>
                     <!-- Textarea -->
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="textarea">Describe ad<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="textarea">{{'DESCRIBE'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
                             <textarea
                                     class="form-control" id="textarea" name="text" ng-model="advert.text" required>
-                                Describe what makes your ad unique
                             </textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="GenSquare">General square of an appartment<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="GenSquare">{{'GENERAL_SQUARE'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
-                            <input id="GenSquare" name="square_gen" placeholder="70, 100, etc." class="form-control input-md"
+                            <input id="GenSquare" name="square_gen" placeholder="70, 100, ..." class="form-control input-md"
                                    required type="number" ng-model="advert.square_gen">
-                            <span class="help-block">Provide general square in a meters.</span></div>
+                            <span class="help-block">{{'PROVIDE_GENERAL_SQUARE'|translate}}</span></div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="HSquare">Houseroom<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="HSquare">{{'HOUSEROOM'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
-                            <input id="HSquare" name="square_live" placeholder="70, 100, etc." class="form-control input-md"
+                            <input id="HSquare" name="square_live" placeholder="70, 100, ..." class="form-control input-md"
                                    required type="number" ng-model="advert.square_live">
-                            <span class="help-block">Please provide a houseroom in a meters.</span></div>
+                            <span class="help-block">{{'PROVIDE_HOUSEROOM'|translate}}</span></div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="RoomHeight">A height of an appartment.<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="RoomHeight">{{'HEIGHT_OF_APPART'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
-                            <input id="RoomHeight" name="room_height" placeholder="2.5, 1.8 etc" class="form-control input-md"
+                            <input id="RoomHeight" name="room_height" placeholder="2.5, 1.8 ..." class="form-control input-md"
                                    required type="number" ng-model="advert.room_height">
-                            <span class="help-block">Provide height of an appartment in a meters.</span></div>
+                            <span class="help-block">{{'PROVIDE_HEIGHT_OF_APPART'|translate}}</span></div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="RoomN">Number of rooms in an appartment<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="RoomN">{{'NUMBER_OF_ROOMS'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
-                            <input id="RoomN" name="rooms" placeholder="1, 2 etc" class="form-control input-md"
+                            <input id="RoomN" name="rooms" placeholder="1, 2 ..." class="form-control input-md"
                                    required type="number" ng-model="advert.rooms"></div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="Floors">What number of floors your building have?<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="Floors">{{'NUMBER_OF_FLOORS'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
-                            <input id="Floors" name="floors" placeholder="2, 9 etc" class="form-control input-md"
+                            <input id="Floors" name="floors" placeholder="2, 9 ..." class="form-control input-md"
                                    required type="number" ng-model="advert.floors">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="Floor">What floor your flat is on?<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="Floor">{{'FLOOR_OF_A_FLAT'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
-                            <input id="Floor" name="floor" placeholder="2, 9 etc" class="form-control input-md"
+                            <input id="Floor" name="floor" placeholder="2, 9 ..." class="form-control input-md"
                                    required type="number" ng-model="advert.floor">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required">Type of a building's wall.<sup>*</sup></label>
+                        <label class="col-md-3 control-label required">{{'BUILDING_WALL'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
                             <select class="form-control" name="wall_type" ng-model="advert.wall_type"
                                     required>
-                                <option value="0">Ferroconcrete</option>
-                                <option value="1">Brick</option>
+                                <option value="0">{{'FERROCONCRETE'|translate}}</option>
+                                <option value="1">{{'BRICK'|translate}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required">Type of a building.<sup>*</sup></label>
+                        <label class="col-md-3 control-label required">{{'BUILDING_TYPE'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
                             <select class="form-control" name="build_type" ng-model="advert.build_type"
                                     required>
-                                <option value="0">New</option>
-                                <option value="1">Secondary</option>
+                                <option value="0">{{'NEW'|translate}}</option>
+                                <option value="1">{{'SECONDARY'|translate}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="Price">Price<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="Price">{{'PRICE'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-4">
                             <div class="input-group"><span class="input-group-addon">$</span>
@@ -119,31 +117,24 @@
                                         required type="number" ng-model="advert.price">
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox">
-                                    Negotiable </label>
-                            </div>
-                        </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label required" for="Location">Location<sup>*</sup></label>
+                        <label class="col-md-3 control-label required" for="Location">{{'LOCATION'|translate}}<sup>*</sup></label>
 
                         <div class="col-md-8">
                             <input id="Location" name="location" class="form-control input-md"
-                                   required type="text" placeholder="country, city, street" ng-model="advert.location">
+                                   required type="text" placeholder="{{'STATE_CITY_ADDRESS'|translate}}" ng-model="advert.location">
                             </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label"></label>
                         <div class="col-md-8" ng-if="!uploader">
-                            <submit ng-click="!form.$invalid && create(advert)" class="btn btn-primary btn-lg">Submit</submit>
+                            <submit ng-click="!form.$invalid && create(advert)" class="btn btn-primary btn-lg">{{'SUBMIT'|translate}}</submit>
                         </div>
                     </div>
                     <div class="content-subheading"><i class="icon-user fa"></i>
-                        <strong>Step 2. Upload your photos
-                            <span ng-if="!uploader" class="label label-warning">Please save your advert first.</span>
+                        <strong>{{'STEP_2'|translate}}
+                            <span ng-if="!uploader" class="label label-warning">{{'PLEASE_SAVE_YOUR_AD'|translate}}.</span>
                         </strong>
                     </div>
                     <!-- photo -->
@@ -154,7 +145,7 @@
                             <input ng-if="(uploader.queue.length + images.length) >= 5" type="file" disabled />
 
                             <p class="help-block">
-                                <span>Add up to 5 photos. Use a real image of your product, not catalogs.</span>
+                                <span>{{'ADD_UP_TO_5_PHOTOS'|translate}}</span>
                             </p>
                         </div>
                         <div class="col-md-12" ng-if="uploader">
@@ -162,8 +153,8 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>File</th>
-                                            <th>Action</th>
+                                            <th>{{'FILE'|translate}}</th>
+                                            <th>{{'ACTION'|translate}}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -172,8 +163,8 @@
                                             <span>{{item.file.name}}</span>
                                         </td>
                                         <td>
-                                            <button ng-if="!item.isUploaded" class="btn btn-default btn-xs" ng-click="item.remove()">cancel</button>
-                                            <button ng-if="!item.isUploaded" class="btn btn-primary btn-xs" ng-click="item.upload()">upload</button>
+                                            <button ng-if="!item.isUploaded" class="btn btn-default btn-xs" ng-click="item.remove()">{{'CANCEL'|translate}}</button>
+                                            <button ng-if="!item.isUploaded" class="btn btn-primary btn-xs" ng-click="item.upload()">{{'UPLOAD'|translate}}</button>
                                         </td>
                                     </tr>
                                     <tr ng-repeat="image in images">
@@ -181,7 +172,7 @@
                                             <img ng-src="{{api}}/image/{{image.id}}/image?thumb=1" style="margin:auto;">
                                         </td>
                                         <td>
-                                            <button class="btn btn-default btn-xs" ng-click="removeImage(image, uploader, images)">remove</button>
+                                            <button class="btn btn-default btn-xs" ng-click="removeImage(image, uploader, images)">{{'REMOVE'|translate}}</button>
                                         </td>
                                     </tr>
                                     </tbody>

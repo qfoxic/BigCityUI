@@ -9,33 +9,33 @@
         <div class="panel-body">
             <form role="form">
                 <div class="form-group">
-                    <label for="sender-email" class="control-label">Username:</label>
+                    <label for="sender-email" class="control-label">{{ 'USERNAME' | translate}}:</label>
 
                     <div class="input-icon"><i class="icon-user fa"></i>
-                        <input id="sender-email" type="text" placeholder="Username" ng-model="username" class="form-control email">
+                        <input id="sender-email" type="text" placeholder="{{ 'USERNAME' | translate}}" ng-model="username" class="form-control email">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="user-pass" class="control-label">Password:</label>
+                    <label for="user-pass" class="control-label">{{ 'PASSWORD' | translate }}:</label>
 
                     <div class="input-icon"><i class="icon-lock fa"></i>
-                        <input type="password" class="form-control" placeholder="Password" ng-model="password" id="user-pass">
+                        <input type="password" class="form-control" placeholder="{{ 'PASSWORD' | translate }}" ng-model="password" id="user-pass">
                     </div>
                 </div>
                 <div class="form-group">
-                    <a ng-click="login()" class="btn btn-primary  btn-block">Submit</a>
+                    <a ng-click="login()" class="btn btn-primary  btn-block">{{'SUBMIT'| translate}}</a>
                 </div>
             </form>
         </div>
         <div class="panel-footer">
 
-            <p class="text-center pull-right"><a href="forgot-password.html"> Lost your password? </a></p>
+            <p class="text-center pull-right"><a href="forgot-password.html">{{'LOST_YOUR_PASSWORD'| translate}}? </a></p>
 
             <div style=" clear:right"></div>
         </div>
     </div>
     <div class="login-box-btm text-center">
-        <p> Don't have an account? <br>
-            <a ui-sref="user.create"><strong>Sign Up !</strong> </a></p>
+        <p> {{'DONT_HAVE_ACCOUNT' | translate}}? <br>
+            <a ui-sref="user.create"><strong>{{'SIGNUP' | translate}} !</strong> </a></p>
     </div>
 </div>

@@ -4,38 +4,26 @@
             <div class="collapse-box">
                 <div class="panel-collapse collapse in" id="MyClassified">
                     <ul class="acc-list">
-                        <li><a ui-sref="user.preview({userId: user.id})" class="active"><i class="icon-home"></i> Personal Home </a></li>
+                        <li>
+                            <a ui-sref="user.preview({userId: user.id})" class="active">
+                                <i class="icon-home"></i>{{'PERSONAL_HOME'|translate}}
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <div class="collapse-box">
-                <h5 class="collapse-title">My Ads<a class="pull-right"></a>
+                <h5 class="collapse-title">{{'MY_ADS'|translate}}<a class="pull-right"></a>
                 </h5>
                 <div class="panel-collapse collapse in">
                     <ul class="acc-list">
                         <li>
-                            <a ui-sref="user.preview.myads({userId: curUser.id})"><i class="icon-docs"></i>My ads</a>
-                        </li>
-                        <li>
-                            <a ui-sref="user.preview.favourite({userId: curUser.id})"><i class="icon-heart"></i>Favourite ads</a>
+                            <a ui-sref="user.preview.myads({userId: curUser.id})"><i class="icon-docs"></i>{{'MY_ADS'|translate}}</a>
                         </li>
                     </ul>
                 </div>
             </div>
-
-            <div class="collapse-box">
-                <h5 class="collapse-title">Terminate Account
-                    <a href="#TerminateAccount" data-toggle="collapse" class="pull-right"></a>
-                </h5>
-
-                <div class="panel-collapse collapse in" id="TerminateAccount">
-                    <ul class="acc-list">
-                        <li><a><i class="icon-cancel-circled "></i>Close account</a></li>
-                    </ul>
-                </div>
-            </div>
-
         </div>
     </div>
 

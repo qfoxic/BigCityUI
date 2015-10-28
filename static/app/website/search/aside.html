@@ -1,15 +1,15 @@
 <aside>
   <div class="inner-box">
     <div class="categories-list  list-filter">
-       <h5 class="list-title"><strong><a ui-sref="search.all()"><i class="fa fa-angle-left"></i> All Categories</a></strong></h5>
+       <h5 class="list-title"><strong><a ui-sref="search.all()"><i class="fa fa-angle-left"></i>{{'ALL_CATEGORIES'|translate}}</a></strong></h5>
        <ul class=" list-unstyled">
        <li>
            <a ng-show="parent" ui-sref="search.category({categoryId: parent.id})">
-               <span class="title"><strong>{{parent.title}}</strong></span><span class="count">&nbsp;86626</span>
+               <span class="title"><strong>{{parent.title}}</strong></span>
            </a>
            <ul class=" list-unstyled long-list">
                <li ng-repeat="child in children">
-                   <a ui-sref="search.category({categoryId: child.id})">{{child.title}} <span class="count">(143)</span></a>
+                   <a ui-sref="search.category({categoryId: child.id})">{{child.title}}</a>
                </li>
            </ul>
        </li>
@@ -18,7 +18,7 @@
 
     <!--/.categories-list-->
     <div class="locations-list  list-filter">
-      <h5 class="list-title"><strong><a href="#">Price range</a></strong></h5>
+      <h5 class="list-title"><strong><a href="#">{{'PRICE_RANGE'|translate}}</a></strong></h5>
         <div class="form-group col-sm-4 no-padding">
           <input type="text" placeholder="$ 2000 " ng-model="searchParams.priceFrom" class="form-control">
         </div>
@@ -32,7 +32,7 @@
                   ng-click="search({categoryId: current.id || current,
                                     text: searchParams.text, location: searchParams.location,
                                     priceFrom: searchParams.priceFrom, priceTo: searchParams.priceTo,
-                                    order: searchParams.order})">GO
+                                    order: searchParams.order})"><i class="fa fa-search"></i>
           </button>
         </div>
       <div style="clear:both"></div>

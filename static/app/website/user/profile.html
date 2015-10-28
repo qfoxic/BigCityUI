@@ -8,19 +8,19 @@
     </div>
     <div class="inner-box">
         <div class="welcome-msg">
-            <h3 class="page-sub-header2 clearfix no-padding">Hello {{user.first_name}} {{user.last_name}} </h3>
-            <span class="page-sub-header-sub small">You last logged in at: {{user.last_login}}</span>
+            <h3 class="page-sub-header2 clearfix no-padding">{{'HELLO'|translate}}{{user.first_name}} {{user.last_name}} </h3>
+            <span class="page-sub-header-sub small">{{'LAST_LOGGED_IN'|translate}}: {{user.last_login}}</span>
         </div>
         <div id="accordion" class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#collapseB1" data-toggle="collapse"> My details </a></h4>
+                    <h4 class="panel-title"><a href="#collapseB1" data-toggle="collapse"> {{'MY_DETAILS'|translate}} </a></h4>
                 </div>
                 <div class="panel-collapse collapse in" id="collapseB1">
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">First Name</label>
+                                <label class="col-sm-3 control-label">{{'FIRST_NAME'|translate}}</label>
 
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" ng-model="user.first_name"
@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Last name</label>
+                                <label class="col-sm-3 control-label">{{'LAST_NAME'|translate}}</label>
 
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" ng-model="user.last_name"
@@ -36,7 +36,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Email</label>
+                                <label class="col-sm-3 control-label">{{'EMAIL'|translate}}</label>
 
                                 <div class="col-sm-9">
                                     <input type="email" class="form-control" ng-model="user.email"
@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Address</label>
+                                <label class="col-sm-3 control-label">{{'CURRENT_LOCATION'|translate}}</label>
 
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" ng-model="user.address"
@@ -52,7 +52,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="Phone" class="col-sm-3 control-label">Phone</label>
+                                <label for="Phone" class="col-sm-3 control-label">{{'PHONE'|translate}}</label>
 
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="Phone" ng-model="user.phone"
@@ -61,7 +61,8 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <button type="submit" ng-click="submit(user)" class="btn btn-primary">Update
+                                    <button type="submit" ng-click="submit(user)" class="btn btn-primary">
+                                        {{'SUBMIT'|translate}}
                                     </button>
                                 </div>
                             </div>
@@ -71,20 +72,20 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title"><a href="#collapseB2" data-toggle="collapse"> Settings </a></h4>
+                    <h4 class="panel-title"><a href="#collapseB2" data-toggle="collapse"> {{'PASSWORD'|translate}} </a></h4>
                 </div>
                 <div class="panel-collapse" id="collapseB2">
                     <div class="panel-body">
                         <form class="form-horizontal" role="form">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">New Password</label>
+                                <label class="col-sm-3 control-label">{{'NEW_PASSWORD'|translate}}</label>
 
                                 <div class="col-sm-9">
                                     <input ng-model="chpasswd.password" type="password" class="form-control" placeholder="">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">Confirm Password</label>
+                                <label class="col-sm-3 control-label">{{'CONFIRM_PASSWORD'|translate}}</label>
 
                                 <div class="col-sm-9">
                                     <input ng-model="chpasswd.password1" type="password" class="form-control" placeholder="">
@@ -96,9 +97,9 @@
                                             ng-disabled="!chpasswd.password || (chpasswd.password != chpasswd.password1)"
                                             type="submit"
                                             ng-click="chpasswd(user, chpasswd.password)"
-                                            class="btn btn-primary">Update</button>
+                                            class="btn btn-primary">{{'UPDATE'|translate}}</button>
                                     <span ng-show="(chpasswd.password && chpasswd.password1) && (chpasswd.password != chpasswd.password1)">
-                                        Passwords doesn't match
+                                        {{'PASSWORDS_DOESNT_MATCH'|translate}}
                                     </span>
                                 </div>
                             </div>

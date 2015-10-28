@@ -1,97 +1,91 @@
 <div class="inner-box category-content">
-    <h2 class="title-2"><i class="icon-user-add"></i> Create your account, Its free </h2>
+    <h2 class="title-2"><i class="icon-user-add"></i> {{ 'CREATE_FREE_ACCOUNT' | translate }} </h2>
 
     <div class="row">
         <div class="col-sm-12">
             <form class="form-horizontal" name="form" novalidate>
                 <fieldset>
                     <div class="form-group required">
-                        <label class="col-md-4 control-label">First Name <sup>*</sup></label>
+                        <label class="col-md-4 control-label">{{ 'FIRST_NAME' | translate }} <sup>*</sup></label>
 
                         <div class="col-md-6">
-                            <input name="first_name" placeholder="First Name" class="form-control input-md"
+                            <input name="first_name" placeholder="{{ 'FIRST_NAME' | translate }}" class="form-control input-md"
                                    required type="text" ng-model="user.first_name">
                         </div>
                     </div>
 
                     <div class="form-group required">
-                        <label class="col-md-4 control-label">Last Name <sup>*</sup></label>
+                        <label class="col-md-4 control-label">{{ 'LAST_NAME' | translate }} <sup>*</sup></label>
 
                         <div class="col-md-6">
-                            <input name="last_name" placeholder="Last Name"
+                            <input name="last_name" placeholder="{{ 'LAST_NAME' | translate }}"
                                    class="form-control input-md" type="text" ng-model="user.last_name" >
                         </div>
                     </div>
 
                     <div class="form-group required">
-                        <label class="col-md-4 control-label">Phone Number <sup>*</sup></label>
+                        <label class="col-md-4 control-label">{{ 'PHONE' | translate }}<sup>*</sup></label>
 
                         <div class="col-md-6">
-                            <input name="phone" placeholder="Phone Number"
+                            <input name="phone" placeholder="{{ 'PHONE' | translate }}"
                                    class="form-control input-md" type="phone" ng-model="user.phone">
 
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" value="">
-                                    <small> Hide the phone number on the published ads.</small>
-                                </label>
-                            </div>
                         </div>
                     </div>
 
                     <div class="form-group required">
-                        <label class="col-md-4 control-label">Your Current Location <sup>*</sup></label>
+                        <label class="col-md-4 control-label">{{ 'CURRENT_LOCATION' | translate }} <sup>*</sup></label>
 
                         <div class="col-md-6">
-                            <input name="address" placeholder="State, City, Street"
+                            <input name="address" placeholder="{{ 'STATE_CITY_ADDRESS' | translate }}"
                                    class="form-control input-md" type="text" ng-model="user.address">
 
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label">Gender <sup>*</sup></label>
+                        <label class="col-md-4 control-label">{{ 'GENDER' | translate }} <sup>*</sup></label>
 
                         <div class="col-md-6">
                             <div class="radio">
                                 <label for="Gender-0">
                                     <input name="Gender" id="Gender-0" value="m" checked="checked"
                                            type="radio" ng-model="user.gender" required>
-                                    Male </label>
+                                    {{'MALE'|translate}} </label>
                             </div>
                             <div class="radio">
                                 <label for="Gender-1">
                                     <input name="Gender" id="Gender-1" value="f" type="radio" ng-model="user.gender" required>
-                                    Female </label>
+                                    {{'FEMALE'|translate}}</label>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="textarea">About Yourself</label>
+                        <label class="col-md-4 control-label" for="textarea">{{'ABOUT_YOURSELF'|translate}}</label>
 
                         <div class="col-md-6">
-                                            <textarea class="form-control" id="textarea"
-                                                      name="resume" ng-model="user.resume">About Yourself</textarea>
+                            <textarea class="form-control" id="textarea"
+                                      name="resume" ng-model="user.resume">{{'ABOUT_YOURSELF'|translate}}</textarea>
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label for="inputEmail3" class="col-md-4 control-label">Email
+                        <label for="inputEmail3" class="col-md-4 control-label">{{'EMAIL'|translate}}
                             <sup>*</sup></label>
 
                         <div class="col-md-6">
                             <input type="email" class="form-control" id="inputEmail3"
-                                   placeholder="Email" name="email" ng-model="user.email">
+                                   placeholder="{{'EMAIL'|translate}}" name="email" ng-model="user.email">
                         </div>
                     </div>
                     <div class="form-group required">
-                        <label for="inputPassword3" class="col-md-4 control-label">Password </label>
+                        <label for="inputPassword3" class="col-md-4 control-label">{{'PASSWORD'|translate}} <sup>*</sup></label>
 
                         <div class="col-md-6">
                             <input type="password" class="form-control" id="inputPassword3"
-                                   placeholder="Password" name="password" ng-model="user.password">
+                                   placeholder="{{'PASSWORD'|translate}}" name="password" ng-model="user.password">
 
-                            <p class="help-block">At least 6 characters </p>
+                            <p class="help-block">{{'6_CHARS'|translate}} </p>
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,13 +96,13 @@
                                 <label class="checkbox-inline" for="checkboxes-1">
                                     <input name="checkboxes" id="checkboxes-1" value="1"
                                            type="checkbox" ng-model="conditions">
-                                    I have read and agree to the <a href="terms-conditions.html">Terms
-                                    &amp; Conditions</a> </label>
+                                    {{'READ_AND_AGREE'|translate}}
+                                    <a href="terms-conditions.html">{{'TERMS_AND_CONDITIONS'|translate}}</a> </label>
                             </div>
                             <div style="clear:both"></div>
                             <a class="btn btn-primary"
                                ng-disabled="!conditions || form.$invalid"
-                               ng-click="conditions && !form.$invalid && create(user)">Register</a></div>
+                               ng-click="conditions && !form.$invalid && create(user)">{{'SIGNUP'|translate}}</a></div>
                     </div>
                 </fieldset>
             </form>

@@ -1,9 +1,9 @@
 <ol class="breadcrumb pull-left">
     <li><a ui-sref="home"><i class="icon-home fa"></i></a></li>
-    <li><a ui-sref="search.all">All Ads</a></li>
+    <li><a ui-sref="search.all">{{'ALL_ADS'|translate}}</a></li>
     <li><a ui-sref="search.category({categoryId: advert.parent.id})">{{advert.parent.title}}</a></li>
     <li class="active">{{advert.title}}</li>
 </ol>
 <div class="pull-right backtolist">
-    <a ui-sref="search.category({categoryId: advert.parent.id})"> <i class="fa fa-angle-double-left"></i> Back to Results</a>
+    <a ui-sref="search.category({categoryId: advert.parent.id})"> <i class="fa fa-angle-double-left"></i> {{'BACK_TO_RESULTS'|translate}}</a>
 </div>

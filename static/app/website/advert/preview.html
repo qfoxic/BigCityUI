@@ -15,33 +15,29 @@
         </carousel>
     </div>
     <div class="Ads-Details">
-        <h5 class="list-title"><strong>Ads Details</strong></h5>
+        <h5 class="list-title"><strong>{{'ADS_DETAILS'|translate}}</strong></h5>
 
         <div class="row">
             <div class="ads-details-info col-md-8" ng-bind-html="advert.text"></div>
             <div class="col-md-4">
                 <aside class="panel panel-body panel-details">
                     <ul>
-                        <li><p class="no-margin"><strong>Price:</strong> $ {{advert.price}}</p></li>
-                        <li><p class="no-margin"><strong>Type:</strong> {{advert.parent.title}}</p></li>
-                        <li><p class="no-margin"><strong>Location:</strong> {{advert.city}}</p></li>
+                        <li><p class="no-margin"><strong>{{'PRICE'|translate}}:</strong> $ {{advert.price}}</p></li>
+                        <li><p class="no-margin"><strong>{{'CATEGORY'|translate}}:</strong> {{advert.parent.title}}</p></li>
+                        <li><p class="no-margin"><strong>{{'LOCATION'|translate}}:</strong> {{advert.city}}</p></li>
                     </ul>
                 </aside>
                 <div class="ads-action">
                     <ul class="list-border">
-                        <li><a href="#"> <i class=" fa fa-user"></i> More ads by User </a></li>
-                        <li><a href="#"> <i class=" fa fa-heart"></i> Save ad </a></li>
-                        <li><a href="#"> <i class="fa fa-share-alt"></i> Share ad </a></li>
-                        <li><a href="#reportAdvertiser" data-toggle="modal"> <i class="fa icon-info-circled-alt"></i>
-                            Report abuse </a></li>
+                        <li><a href="#"> <i class=" fa fa-user"></i> {{'MORE_ADS_BY_USER'|translate}} </a></li>
+                        <li><a href="#"> <i class="fa fa-share-alt"></i> {{'SHARE_AD'|translate}} </a></li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="content-footer text-left">
             <a class="btn  btn-default" data-toggle="modal" href="#contactAdvertiser">
-                <i class=" icon-mail-2"></i> Send a message </a>
-            <a class="btn  btn-info"><i class=" icon-phone-1"></i> 01680 531 352 </a>
+                <i class=" icon-mail-2"></i> {{'SEND_MESSAGE'|translate}} </a>
         </div>
     </div>
 </div>

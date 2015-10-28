@@ -9,7 +9,7 @@
                     </div>
                     <div class="item-list make-list text-center"
                          ng-if="adverts.length === 0">
-                        <span>There are no adverts found.</span>
+                        <span>{{'THERE_WERE_NO_ADS'|translate}}</span>
                     </div>
                     <div class="item-list make-list" ng-repeat="advert in adverts">
                         <div class="add-desc-box col-sm-8">
@@ -28,7 +28,7 @@
                         <div class="col-sm-4 text-right  price-box">
                             <h2 class="item-price"> $ {{advert.price}} </h2>
                             <a class="btn btn-default  btn-sm make-favorite">
-                                <i class="fa fa-heart"></i> <span>Save</span>
+                                <i class="fa fa-heart"></i> <span>{{'SAVE'|translate}}</span>
                             </a>
                         </div>
                     </div>
@@ -40,16 +40,14 @@
 </div>
 <div ng-show="(adverts.length !== 0) && (adverts.length >= 50)" class="pagination-bar text-center">
     <ul class="pagination">
-        <li><a class="pagination-btn" ng-click="prev()">Prev</a></li>
-        <li><a class="pagination-btn" ng-click="next()">Next</a></li>
+        <li><a class="pagination-btn" ng-click="prev()">{{'PREV'|translate}}</a></li>
+        <li><a class="pagination-btn" ng-click="next()">{{'NEXT'|translate}}</a></li>
     </ul>
 </div>
 <!--/.pagination-bar -->
 
 <div class="post-promo text-center">
-    <h2> Do you get anything for sell ? </h2>
-    <h5>Sell your products online FOR FREE. It's easier than you think !</h5>
-    <a ui-sref="advert.create" class="btn btn-lg btn-border btn-post btn-danger">Post a Free Ad </a>
+    <a ui-sref="advert.create" class="btn btn-lg btn-border btn-post btn-danger">{{'POST_FREE_ADD'|translate}} </a>
 </div>
 <!--/.post-promo-->
 

@@ -1,5 +1,4 @@
-   COMMON
-2. Provide constants.
+
 
    LOGIN
 2. login page. Lost your password.
@@ -7,11 +6,13 @@
    USER PROFILE.
 2. Implement saved ads.
 
-
+   TRANSLATION
+2. Translate my ads table page.
 
 
    ADVERT
 2. Implement saved ads.
+1. Add more ads by user.
 3. MOve count of images to upload to constants.
 
 3. Admin: add advert creation.

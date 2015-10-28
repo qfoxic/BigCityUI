@@ -1,5 +1,5 @@
 <div class="inner-box">
-    <h2 class="title-2"><i class="icon-docs"></i> My Ads </h2>
+    <h2 class="title-2"><i class="icon-docs"></i> {{'MY_ADS'|translate}} </h2>
 
     <div class="table-responsive">
         <table id="addManageTable"
@@ -7,9 +7,9 @@
                data-filter="#filter" data-filter-text-only="true">
             <thead>
                 <tr>
-                    <th data-sort-ignore="true"> Adds Details</th>
-                    <th data-type="numeric"> Price</th>
-                    <th> Option</th>
+                    <th data-sort-ignore="true"> {{'ADS_DETAILS'|translate}}</th>
+                    <th data-type="numeric"> {{'PRICE'|translate}}</th>
+                    <th> {{'ACTION'|translate}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,7 +17,7 @@
                 <td colspan="3" align="center"><span><i class="fa fa-spinner fa-spin"></i></span></td>
             </tr>
             <tr ng-if="adverts.length === 0">
-                <td colspan="3" align="center"><span>You don't have adverts yet.</span></td>
+                <td colspan="3" align="center"><span>{{'THERE_WERE_NO_ADS'|translate}}</span></td>
             </tr>
             <tr ng-repeat="advert in adverts">
                 <td style="width:58%" class="ads-details-td">
@@ -29,11 +29,11 @@
                         </p>
 
                         <p>
-                            <strong> Posted On </strong>:
+                            <strong>{{'POSTED_ON'|translate}}</strong>:
                             {{advert.created}}
                         </p>
 
-                        <p><strong>Located In:</strong> {{advert.city}}</p>
+                        <p><strong>{{'LOCATION'|translate}}:</strong> {{advert.city}}</p>
                     </div>
                 </td>
                 <td style="width:16%" class="price-td">
@@ -41,8 +41,8 @@
                 </td>
                 <td style="width:10%" class="action-td">
                     <div>
-                        <p><a ui-sref="advert.edit({advertId:advert.id})" class="btn btn-primary btn-xs"> <i class="fa fa-edit"></i> Edit </a></p>
-                        <p><a ng-click="removeAdvert(advert)" class="btn btn-danger btn-xs"> <i class=" fa fa-trash"></i> Delete </a></p>
+                        <p><a ui-sref="advert.edit({advertId:advert.id})" class="btn btn-primary btn-xs"> <i class="fa fa-edit"></i> {{'UPDATE'|translate}} </a></p>
+                        <p><a ng-click="removeAdvert(advert)" class="btn btn-danger btn-xs"> <i class=" fa fa-trash"></i> {{'REMOVE'|translate}} </a></p>
                     </div>
                 </td>
             </tr>

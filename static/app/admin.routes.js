@@ -18,12 +18,16 @@ angular.module('bigcity', [
     .constant('NODE_TYPES', {
         CATEGORY: 'category',
         ADVERT: 'advert'
-    }).
-    constant('NODE_MODELS', {
+    })
+    .constant('CATEGORY_TYPES', {
+        BUILDINGS: 'buildings'
+    })
+    .constant('NODE_MODELS', {
         category: {
             parent: null,
             title: null,
             uid: 1, // Hardcoded to root.
+            ctype: 'buildings',
             perm: '666'
         }
     })
