@@ -2,8 +2,8 @@ angular.module('bigcity.common.users', [
     'ngResource'
 ])
 
-    .service('UsersService', ['$resource', '$http', '$rootScope', 'API_SERVER',
-        function ($resource, $http, $rootScope, API_SERVER) {
+    .service('UsersService', ['$resource', '$http', '$rootScope', 'API_SERVER', 'utils', '$q',
+        function ($resource, $http, $rootScope, API_SERVER, utils, $q) {
             'use strict';
             var userUrl = API_SERVER + '/user/',
                 loginUrl = API_SERVER + '/login/',
@@ -46,7 +46,22 @@ angular.module('bigcity.common.users', [
                 return h;
             };
             User.create = function (userData) {
-                return res.save(userData).$promise;
+                var deferred = $q.defer();
+
+                utils.resolveAddressToGeo(userData.address).then(function (loc) {
+                    userData.country = loc.address.country;
+                    userData.state = loc.address.state;
+                    userData.street = loc.address.street;
+                    userData.city = loc.address.city;
+                    userData.lng = loc.lng;
+                    userData.lat = loc.lat;
+                    res.save(userData).$promise.then(function (resp) {
+                        deferred.resolve(resp);
+                    }).finally(function () {
+                        deferred.reject([]);
+                    });
+                });
+                return deferred.promise;
             };
             User.update = function (userData) {
                 return res.update(userData).$promise;

@@ -1,0 +1,52 @@
+<div ui-view="" class="inner-box">
+    <h2 class="title-2">
+        <i class="icon-mail-1"></i> {{'MY_MESSAGES'|translate}}
+        <a ui-sref="user.preview.mymessages.create" class="btn btn-sm btn-primary">
+            <i class="icon-plus"> </i>
+            {{'CREATE'|translate}}
+        </a>
+    </h2>
+
+    <div class="table-responsive">
+        <table id="addManageTable"
+               class="table table-striped table-bordered add-manage-table table demo footable-loaded footable"
+               data-filter="#filter" data-filter-text-only="true">
+            <thead>
+                <tr>
+                    <th data-sort-ignore="true"> {{'TITLE'|translate}}</th>
+                    <th data-type="numeric"> {{'POSTED_ON'|translate}}</th>
+                    <th> {{'ACTION'|translate}}</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr ng-if="!messages">
+                <td colspan="3" align="center"><span><i class="fa fa-spinner fa-spin"></i></span></td>
+            </tr>
+            <tr ng-if="messages.length === 0">
+                <td colspan="3" align="center"><span>{{'THERE_WERE_NO_ADS'|translate}}</span></td>
+            </tr>
+            <tr ng-repeat="message in messages">
+                <td style="width:58%" class="ads-details-td">
+                    <div>
+                        <p>
+                            <strong>
+                                <a ui-sref="message.preview({advertId: message.id})" title="{{message.title}}">{{message.title}}</a>
+                            </strong>
+                        </p>
+                        <p><strong>{{'LOCATION'|translate}}:</strong>{{message.country}} {{message.region}} {{message.city}}</p>
+                    </div>
+                </td>
+                <td style="width:16%">
+                    <div>{{message.created}}</div>
+                </td>
+                <td style="width:10%" class="action-td">
+                    <div>
+                        <p><a ng-click="removeMessage(message)" class="btn btn-danger btn-xs"> <i class=" fa fa-trash"></i> {{'REMOVE'|translate}} </a></p>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

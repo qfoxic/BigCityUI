@@ -72,6 +72,16 @@
                                         <i class="icon-th-thumb"></i>{% verbatim %}{{'MY_ADS' | translate}}{% endverbatim %}
                                     </a>
                                 </li>
+                                <li>
+                                    <a ui-sref="user.preview.mymessages({userId: curUser.id})">
+                                        <i class="icon-mail-1"></i>{% verbatim %}{{'MY_MESSAGES' | translate}}{% endverbatim %}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ui-sref="user.preview.inmessages({userId: curUser.id})">
+                                        <i class="icon-mail-1"></i>{% verbatim %}{{'INCOMING_MESSAGES' | translate}}{% endverbatim %}
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li ng-if="curUser.id">

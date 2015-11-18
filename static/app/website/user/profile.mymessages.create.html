@@ -1,0 +1,85 @@
+<h2 class="title-2">
+    <i class="icon-mail-1"></i> {{'MY_MESSAGES'|translate}}
+</h2>
+
+<div class="table-responsive">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="ng-binding"> {{'CREATE'|translate}}</a>
+            </h4>
+        </div>
+        <div class="panel-collapse collapse in">
+            <div class="panel-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label ng-binding">{{'TITLE'|translate}}</label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"
+                                   ng-model="msg.title" value="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label ng-binding">{{'TEXT_MESSAGE'|translate}}</label>
+
+                        <div class="col-sm-9">
+                            <textarea type="text" class="form-control"
+                                      ng-model="msg.body" value="">
+                            </textarea>
+                        </div>
+                    </div>
+                    <h6 class="title-2">
+                        {{'MESSAGE_IS_AVAILABLE_FOR'|translate}}
+                    </h6>
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            {{'GLOBALLY_FOR_COUNTRY'|translate}}
+                        </label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"
+                                   ng-model="msg.country" placeholder="{{'ENTER_THE_NAME_OF_A_COUNTRY'|translate}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            {{'FOR_A_REGION'|translate}}
+                        </label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"
+                                   ng-disabled="!msg.country"
+                                   ng-model="msg.region" placeholder="{{'ENTER_THE_NAME_OF_A_REGION'|translate}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">
+                            {{'FOR_A_CITY'|translate}}
+                        </label>
+
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control"
+                                   ng-disabled="!(msg.country && msg.region)"
+                                   ng-model="msg.city" placeholder="{{'ENTER_THE_NAME_OF_A_CITY'|translate}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9">
+                            <button type="submit"
+                                    ng-click="$state.go('^')"
+                                    class="btn btn-default">{{'BACK'|translate}}
+                            </button>
+                            <button
+                                    type="submit"
+                                    ng-click="create(msg)"
+                                    class="btn btn-primary">{{'SUBMIT'|translate}}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

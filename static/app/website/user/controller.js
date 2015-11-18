@@ -169,5 +169,114 @@ angular.module('bigcity.website.user', [
                         }]
                 }
             }
-        });
+        })
+        .state('user.preview.inmessages', {
+            url: '/inmessages',
+            views: {
+                '': {
+                    templateUrl: '/static/app/website/user/profile.inmessages.html',
+                    controller: ['$scope', 'user', 'NodesService', 'messages',
+                        function ($scope, user, NodesService, messages) {
+                            var country = $scope.user.country || '',
+                                region = $scope.user.state || '',
+                                city = $scope.user.city || '';
+
+                            $scope.user = user.result;
+                            $scope.messages = null;
+
+                            NodesService.list({
+                                kind: 'message',
+                                table: 'incoming',
+                                tparams: 'country=' + country.trim() +
+                                         ',region=' + region.trim() +
+                                         ',city=' + city.trim(),
+                                order: '-created'
+                            }).then(
+                                function (data) {
+                                    $scope.messages = data.results;
+                                }
+                            );
+                        }]
+                }
+            }
+        })
+        .state('user.preview.inmessages.view', {
+            url: '/:mid',
+            resolve: {
+                message: function ($stateParams, NodesService) {
+                    return NodesService.get(
+                        $stateParams.mid, 'message'
+                    );
+                }
+            },
+            views: {
+                '': {
+                    templateUrl: '/static/app/website/user/profile.inmessages.view.html',
+                    controller: ['$scope', 'user', 'NodesService', 'message',
+                        function ($scope, user, NodesService, message) {
+                            $scope.user = user.result;
+                            $scope.message = message.result;
+                        }]
+                }
+            }
+        })
+        .state('user.preview.mymessages', {
+            url: '/mymessages',
+            views: {
+                '': {
+                    templateUrl: '/static/app/website/user/profile.mymessages.html',
+                    controller: ['$scope', 'user', 'NodesService', 'messages',
+                        function ($scope, user, NodesService, messages) {
+                            $scope.user = user.result;
+                            $scope.messages = null;
+                            $scope.removeMessage = function (message) {
+                                messages.info('Removing an message. Please wait ...');
+                                NodesService.delete({nid: message.id}, 'message').then(
+                                    function (data) {
+                                        var index = $scope.messages.indexOf(message);
+                                        $scope.messages.splice(index, 1);
+                                        messages.success('Message was removed.');
+                                    },
+                                    function (error) {
+                                        messages.error('Could not remove message. Please try again.');
+                                    }
+                                );
+                            };
+                            NodesService.list({
+                                kind: 'message',
+                                table: 'my',
+                                order: '-created'
+                            }).then(
+                                function (data) {
+                                    $scope.messages = data.results;
+                                }
+                            );
+                        }]
+                }
+            }
+        })
+        .state('user.preview.mymessages.create', {
+            url: '/create',
+            views: {
+                '': {
+                    templateUrl: '/static/app/website/user/profile.mymessages.create.html',
+                    controller: ['$scope', 'user', 'NodesService', 'messages',
+                        function ($scope, user, NodesService, messages) {
+                            $scope.user = user.result;
+                            $scope.msg = null;
+                            $scope.create = function (message) {
+                                NodesService.create(message, 'message').then(
+                                    function (data) {
+                                        messages.success('A message was created.');
+                                        $scope.$state.go('^');
+                                    },
+                                    function (error) {
+                                        messages.error('Could not create a message. Please try again.');
+                                    }
+                                );
+                            };
+                        }]
+                }
+            }
+        })
 }]);

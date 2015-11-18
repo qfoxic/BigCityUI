@@ -5,6 +5,7 @@ angular.module('bigcity.common.nodes', ['ngResource'])
 
             var nodeUrl = API_SERVER + '/node/',
                 advertUrl = API_SERVER + '/advert/',
+                messageUrl = API_SERVER + '/message/',
                 categoryUrl = API_SERVER + '/category/',
                 nodesUrl = API_SERVER + '/nodes/:kind/',
                 imagesUrl = API_SERVER + '/images/:nid/',
@@ -14,6 +15,12 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                     {nid: '@id'},
                     {list: {method: 'GET', url: nodesUrl}}),
                 resAdverts = $resource(advertUrl + ':nid/',
+                    {nid: '@id'},
+                    {
+                        list: {method: 'GET', url: nodesUrl},
+                        update: {method: 'PUT'}
+                    }),
+                resMessages = $resource(messageUrl + ':nid/',
                     {nid: '@id'},
                     {
                         list: {method: 'GET', url: nodesUrl},
@@ -35,6 +42,8 @@ angular.module('bigcity.common.nodes', ['ngResource'])
             Node.get = function (nid, kind) {
                 if (kind === 'advert') {
                     return resAdverts.get({nid: nid}).$promise;
+                } else if (kind === 'message') {
+                    return resMessages.get({nid: nid}).$promise;
                 }
                 return res.get({nid: nid}).$promise;
             };
@@ -95,6 +104,20 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                         data.parent = undefined;
                     }
                     return resCategory.save(data).$promise;
+                } else if (kind === 'message') {
+                    var deferred = $q.defer(),
+                        location = data.country + ',' + (data.region || '') + ',' + (data.city || '');
+                    utils.resolveAddressToGeo(location).then(function (loc) {
+                        data.country = loc.address.country;
+                        data.region = loc.address.state;
+                        data.city = loc.address.city;
+                        resMessages.save(data).$promise.then(function (resp) {
+                            deferred.resolve(resp);
+                        }).finally(function () {
+                            deferred.reject([]);
+                        });
+                    });
+                    return deferred.promise;
                 }
                 return res.save(data).$promise;
             };
@@ -122,6 +145,8 @@ angular.module('bigcity.common.nodes', ['ngResource'])
                     return resAdverts.remove(data).$promise;
                 } else if (kind === 'category') {
                     return resCategory.remove(data).$promise;
+                } else if (kind === 'message') {
+                    return resMessages.remove(data).$promise;
                 }
                 return res.remove(data).$promise;
             };

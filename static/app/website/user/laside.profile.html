@@ -19,11 +19,32 @@
                 <div class="panel-collapse collapse in">
                     <ul class="acc-list">
                         <li>
-                            <a ui-sref="user.preview.myads({userId: curUser.id})"><i class="icon-docs"></i>{{'MY_ADS'|translate}}</a>
+                            <a ui-sref="user.preview.myads({userId: curUser.id})">
+                                <i class="icon-docs"></i>{{'MY_ADS'|translate}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-collapse collapse in">
+                    <ul class="acc-list">
+                        <li>
+                            <a ui-sref="user.preview.mymessages({userId: curUser.id})">
+                                <i class="icon-mail-1"></i>{{'MY_MESSAGES'|translate}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-collapse collapse in">
+                    <ul class="acc-list">
+                        <li>
+                            <a ui-sref="user.preview.inmessages({userId: curUser.id})">
+                                <i class="icon-mail-1"></i>{{'INCOMING_MESSAGES'|translate}}
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
+
         </div>
     </div>
 

@@ -6,10 +6,6 @@
    USER PROFILE.
 2. Implement saved ads.
 
-   TRANSLATION
-2. Translate my ads table page.
-
-
    ADVERT
 2. Implement saved ads.
 1. Add more ads by user.
@@ -17,5 +13,10 @@
 
 3. Admin: add advert creation.
 9. Implement possibility to change fields dependently on a category on advert creation.
-10. Create/Edit advert - add fields related to buildings.!!! <---
-11. Translations.
+
+
+5. Add message update.
+7. Add message preview.
+   1. Add message preview form.
+
+8. Add pagination to message tables.
